@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AIAssistant from '../components/AIAssistant.astro';
+
+const faqs = [
+  { q: "POS机交易资金什么时候到账？", a: "通常情况下，借记卡交易为T+1到账（下一个工作日），信用卡交易可开通D+0实时到账服务。具体以您签约的费率套餐为准。" },
+  { q: "机器显示'连接失败'怎么办？", a: "请首先检查您的SIM卡流量是否充足，或者WiFi连接是否正常。您可以尝试重启机器，或进入设置页面重新配置网络。" },
+  { q: "如何修改小票打印的抬头名称？", a: "请登录商户后台APP，在'店铺管理' - '基本信息' 中修改商户名称，修改后由于缓存原因，建议重启POS机后生效。" },
+  { q: "刷卡费率是多少？", a: "标准费率按照银联规定执行，一般为贷记卡0.6%，借记卡0.5%（20元封顶）。扫码费率低至0.38%。详情请咨询客服或查看您的签约协议。" }
+];
+---
+
+<Layout title="服务支持 - 拉卡拉">
+  <Header />
+  <main class="flex-grow pt-20 min-h-screen bg-slate-50">
+    <div class="bg-white border-b border-slate-200">
+      <div class="max-w-4xl mx-auto px-4 py-16 text-center">
+        <h1 class="text-3xl font-bold text-slate-800 mb-6">服务与支持中心</h1>
+        <div class="relative max-w-xl mx-auto">
+          <input
+            type="text"
+            placeholder="输入您的问题，例如：如何连接WIFI？"
+            class="w-full pl-12 pr-4 py-4 rounded-full border border-slate-300 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-200 shadow-sm"
+          />
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center cursor-pointer">
+          <div class="w-16 h-16 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-800 mb-2">操作指南</h3>
+          <p class="text-slate-500">查看设备详细使用手册和视频教程</p>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center cursor-pointer">
+          <div class="w-16 h-16 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-800 mb-2">固件下载</h3>
+          <p class="text-slate-500">获取最新的系统升级包和驱动程序</p>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center cursor-pointer">
+          <div class="w-16 h-16 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-800 mb-2">常见问题</h3>
+          <p class="text-slate-500">支付失败、网络连接等常见故障排查</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
+        <h2 class="text-2xl font-bold text-slate-800 mb-8 border-l-4 border-brand-600 pl-4">热门问答</h2>
+        <div class="space-y-6">
+          {faqs.map((faq) => (
+            <div class="border-b border-slate-100 pb-6 last:border-0 last:pb-0">
+              <h4 class="text-lg font-bold text-slate-800 mb-2 flex items-start">
+                <span class="text-brand-600 mr-2">Q:</span>
+                {faq.q}
+              </h4>
+              <p class="text-slate-600 pl-6 leading-relaxed">
+                <span class="font-bold text-slate-400 mr-2">A:</span>
+                {faq.a}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+  <AIAssistant />
+</Layout>
