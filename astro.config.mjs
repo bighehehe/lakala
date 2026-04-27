@@ -9,6 +9,15 @@ export default defineConfig({
     enabled: false
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      proxy: {
+        '/feishu-webhook': {
+          target: 'https://www.feishu.cn',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/feishu-webhook/, '')
+        }
+      }
+    }
   }
 });
