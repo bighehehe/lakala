@@ -17,7 +17,7 @@ const clusterArticles = allArticles
   .sort((a, b) => new Date(b.data.created_at).getTime() - new Date(a.data.created_at).getTime());
 
 // Group cluster by category, preserve insertion order
-const categoryOrder = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'];
+const categoryOrder = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用', '手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'];
 const grouped = new Map<string, typeof clusterArticles>();
 for (const cat of categoryOrder) {
   const items = clusterArticles.filter(a => a.data.category === cat);
@@ -38,6 +38,11 @@ const categoryIcons: Record<string, string> = {
   '费用与合同': '💰',
   '渠道与避坑': '🛡️',
   '激活与使用': '🔧',
+  '手续费计算': '🧮',
+  '扫码费率': '📱',
+  '流量费': '📶',
+  '押金规则': '🔐',
+  '秒到费与涨价': '⚡',
   '其他': '📄',
 };
 
@@ -47,6 +52,11 @@ const categoryDescriptions: Record<string, string> = {
   '费用与合同': '费用构成、合同条款和常见收费陷阱解读',
   '渠道与避坑': '如何选择靠谱渠道，避开办理中的常见坑',
   '激活与使用': '设备激活、绑卡、APP使用和日常操作指南',
+  '手续费计算': '刷卡手续费怎么算？不同金额不同费率一目了然',
+  '扫码费率': '微信、支付宝、银联扫码费率和限额详解',
+  '流量费': 'POS机流量费怎么扣？一年多少钱？能退吗？',
+  '押金规则': '激活押金、达标返还、退款条件全解析',
+  '秒到费与涨价': '秒到费、服务费、费率调整，看懂不花冤枉钱',
 };
 ---
 

@@ -21,7 +21,7 @@ const allArticles = await getCollection('articles');
 const clusterArticles = allArticles
   .filter(a => a.data.type === 'cluster')
   .sort((a, b) => {
-    const order = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'];
+    const order = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用', '手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'];
     const ca = order.indexOf(a.data.category);
     const cb = order.indexOf(b.data.category);
     if (ca !== cb) return ca - cb;
@@ -29,7 +29,7 @@ const clusterArticles = allArticles
   });
 
 // Group by category
-const categoryOrder = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'];
+const categoryOrder = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用', '手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'];
 const grouped = new Map<string, typeof clusterArticles>();
 for (const cat of categoryOrder) {
   const items = clusterArticles.filter(a => a.data.category === cat);
@@ -42,6 +42,11 @@ const categoryIcons: Record<string, string> = {
   '费用与合同': '💰',
   '渠道与避坑': '🛡️',
   '激活与使用': '🔧',
+  '手续费计算': '🧮',
+  '扫码费率': '📱',
+  '流量费': '📶',
+  '押金规则': '🔐',
+  '秒到费与涨价': '⚡',
 };
 
 function formatDate(dateStr: string | Date) {
