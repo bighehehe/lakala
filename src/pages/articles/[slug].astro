@@ -16,22 +16,56 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content } = await render(article);
 
-// Get all cluster articles for sidebar
+// Group definitions: each group has its own pillar, categories, and sidebar
+const groups = {
+  A: {
+    pillarSlug: 'lakala-pos-banli-zhinan',
+    name: 'POS办理指南',
+    categories: ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'],
+  },
+  B: {
+    pillarSlug: 'lakala-pos-feilv-zhinan',
+    name: 'POS费率与费用',
+    categories: ['手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'],
+  },
+} as const;
+
+// Determine current article's group
+const allCategoryGroupMap = new Map<string, string>();
+for (const [gk, gv] of Object.entries(groups)) {
+  for (const cat of gv.categories) {
+    allCategoryGroupMap.set(cat, gk);
+  }
+}
+function getArticleGroup(art: { id: string; data: { type?: string; category?: string } }): string {
+  if (art.data.type === 'pillar') {
+    for (const [gk, gv] of Object.entries(groups)) {
+      if (art.id === gv.pillarSlug) return gk;
+    }
+  }
+  if (art.data.category && allCategoryGroupMap.has(art.data.category)) {
+    return allCategoryGroupMap.get(art.data.category)!;
+  }
+  return 'A'; // fallback
+}
+const currentGroup = getArticleGroup(article);
+const groupConfig = groups[currentGroup as keyof typeof groups];
+
+// Get only same-group cluster articles for sidebar
 const allArticles = await getCollection('articles');
+const groupCategories = new Set(groupConfig.categories);
 const clusterArticles = allArticles
-  .filter(a => a.data.type === 'cluster')
+  .filter(a => a.data.type === 'cluster' && groupCategories.has(a.data.category))
   .sort((a, b) => {
-    const order = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用', '手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'];
-    const ca = order.indexOf(a.data.category);
-    const cb = order.indexOf(b.data.category);
+    const ca = groupConfig.categories.indexOf(a.data.category);
+    const cb = groupConfig.categories.indexOf(b.data.category);
     if (ca !== cb) return ca - cb;
     return new Date(b.data.created_at).getTime() - new Date(a.data.created_at).getTime();
   });
 
-// Group by category
-const categoryOrder = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用', '手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'];
+// Group by category (within same group)
 const grouped = new Map<string, typeof clusterArticles>();
-for (const cat of categoryOrder) {
+for (const cat of groupConfig.categories) {
   const items = clusterArticles.filter(a => a.data.category === cat);
   if (items.length > 0) grouped.set(cat, items);
 }
@@ -77,7 +111,7 @@ function formatDate(dateStr: string | Date) {
             <div class="bg-slate-50 rounded-2xl p-5 max-h-[calc(100vh-10rem)] overflow-y-auto">
               <h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <span class="w-6 h-6 bg-brand-600 text-white rounded-md flex items-center justify-center text-xs font-bold">导</span>
-                文章导航
+                {groupConfig.name}
               </h3>
 
               {Array.from(grouped.entries()).map(([category, articles]) => (
