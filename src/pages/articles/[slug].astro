@@ -33,6 +33,11 @@ const groups = {
     name: 'POS产品与机型',
     categories: ['机型介绍', '产品选择', '产品功能', '产品对比与决策'],
   },
+  D: {
+    pillarSlug: 'lakala-pos-shiyong-wenti-zhinan',
+    name: 'POS使用问题与售后',
+    categories: ['不到账', '交易失败', '限额', '结算卡与账户', '机器故障、流量卡、注销'],
+  },
 } as const;
 
 // Determine current article's group
@@ -90,9 +95,14 @@ const categoryIcons: Record<string, string> = {
   '产品选择': '🎯',
   '产品功能': '⚙️',
   '产品对比与决策': '⚖️',
+  '不到账': '❌',
+  '交易失败': '⚠️',
+  '限额': '📊',
+  '结算卡与账户': '💳',
+  '机器故障、流量卡、注销': '🔧',
 };
 
-const groupRouteMap: Record<string, string> = { A: '/articles/group-a', B: '/articles/group-b', C: '/articles/group-c' };
+const groupRouteMap: Record<string, string> = { A: '/articles/group-a', B: '/articles/group-b', C: '/articles/group-c', D: '/articles/group-d' };
 
 function formatDate(dateStr: string | Date) {
   const date = new Date(dateStr);

@@ -32,6 +32,15 @@ const groups = [
     count: 41,
     categories: ['机型介绍', '产品选择', '产品功能', '产品对比与决策'],
   },
+  {
+    slug: 'group-d',
+    title: '拉卡拉POS使用问题与售后',
+    subtitle: '不到账、交易失败、限额、换卡、注销，51篇文章手把手教你处理',
+    icon: '🔧',
+    bannerClass: 'from-rose-900 via-pink-800 to-rose-700',
+    count: 51,
+    categories: ['不到账', '交易失败', '限额', '结算卡与账户', '机器故障、流量卡、注销'],
+  },
 ];
 ---
 
@@ -45,12 +54,12 @@ const groups = [
       </div>
       <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">拉卡拉POS专题</h1>
-        <p class="text-blue-200 text-lg max-w-2xl mx-auto">三大专题，130+篇文章，全面解答POS办理、费用与产品问题</p>
+        <p class="text-blue-200 text-lg max-w-2xl mx-auto">四大专题，180+篇文章，全面解答POS办理、费用、产品与售后问题</p>
       </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-4 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="max-w-7xl mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
         {groups.map((group) => (
           <a
             href={`/articles/${group.slug}`}
