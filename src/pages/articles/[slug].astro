@@ -28,6 +28,11 @@ const groups = {
     name: 'POS费率与费用',
     categories: ['手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'],
   },
+  C: {
+    pillarSlug: 'lakala-pos-jixing-zhinan',
+    name: 'POS产品与机型',
+    categories: ['机型介绍', '产品选择', '产品功能', '产品对比与决策'],
+  },
 } as const;
 
 // Determine current article's group
@@ -81,9 +86,13 @@ const categoryIcons: Record<string, string> = {
   '流量费': '📶',
   '押金规则': '🔐',
   '秒到费与涨价': '⚡',
+  '机型介绍': '📱',
+  '产品选择': '🎯',
+  '产品功能': '⚙️',
+  '产品对比与决策': '⚖️',
 };
 
-const groupRouteMap: Record<string, string> = { A: '/articles/group-a', B: '/articles/group-b' };
+const groupRouteMap: Record<string, string> = { A: '/articles/group-a', B: '/articles/group-b', C: '/articles/group-c' };
 
 function formatDate(dateStr: string | Date) {
   const date = new Date(dateStr);

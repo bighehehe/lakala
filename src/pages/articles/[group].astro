@@ -9,6 +9,7 @@ export async function getStaticPaths() {
   return [
     { params: { group: 'group-a' }, props: { groupKey: 'A' } },
     { params: { group: 'group-b' }, props: { groupKey: 'B' } },
+    { params: { group: 'group-c' }, props: { groupKey: 'C' } },
   ];
 }
 
@@ -36,6 +37,13 @@ const groupDefs: Record<string, {
     pillarSlug: 'lakala-pos-feilv-zhinan',
     categories: ['手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'],
   },
+  C: {
+    title: '拉卡拉POS产品与机型',
+    subtitle: '机型介绍、产品选择、功能详解，帮你选对合适的POS机',
+    bannerClass: 'from-purple-900 via-violet-800 to-purple-700',
+    pillarSlug: 'lakala-pos-jixing-zhinan',
+    categories: ['机型介绍', '产品选择', '产品功能', '产品对比与决策'],
+  },
 };
 
 const group = groupDefs[groupKey];
@@ -56,6 +64,7 @@ const categoryIcons: Record<string, string> = {
   '渠道与避坑': '🛡️', '激活与使用': '🔧',
   '手续费计算': '🧮', '扫码费率': '📱', '流量费': '📶',
   '押金规则': '🔐', '秒到费与涨价': '⚡',
+  '机型介绍': '📱', '产品选择': '🎯', '产品功能': '⚙️', '产品对比与决策': '⚖️',
 };
 
 const categoryDescriptions: Record<string, string> = {
@@ -69,6 +78,10 @@ const categoryDescriptions: Record<string, string> = {
   '流量费': 'POS机流量费怎么扣？一年多少钱？能退吗？',
   '押金规则': '激活押金、达标返还、退款条件全解析',
   '秒到费与涨价': '秒到费、服务费、费率调整，看懂不花冤枉钱',
+  '机型介绍': '电签POS、智能POS、传统POS，不同机型全解析',
+  '产品选择': '新手怎么选机型？大机小机怎么挑？选机避坑指南',
+  '产品功能': '支付方式支持、小票打印、APP功能全解',
+  '产品对比与决策': '机型对比、新旧差异、维修换机选择建议',
 };
 
 function formatDate(dateStr: string | Date) {

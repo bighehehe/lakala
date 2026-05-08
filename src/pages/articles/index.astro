@@ -23,6 +23,15 @@ const groups = [
     count: 51,
     categories: ['手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'],
   },
+  {
+    slug: 'group-c',
+    title: '拉卡拉POS产品与机型',
+    subtitle: '机型介绍、产品选择、功能详解，41篇文章帮你选对机器',
+    icon: '📱',
+    bannerClass: 'from-purple-900 via-violet-800 to-purple-700',
+    count: 41,
+    categories: ['机型介绍', '产品选择', '产品功能', '产品对比与决策'],
+  },
 ];
 ---
 
@@ -36,12 +45,12 @@ const groups = [
       </div>
       <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">拉卡拉POS专题</h1>
-        <p class="text-blue-200 text-lg max-w-2xl mx-auto">两大专题，90+篇文章，全面解答POS办理与费用问题</p>
+        <p class="text-blue-200 text-lg max-w-2xl mx-auto">三大专题，130+篇文章，全面解答POS办理、费用与产品问题</p>
       </div>
     </div>
 
-    <div class="max-w-5xl mx-auto px-4 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {groups.map((group) => (
           <a
             href={`/articles/${group.slug}`}
