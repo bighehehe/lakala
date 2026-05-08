@@ -65,3 +65,65 @@ A：结算卡的绑定规则以服务方的政策为准，部分产品支持多�
 
 **Q：POS机可以在外地使用吗？**
 A：POS机通常可以在全国范围内使用，但需要注意部分功能或费率可能因地区而异，具体以服务协议为准。
+
+## 相关文章
+
+### D1 不到账
+- [刷卡不到账怎么办？先按这5步排查](/articles/lakala-pos-shuaka-bu-daozhang)
+- [不到账，应该联系代理还是官方客服？](/articles/lakala-pos-bu-daozhang-lianxi-shei)
+- [到账到其他银行卡了怎么办？](/articles/lakala-pos-daozhang-qita-yinhangka)
+- [节假日刷卡不到账正常吗？](/articles/lakala-pos-jiari-shuaka-bu-dao)
+- [到账少了，是手续费问题还是扣费问题？](/articles/lakala-pos-daozhang-shao-le)
+- [到账延迟多久算异常？](/articles/lakala-pos-daozhang-yanchi-yichang)
+- [小票显示成功，为什么银行卡没收到钱？](/articles/lakala-pos-xiaopiao-chenggong-yinhangka-shou)
+- [刷卡后第二天还没到账怎么办？](/articles/lakala-pos-diertian-mei-daozhang)
+- [显示交易成功但钱没到，是什么原因？](/articles/lakala-pos-chenggong-qian-bu-dao)
+- [晚上刷卡为什么不到账？到账规则要看清](/articles/lakala-pos-wanshang-shuaka-bu-dao)
+
+### D2 交易失败
+- [提示"终端无效"是什么意思？](/articles/lakala-pos-zhongduan-wuxiao)
+- [提示交易失败，但银行卡扣款了怎么办？](/articles/lakala-pos-shibai-koukuan-lia)
+- [提示"发卡行限制"怎么处理？](/articles/lakala-pos-fakahang-xianzhi)
+- [提示"商户无效"还能继续用吗？](/articles/lakala-pos-shanghu-wuxiao)
+- [提示"交易受限"是什么原因？](/articles/lakala-pos-jiaoyi-shouxiang)
+- [交易失败后，可以马上再刷一笔吗？](/articles/lakala-pos-shibai-hou-zai-shua)
+- [提示"网络连接失败"怎么处理？](/articles/lakala-pos-wangluo-lianjie-shibai)
+- [刷卡没反应，是卡的问题还是机器问题？](/articles/lakala-pos-shuaka-mei-fanying)
+- [交易失败常见原因有哪些？](/articles/lakala-pos-jiaoyi-shibai-changjian-yuanyin)
+- [提示"不支持该交易"是什么意思？](/articles/lakala-pos-buzhichi-jiaoyi)
+
+### D3 限额
+- [扫码限额和刷卡限额一样吗？](/articles/lakala-pos-saoma-xiane-shuaka-xiane)
+- [限额能不能调整？](/articles/lakala-pos-xiane-neng-tiaozheng)
+- [单日限额怎么回事？](/articles/lakala-pos-danri-xiane)
+- [单笔限额是什么意思？](/articles/lakala-pos-danbi-xiane)
+- [小额能刷，大额失败是什么原因？](/articles/lakala-pos-xiao-e-dae-shibai)
+- [为什么突然不能刷大额？](/articles/lakala-pos-turan-bu-neng-shua-da-e)
+- [频繁限额，要不要更换机器？](/articles/lakala-pos-pinfan-xiane-huanjichi)
+- [提示超限额怎么办？](/articles/lakala-pos-chaoxian-e)
+- [夜间刷卡有限额吗？](/articles/lakala-pos-yejian-shuaka-xiane)
+- [信用卡限额是机器限制还是银行限制？](/articles/lakala-pos-xinyongka-xiane)
+
+### D4 结算卡与账户
+- [结算卡不是本人名下可以吗？](/articles/lakala-pos-jiesuanka-fei-benren)
+- [到账银行卡注销了怎么办？](/articles/lakala-pos-jiesuanka-zhuxiao)
+- [结算卡换了，原来的交易会不会受影响？](/articles/lakala-pos-jiesuanka-huan-le-yingxiang)
+- [结算卡被冻结了怎么办？](/articles/lakala-pos-jiesuanka-dongjie)
+- [更换手机号后还能正常到账吗？](/articles/lakala-pos-genghuan-shoujihao)
+- [账户异常怎么处理？](/articles/lakala-pos-zhanghu-yichang)
+- [APP登录不上，会不会影响到账？](/articles/lakala-pos-app-denglu-bushang)
+- [结算卡可以更换吗？操作前注意这些问题](/articles/lakala-pos-jiesuanka-genghuan)
+- [绑定银行卡异常，会影响到账吗？](/articles/lakala-pos-jiesuanka-yichang)
+- [实名认证信息可以修改吗？](/articles/lakala-pos-shiming-renzheng-xiugai)
+
+### D5 机器故障、流量卡、注销
+- [不用了需要注销吗？](/articles/lakala-pos-buyong-le-xuyao-zhuxiao)
+- [刷卡小票怎么看？哪些信息很重要](/articles/lakala-pos-shuaka-xiaopiao-zemme-kan)
+- [打不出小票怎么办？](/articles/lakala-pos-da-bu-chu-xiaopiao)
+- [联系不上代理怎么办？用户还能找谁处理](/articles/lakala-pos-lianxi-bu-shang-daili)
+- [充不进电，是电池问题还是机器故障？](/articles/lakala-pos-chong-bu-jin-dian)
+- [不注销会有什么影响？](/articles/lakala-pos-bu-zhuxiao-yingxiang)
+- [流量卡到期了怎么办？](/articles/lakala-pos-liuliangka-daoqi)
+- [开不了机怎么办？常见原因和处理方法](/articles/lakala-pos-kai-bu-liao-ji)
+- [坏了怎么换机器？售后流程怎么走](/articles/lakala-pos-huai-le-huan-jiqi)
+- [注销后还能重新激活吗？](/articles/lakala-pos-zhuxiao-hou-zaici-jihuo)

@@ -38,6 +38,11 @@ const groups = {
     name: 'POS使用问题与售后',
     categories: ['不到账', '交易失败', '限额', '结算卡与账户', '机器故障、流量卡、注销'],
   },
+  E: {
+    pillarSlug: 'lakala-pos-anquan-hegui-zhinan',
+    name: 'POS安全合规与避坑',
+    categories: ['正规性与安全', '政策与行业变化', '风控、跳码、商户', '使用边界与风险提示', '骗局与避坑'],
+  },
 } as const;
 
 // Determine current article's group
@@ -100,9 +105,14 @@ const categoryIcons: Record<string, string> = {
   '限额': '📊',
   '结算卡与账户': '💳',
   '机器故障、流量卡、注销': '🔧',
+  '正规性与安全': '🔒',
+  '政策与行业变化': '📜',
+  '风控、跳码、商户': '🔍',
+  '使用边界与风险提示': '⚠️',
+  '骗局与避坑': '🚫',
 };
 
-const groupRouteMap: Record<string, string> = { A: '/articles/group-a', B: '/articles/group-b', C: '/articles/group-c', D: '/articles/group-d' };
+const groupRouteMap: Record<string, string> = { A: '/articles/group-a', B: '/articles/group-b', C: '/articles/group-c', D: '/articles/group-d', E: '/articles/group-e' };
 
 function formatDate(dateStr: string | Date) {
   const date = new Date(dateStr);

@@ -156,3 +156,64 @@ created_at: "2026-05-08"
 ---
 
 > **还想了解更多？** 以上内容帮助商户全面了解拉卡拉POS机的费用构成。如果您正在考虑办理拉卡拉POS机，或者对当前使用的费率有疑问，欢迎联系客服咨询，获取最新的费率方案和办理优惠信息。
+
+## 相关文章
+
+### B1 手续费计算
+- [刷5000元扣多少手续费？](/articles/lakala-pos-shua-5000-kou-duoshao)
+- [到账金额为什么和刷卡金额对不上？](/articles/lakala-pos-daozhang-jine-duibushang)
+- [手续费公式，新手看这一篇就够了](/articles/lakala-pos-shouxufei-gongshi)
+- [刷10万元手续费是多少？不同费率差多少](/articles/lakala-pos-shua-shiwan-shouxufei)
+- [信用卡刷卡手续费是每笔都扣吗？](/articles/lakala-pos-xinyongka-shouxufei-meibi)
+- [刷卡1000元、5000元、1万元分别扣多少？](/articles/lakala-pos-shua-1000-5000-yiwan)
+- [刷一万元手续费多少钱？一张表算清楚](/articles/lakala-pos-shua-yiwan-shouxufei)
+- [刷5万元手续费怎么算？](/articles/lakala-pos-shua-wuwan-shouxufei)
+- [刷卡手续费谁收走了？普通用户看懂就够了](/articles/lakala-pos-shouxufei-shui-shouzou)
+- [费率0.6%是什么意思？刷卡成本怎么算](/articles/lakala-pos-feilv-06-yisi)
+
+### B2 扫码费率
+- [扫码费率怎么算？微信、支付宝、银联扫码有什么区别](/articles/lakala-pos-saoma-feilv-weixin-alipay)
+- [扫微信付款码怎么收费？](/articles/lakala-pos-sao-weixin-shoufei)
+- [扫码1000元扣多少手续费？](/articles/lakala-pos-saoma-1000-kou-duoshao)
+- [扫支付宝付款码手续费怎么算？](/articles/lakala-pos-sao-alipay-shouxufei)
+- [扫码到账时间和刷卡一样吗？](/articles/lakala-pos-saoma-daozhang-shijian)
+- [扫码费率低，是不是一定更划算？](/articles/lakala-pos-saoma-feilv-di-huasuan)
+- [扫码交易失败怎么办？](/articles/lakala-pos-saoma-jiaoyi-shibai)
+- [扫码收款和刷卡收款费率一样吗？](/articles/lakala-pos-saoma-shuaka-feilv-yiyang)
+- [云闪付费率怎么看？](/articles/lakala-pos-yunshanfu-feilv)
+
+### B3 秒到费与涨价
+- [拉卡拉POS服务费是什么？和流量费有什么区别？](/articles/lakala-pos-fuwufei-shenme)
+- [拉卡拉POS秒到费3元正常吗？](/articles/lakala-pos-miaodao-fei-3yuan)
+- [拉卡拉POS每年扣服务费合理吗？](/articles/lakala-pos-meinian-fuwufei)
+- [拉卡拉POS到账为什么有时候会扣额外费用？](/articles/lakala-pos-daozhang-kou-ewai)
+- [拉卡拉POS费率突然上涨怎么办？还能继续用吗？](/articles/lakala-pos-feilv-shangzhang)
+- [拉卡拉POS刷卡到账少了几块钱，是手续费还是秒到费？](/articles/lakala-pos-daozhang-shao-jikuai)
+- [拉卡拉POS秒到费是什么？每笔都要收吗？](/articles/lakala-pos-miaodao-fei-shenme)
+- [拉卡拉POS T+1到账和秒到账有什么区别？](/articles/lakala-pos-t1-miaodao-qubie)
+- [拉卡拉POS低费率靠谱吗？便宜背后可能有哪些坑](/articles/lakala-pos-di-feilv-kaopu)
+- [拉卡拉POS费用检查：看这5项就够了](/articles/lakala-pos-feiyong-jiancha)
+
+### B4 流量费
+- [流量费是什么？为什么每年都可能扣？](/articles/lakala-pos-liuliangfei-shenme)
+- [流量费一年多少钱算正常？](/articles/lakala-pos-liuliangfei-yinian-duoshao)
+- [流量卡到期后还能刷卡吗？](/articles/lakala-pos-liuliangka-daoqi-shuaka)
+- [扣了流量费还能退吗？](/articles/lakala-pos-liuliangfei-neng-tui)
+- [为什么有的机器有流量费，有的没有？](/articles/lakala-pos-youda-you-liuliangfei)
+- [流量费和服务费是一回事吗？](/articles/lakala-pos-liuliangfei-fuwufei)
+- [不用了还扣流量费怎么办？](/articles/lakala-pos-buyong-liuliangfei)
+- [流量费突然变高，是怎么回事？](/articles/lakala-pos-liuliangfei-turan-gao)
+- [办理前，流量费一定要问清哪些问题？](/articles/lakala-pos-liuliangfei-wenqing)
+- [流量费什么时候扣？会提前通知吗？](/articles/lakala-pos-liuliangfei-shihou-kou)
+
+### B5 押金规则
+- [拉卡拉POS押金能退吗？退押金要注意什么？](/articles/lakala-pos-yajin-neng-tui-ma)
+- [拉卡拉POS押金退还找谁处理？](/articles/lakala-pos-yajin-tuihuan-zhaoshui)
+- [拉卡拉POS押金返还需要刷够多少交易量？](/articles/lakala-pos-yajin-jiaoyiliang)
+- [拉卡拉POS激活押金是什么意思？是不是套路？](/articles/lakala-pos-jihuo-yajin-yisi)
+- [拉卡拉POS押金和冻结金是一回事吗？](/articles/lakala-pos-yajin-dongjiejii)
+- [拉卡拉POS押金退不回来，通常是什么原因？](/articles/lakala-pos-yajin-tui-buhuilai)
+- [拉卡拉POS押金达标返还是什么意思？](/articles/lakala-pos-yajin-dabiao-fanhuan)
+- [拉卡拉POS押金99元、199元、299元有什么区别？](/articles/lakala-pos-yajin-99-199-299)
+- [办理拉卡拉POS时，押金规则怎么看才不容易踩坑？](/articles/lakala-pos-yajin-guize-zenmekan)
+- [拉卡拉POS没有刷够交易量，押金还能退吗？](/articles/lakala-pos-yajin-meishua-gou)

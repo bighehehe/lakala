@@ -121,3 +121,53 @@ created_at: "2026-05-08"
 - **客服热线：** 400-926-6655
 - **在线咨询：** 通过拉卡拉官方网站或APP进行在线咨询
 - **线下服务：** 联系当地的拉卡拉授权服务商获取一对一服务
+
+## 相关文章
+
+### C1 机型介绍
+- [传统大POS机还适合用吗？](/articles/lakala-pos-chuantong-dapos-shihe)
+- [电签POS机是什么？适合哪些用户？](/articles/lakala-pos-dianqian-shihe-yonghu)
+- [拉卡拉POS机有哪些类型？新手先看这篇](/articles/lakala-pos-you-xie-leixing)
+- [机型不同，到账规则会不会不同？](/articles/lakala-pos-jixing-daozhang-butong)
+- [机型不同，流量费会不会不同？](/articles/lakala-pos-jixing-liuliangfei-butong)
+- [机型不同，费率会不会不同？](/articles/lakala-pos-jixing-feilv-butong)
+- [新款机器值得换吗？办理前看这几点](/articles/lakala-pos-xinkuan-zhidehuan)
+- [电签机和大POS机哪个好？](/articles/lakala-pos-dianqian-dapos-nagehao)
+- [智能机和电签机有什么区别？](/articles/lakala-pos-zhineng-dianqian-qubie)
+- [智能POS机有什么功能？和普通POS有什么区别](/articles/lakala-pos-zhineng-gongneng)
+
+### C2 产品选择
+- [带打印小票的机器有必要吗？](/articles/lakala-pos-da-dayin-xiaopiao-biyao)
+- [没有小票还能正常使用吗？](/articles/lakala-pos-meiyou-xiaopiao-zhengchang)
+- [电签版适合个人使用吗？](/articles/lakala-pos-dianqian-geren-shiyong)
+- [换机器前，要先确认哪些问题？](/articles/lakala-pos-huan-jixing-queren)
+- [选机型时，为什么不能只看价格？](/articles/lakala-pos-xuan-jixing-bukan-jiage)
+- [办理哪种机器售后更方便？](/articles/lakala-pos-banli-shouhou-fangbian)
+- [智能机适合哪些场景？](/articles/lakala-pos-zhineng-shihe-changjing)
+- [蓝牙机、电签机、智能机有什么区别？](/articles/lakala-pos-lanya-dianqian-zhineng-qubie)
+- [新手第一次用拉卡拉POS，选哪种机型更合适？](/articles/lakala-pos-xinshou-xuan-na-zhong)
+- [大机和小机怎么选？](/articles/lakala-pos-daji-xiaoji-xuan)
+
+### C3 产品功能
+- [APP怎么用？新手常见功能说明](/articles/lakala-pos-app-zenme-yong)
+- [怎么查看到账明细？](/articles/lakala-pos-chakan-daozhang-mingxi)
+- [交易记录在哪里查？](/articles/lakala-pos-jiaoyi-jilu-chaxun)
+- [支持云闪付吗？](/articles/lakala-pos-zhichi-yunshanfu)
+- [支持哪些支付方式？刷卡、扫码、挥卡一次说清](/articles/lakala-pos-zhichi-zhifu-fangshi)
+- [小票有什么用？哪些信息要看懂](/articles/lakala-pos-xiaopiao-shenme-yong)
+- [电子签名是什么意思？](/articles/lakala-pos-dianzi-qianming)
+- [支持储蓄卡刷卡吗？手续费怎么算](/articles/lakala-pos-zhichi-chuxuka-shuaka)
+- [支持信用卡收款吗？使用时要注意什么](/articles/lakala-pos-zhichi-xinyongka-shoukuan)
+- [支持微信支付宝扫码吗？](/articles/lakala-pos-zhichi-weixin-alipay)
+
+### C4 产品对比与决策
+- [电签机和智能机哪个更适合新手？](/articles/lakala-pos-dianqian-zhineng-xinshou)
+- [拉卡拉POS机要不要换新款？看这几个判断标准](/articles/lakala-pos-yaobuyao-huan-xinkuan)
+- [拉卡拉POS机和普通POS机有什么区别？](/articles/lakala-pos-he-ptong-pos-qubie)
+- [拉卡拉POS机产品选择清单：办理前照着问就行](/articles/lakala-pos-chanpin-xuanze-qingdan)
+- [拉卡拉不同机型激活流程一样吗？](/articles/lakala-pos-butong-jixing-jihuo)
+- [拉卡拉POS机坏了，是维修好还是换机好？](/articles/lakala-pos-jiaqi-weixiu-huansuan)
+- [拉卡拉旧POS机还能继续用吗？](/articles/lakala-pos-jiu-jixing-jixu-yong)
+- [拉卡拉POS新机和老机有什么区别？](/articles/lakala-pos-xinji-laoji-qubie)
+- [拉卡拉不同机型售后政策一样吗？](/articles/lakala-pos-butong-jixing-shouhou)
+- [拉卡拉不同机型押金一样吗？](/articles/lakala-pos-butong-jixing-yajin)

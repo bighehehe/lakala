@@ -11,6 +11,7 @@ export async function getStaticPaths() {
     { params: { group: 'group-b' }, props: { groupKey: 'B' } },
     { params: { group: 'group-c' }, props: { groupKey: 'C' } },
     { params: { group: 'group-d' }, props: { groupKey: 'D' } },
+    { params: { group: 'group-e' }, props: { groupKey: 'E' } },
   ];
 }
 
@@ -52,6 +53,13 @@ const groupDefs: Record<string, {
     pillarSlug: 'lakala-pos-shiyong-wenti-zhinan',
     categories: ['不到账', '交易失败', '限额', '结算卡与账户', '机器故障、流量卡、注销'],
   },
+  E: {
+    title: '拉卡拉POS安全合规与避坑',
+    subtitle: '正规性、风控、跳码、骗局识别，帮你避开所有坑',
+    bannerClass: 'from-amber-900 via-orange-800 to-amber-700',
+    pillarSlug: 'lakala-pos-anquan-hegui-zhinan',
+    categories: ['正规性与安全', '政策与行业变化', '风控、跳码、商户', '使用边界与风险提示', '骗局与避坑'],
+  },
 };
 
 const group = groupDefs[groupKey];
@@ -75,6 +83,8 @@ const categoryIcons: Record<string, string> = {
   '机型介绍': '📱', '产品选择': '🎯', '产品功能': '⚙️', '产品对比与决策': '⚖️',
   '不到账': '❌', '交易失败': '⚠️', '限额': '📊',
   '结算卡与账户': '💳', '机器故障、流量卡、注销': '🔧',
+  '正规性与安全': '🔒', '政策与行业变化': '📜',
+  '风控、跳码、商户': '🔍', '使用边界与风险提示': '⚠️', '骗局与避坑': '🚫',
 };
 
 const categoryDescriptions: Record<string, string> = {
@@ -97,6 +107,11 @@ const categoryDescriptions: Record<string, string> = {
   '限额': '单笔单日限额、扫码刷卡限额、夜间限额详解',
   '结算卡与账户': '结算卡更换、银行卡异常、账户问题处理',
   '机器故障、流量卡、注销': '设备故障、流量卡续费、机器注销流程',
+  '正规性与安全': '支付牌照、一清机、资金安全、正规性判断',
+  '政策与行业变化': '259文件、一机一码、政策调整影响解析',
+  '风控、跳码、商户': '风控触发原因、跳码识别、商户名称和MCC码解读',
+  '使用边界与风险提示': '合规使用、风险行为、误导话术识别',
+  '骗局与避坑': '办理骗局、押金套路、费率陷阱、代理失联处理',
 };
 
 function formatDate(dateStr: string | Date) {
