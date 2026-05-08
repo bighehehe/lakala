@@ -51,14 +51,6 @@ function formatDate(dateStr: string | Date) {
           </span>
         </div>
 
-        {article.data.cover_image && (
-          <img
-            src={article.data.cover_image}
-            alt={article.data.title}
-            class="w-full rounded-2xl mb-8 shadow-lg"
-          />
-        )}
-
         <div class="prose-content text-slate-700 leading-relaxed text-lg">
           <Content />
         </div>
