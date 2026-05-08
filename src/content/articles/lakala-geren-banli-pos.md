@@ -2,6 +2,8 @@
 title: "个人可以办理拉卡拉POS吗？申请前要注意什么"
 summary: "个人用户可以办理拉卡拉POS电签版等轻量产品。本文说明个人办理的适用条件、资料要求和使用场景，帮助个人用户判断是否适合办理。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

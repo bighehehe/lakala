@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理为什么要实名认证？资料安全吗？"
 summary: "办理拉卡拉POS必须经过实名认证，这是央行对支付机构的硬性要求。本文详细解释实名认证的目的、流程以及资料安全保障措施，帮你打消顾虑。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

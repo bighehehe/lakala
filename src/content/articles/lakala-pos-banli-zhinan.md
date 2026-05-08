@@ -2,6 +2,7 @@
 title: "拉卡拉POS怎么办理？申请、激活、费用和注意事项完整指南"
 summary: "从申请资料准备、激活流程到费用说明，拉卡拉POS办理全流程详解。涵盖办理条件、押金规则、费率构成、渠道选择和常见问题，帮助新手用户一次性搞懂拉卡拉POS办理的所有关键环节。"
 author: "拉卡拉官方"
+type: "pillar"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

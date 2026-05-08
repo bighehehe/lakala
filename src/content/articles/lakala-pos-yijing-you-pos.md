@@ -2,6 +2,8 @@
 title: "已经有POS机，还需要换拉卡拉POS吗？"
 summary: "已经有其他品牌的POS机，是否有必要换成拉卡拉POS？本文从费用对比、功能差异、售后保障等角度分析，帮助用户做决策。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

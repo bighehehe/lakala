@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理需要什么资料？新手一次看懂"
 summary: "拉卡拉POS办理需要准备身份证、银行卡、营业执照等资料。本文详细列出个人和商户办理所需材料清单，以及提交时的注意事项，帮助新手一次通过审核。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

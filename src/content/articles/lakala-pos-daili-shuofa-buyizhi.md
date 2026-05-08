@@ -2,6 +2,8 @@
 title: "拉卡拉POS代理说法不一致，用户应该怎么判断？"
 summary: "不同拉卡拉POS代理商的说法可能不一致，用户应该如何判断？本文从官方核实、合同约定、费用明细等方面给出判断标准。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

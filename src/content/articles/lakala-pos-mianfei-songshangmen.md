@@ -2,6 +2,8 @@
 title: "拉卡拉POS免费送上门，要注意哪些问题？"
 summary: "拉卡拉POS有的渠道会免费送上门，这看起来很方便，但也要注意押金、费用、售后等问题。本文提醒免费上门办理的注意事项。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

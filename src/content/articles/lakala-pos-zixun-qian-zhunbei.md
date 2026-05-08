@@ -2,6 +2,8 @@
 title: "拉卡拉POS咨询前，最好提前准备哪些信息？"
 summary: "咨询拉卡拉POS前，提前准备好个人信息、经营情况和需求，可以让咨询更高效。本文列出咨询前要准备的信息清单。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

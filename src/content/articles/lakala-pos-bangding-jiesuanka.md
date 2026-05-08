@@ -2,6 +2,8 @@
 title: "拉卡拉POS怎么绑定结算卡？操作前注意事项"
 summary: "详解拉卡拉POS绑定结算卡的操作步骤和注意事项，帮你避免绑错卡、到账延迟等常见问题。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

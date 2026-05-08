@@ -2,6 +2,8 @@
 title: "拉卡拉POS申请流程是什么？从提交资料到收货激活"
 summary: "详细介绍拉卡拉POS从申请到激活的完整流程，包括资料准备、渠道选择、审核时间和收货激活步骤，帮您少走弯路。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "申请流程"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

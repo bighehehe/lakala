@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理前必须问清楚的10个问题"
 summary: "办理拉卡拉POS前，这10个问题一定要问清楚。涵盖费率、押金、流量费、售后等关键信息，避免办理后出现意外情况。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

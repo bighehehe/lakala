@@ -2,6 +2,8 @@
 title: "拉卡拉POS电签版适合个人用户吗？"
 summary: "拉卡拉电签版POS是个人用户的热门选择。本文分析电签版的特点、优缺点和适用场景，帮助个人用户判断是否适合。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

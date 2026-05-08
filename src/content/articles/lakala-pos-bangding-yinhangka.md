@@ -2,6 +2,8 @@
 title: "拉卡拉POS绑定银行卡要注意什么？"
 summary: "绑定银行卡是POS机办理中最关键的步骤之一，直接关系到你的钱能不能安全到账。本文详解绑定银行卡的注意事项和常见问题。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

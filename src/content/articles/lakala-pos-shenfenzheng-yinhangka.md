@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理需要身份证和银行卡吗？"
 summary: "拉卡拉POS办理必须提供身份证和银行卡。本文说明为什么这两项资料是必需的、有什么用途，以及办理时需要注意的事项。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

@@ -2,6 +2,8 @@
 title: "拉卡拉POS新用户办理，要避开哪些误区？"
 summary: "新用户办理拉卡拉POS容易陷入常见误区：只看费率、忽视售后、不问费用明细等。本文总结新用户最容易犯的错误和避坑方法。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

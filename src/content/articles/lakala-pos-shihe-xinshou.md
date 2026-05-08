@@ -2,6 +2,8 @@
 title: "拉卡拉POS适合新手使用吗？优缺点一次说清"
 summary: "新手用户想办理拉卡拉POS，不知道是否适合。本文分析拉卡拉POS的优缺点，帮助新手判断是否适合自己使用。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

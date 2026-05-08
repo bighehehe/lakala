@@ -2,6 +2,8 @@
 title: "第一次办理拉卡拉POS，最应该先问什么？"
 summary: "第一次办POS机不知道从何入手？本文帮你梳理出最关键的几个问题，在办理之前想清楚这些，能少走很多弯路。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

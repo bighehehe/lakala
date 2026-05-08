@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理时最容易忽略的3个细节"
 summary: "办理拉卡拉POS时，很多人容易忽略流量费收取方式、到账时间差异、售后联系方式等细节。本文提醒3个容易被忽略但很重要的问题。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

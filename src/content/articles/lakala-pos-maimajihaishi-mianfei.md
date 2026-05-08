@@ -2,6 +2,8 @@
 title: "拉卡拉POS是买机器好，还是免费领取好？"
 summary: "拉卡拉POS可以购买，也可以免费领取。用户应该选择哪种方式？本文从成本、风险、使用体验等方面分析，帮助用户做出正确选择。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

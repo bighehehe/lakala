@@ -2,6 +2,8 @@
 title: "拉卡拉POS激活为什么要刷第一笔？是不是押金？"
 summary: "解释拉卡拉POS激活时刷第一笔的用途，区分押金和正常交易，帮你明明白白消费，不花冤枉钱。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理手机号可以不是本人的吗？"
 summary: "办POS机的时候手机号不是自己名下的行不行？本文从政策要求、实际操作和常见问题三个角度，给你一个明确的回答。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

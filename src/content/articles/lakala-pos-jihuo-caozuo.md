@@ -2,6 +2,8 @@
 title: "拉卡拉POS收到后怎么激活？新手操作流程"
 summary: "新手友好的拉卡拉POS激活教程，从开箱到完成第一笔交易，手把手带你走完全部操作步骤。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

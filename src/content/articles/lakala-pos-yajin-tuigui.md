@@ -2,6 +2,8 @@
 title: "拉卡拉POS激活押金是什么？办理前要问清退还规则"
 summary: "拉卡拉POS激活可能需要交押金，但押金什么条件下可以退还？本文详细说明押金的性质、退还规则和注意事项。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理前，如何判断自己适不适合？"
 summary: "不是所有人都适合办理拉卡拉POS。本文从使用需求、交易场景、费用承受能力等维度，帮助用户判断自己是否适合办理。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

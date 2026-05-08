@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理需要营业执照吗？不同情况怎么判断"
 summary: "有营业执照能办拉卡拉POS，没营业执照也能办吗？答案取决于你办什么类型的机器以及你的经营场景。本文帮你理清不同情况下的办证要求。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

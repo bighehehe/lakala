@@ -2,6 +2,8 @@
 title: "拉卡拉POS线上申请安全吗？重点看这几个细节"
 summary: "线上申请拉卡拉POS越来越普遍，但也有商户担心安全问题。本文教你从渠道、链接、资料提交、支付环节等几个方面判断线上申请是否正规安全。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

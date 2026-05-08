@@ -7,6 +7,8 @@ const articles = defineCollection({
     title: z.string(),
     summary: z.string(),
     author: z.string().default('拉卡拉官方'),
+    type: z.enum(['pillar', 'cluster']).default('cluster'),
+    category: z.string().default(''),
     cover_image: z.string().optional(),
     status: z.string().default('published'),
     created_at: z.string().or(z.date()),

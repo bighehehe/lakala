@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理后可以换手机号吗？"
 summary: "解答拉卡拉POS绑定手机号更换的相关问题，包括操作流程、影响范围和注意事项。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

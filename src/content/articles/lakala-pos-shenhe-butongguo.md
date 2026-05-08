@@ -2,6 +2,8 @@
 title: "拉卡拉POS申请审核不通过，常见原因有哪些？"
 summary: "申请拉卡拉POS被审核拒绝了？别急着重新提交。本文总结了审核不通过的六大常见原因，帮你对症下药，提高下次申请的通过率。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "申请流程"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

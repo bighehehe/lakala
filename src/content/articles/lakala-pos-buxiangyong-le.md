@@ -2,6 +2,8 @@
 title: "拉卡拉POS申请后不想用了怎么办？"
 summary: "全面解答拉卡拉POS不再使用的处理方式，包括退机、注销、不使用的影响和费用问题。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理渠道怎么选？别只看低费率"
 summary: "选择拉卡拉POS办理渠道时，不能只看费率。本文从正规性、售后保障、费用透明度等维度分析，帮助用户选择可靠的办理渠道。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

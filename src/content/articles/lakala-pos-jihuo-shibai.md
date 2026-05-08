@@ -2,6 +2,8 @@
 title: "拉卡拉POS激活失败怎么办？常见原因整理"
 summary: "汇总拉卡拉POS激活失败的常见原因和对应解决方案，帮你快速排查问题，顺利完成激活。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

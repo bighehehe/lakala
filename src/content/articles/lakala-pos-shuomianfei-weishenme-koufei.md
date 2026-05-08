@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理时说免费，为什么后面还可能扣费？"
 summary: "拉卡拉POS说免费办理，但后续可能扣流量费、服务费等费用。本文解析免费办理后的真实收费情况，避免用户产生误解。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

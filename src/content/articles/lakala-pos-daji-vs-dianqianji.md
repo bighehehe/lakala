@@ -2,6 +2,8 @@
 title: "拉卡拉POS传统大机和电签机有什么区别？"
 summary: "拉卡拉传统大POS和电签版POS在功能、价格、适用场景上有明显区别。本文详细对比两种机型的差异，帮助用户选择适合自己的机型。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "办理条件"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

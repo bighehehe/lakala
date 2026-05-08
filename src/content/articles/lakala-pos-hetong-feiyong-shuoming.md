@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理合同和费用说明怎么看？"
 summary: "办理拉卡拉POS时，合同和费用说明是重要的凭证。本文教用户如何看懂合同条款，关注哪些关键信息，避免日后纠纷。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

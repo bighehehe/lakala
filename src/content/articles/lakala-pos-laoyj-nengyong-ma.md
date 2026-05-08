@@ -2,6 +2,8 @@
 title: "老拉卡拉POS还能继续用吗？什么时候需要更换？"
 summary: "手里有旧的拉卡拉POS，不知道还能不能继续用。本文说明老款拉卡拉POS的使用判断标准，以及什么时候需要更换新设备。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

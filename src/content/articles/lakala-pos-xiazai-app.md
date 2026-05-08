@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理后需要下载哪个APP？"
 summary: "介绍拉卡拉POS办理后需要下载的官方APP及其功能，包括商户通和考拉汇客的区别与选择。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

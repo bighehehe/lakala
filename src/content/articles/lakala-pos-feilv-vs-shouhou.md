@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理时，费率重要还是售后重要？"
 summary: "办理拉卡拉POS时，很多人纠结费率和售后哪个更重要。本文从实际使用角度分析，帮助用户平衡费率和售后的关系。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

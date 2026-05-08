@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理时为什么一定要问清售后？"
 summary: "办理拉卡拉POS时，很多人只关注费率和押金，忽略了售后问题。本文说明售后服务的重要性，以及如何判断售后质量。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "渠道与避坑"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

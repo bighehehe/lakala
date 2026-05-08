@@ -2,6 +2,8 @@
 title: "拉卡拉POS免费办理靠谱吗？真正要看这几个费用"
 summary: "拉卡拉POS宣传免费办理，但可能涉及押金、流量费、首刷门槛等隐性费用。本文详细解析免费办理背后的真实成本，帮助用户看清费用构成。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "费用与合同"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

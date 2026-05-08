@@ -2,6 +2,8 @@
 title: "拉卡拉POS多久能收到？办理周期一般多长"
 summary: "解答拉卡拉POS办理周期相关问题，包括审核时间、发货速度和影响周期的因素，帮你合理安排预期。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "申请流程"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"

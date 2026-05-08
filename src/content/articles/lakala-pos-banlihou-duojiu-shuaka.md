@@ -2,6 +2,8 @@
 title: "拉卡拉POS办理后多久可以正常刷卡？"
 summary: "解答拉卡拉POS从激活到正常刷卡的时间，以及影响首笔交易和到账速度的关键因素。"
 author: "拉卡拉官方"
+type: "cluster"
+category: "激活与使用"
 cover_image: "/img/拉卡拉大POS.jpg"
 status: "published"
 created_at: "2026-05-07"
