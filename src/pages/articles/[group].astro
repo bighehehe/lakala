@@ -1,0 +1,173 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AIAssistant from '../../components/AIAssistant.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { group: 'group-a' }, props: { groupKey: 'A' } },
+    { params: { group: 'group-b' }, props: { groupKey: 'B' } },
+  ];
+}
+
+const { groupKey } = Astro.props;
+const allArticles = await getCollection('articles');
+
+const groupDefs: Record<string, {
+  title: string;
+  subtitle: string;
+  bannerClass: string;
+  pillarSlug: string;
+  categories: string[];
+}> = {
+  A: {
+    title: '拉卡拉POS办理指南',
+    subtitle: '从申请条件、办理流程到激活使用，全方位解答',
+    bannerClass: 'from-brand-900 via-brand-800 to-brand-700',
+    pillarSlug: 'lakala-pos-banli-zhinan',
+    categories: ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'],
+  },
+  B: {
+    title: '拉卡拉POS费率与费用',
+    subtitle: '手续费、押金、流量费、秒到费，一次讲清所有费用问题',
+    bannerClass: 'from-blue-900 via-indigo-800 to-blue-700',
+    pillarSlug: 'lakala-pos-feilv-zhinan',
+    categories: ['手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'],
+  },
+};
+
+const group = groupDefs[groupKey];
+const groupCats = new Set(group.categories);
+const pillar = allArticles.find(a => a.id === group.pillarSlug);
+const clusters = allArticles
+  .filter(a => a.data.type === 'cluster' && groupCats.has(a.data.category));
+
+// Group clusters by category in order
+const grouped = new Map<string, typeof clusters>();
+for (const cat of group.categories) {
+  const items = clusters.filter(a => a.data.category === cat);
+  if (items.length > 0) grouped.set(cat, items);
+}
+
+const categoryIcons: Record<string, string> = {
+  '办理条件': '📋', '申请流程': '📝', '费用与合同': '💰',
+  '渠道与避坑': '🛡️', '激活与使用': '🔧',
+  '手续费计算': '🧮', '扫码费率': '📱', '流量费': '📶',
+  '押金规则': '🔐', '秒到费与涨价': '⚡',
+};
+
+const categoryDescriptions: Record<string, string> = {
+  '办理条件': '了解办理拉卡拉POS需要满足的条件和准备的资料',
+  '申请流程': '从提交申请到审核通过，一步步教你操作',
+  '费用与合同': '费用构成、合同条款和常见收费陷阱解读',
+  '渠道与避坑': '如何选择靠谱渠道，避开办理中的常见坑',
+  '激活与使用': '设备激活、绑卡、APP使用和日常操作指南',
+  '手续费计算': '刷卡手续费怎么算？不同金额不同费率一目了然',
+  '扫码费率': '微信、支付宝、银联扫码费率和限额详解',
+  '流量费': 'POS机流量费怎么扣？一年多少钱？能退吗？',
+  '押金规则': '激活押金、达标返还、退款条件全解析',
+  '秒到费与涨价': '秒到费、服务费、费率调整，看懂不花冤枉钱',
+};
+
+function formatDate(dateStr: string | Date) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<Layout title={`${group.title} - 拉卡拉`}>
+  <Header />
+  <main class="flex-grow pt-20 min-h-screen bg-slate-50">
+    <!-- Banner -->
+    <div class={`bg-gradient-to-br ${group.bannerClass} text-white py-14 relative overflow-hidden`}>
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <a href="/articles" class="inline-flex items-center text-blue-200 hover:text-white mb-4 text-sm transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          全部专题
+        </a>
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">{group.title}</h1>
+        <p class="text-blue-200 text-lg">{group.subtitle}</p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-10">
+
+      <!-- Pillar -->
+      {pillar && (
+        <section class="mb-12">
+          <a
+            href={`/articles/${pillar.id}`}
+            class="group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-brand-100 hover:border-brand-300"
+          >
+            <div class="p-7 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="inline-flex items-center px-3 py-1 bg-brand-600 text-white text-xs font-bold rounded-full uppercase tracking-wide">完整指南</span>
+                  <span class="text-xs text-slate-400">{formatDate(pillar.data.created_at)}</span>
+                </div>
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-2 group-hover:text-brand-600 transition-colors leading-tight">
+                  {pillar.data.title}
+                </h2>
+                <p class="text-slate-500 text-sm leading-relaxed line-clamp-2">{pillar.data.summary}</p>
+              </div>
+              <div class="flex-shrink-0">
+                <span class="inline-flex items-center justify-center w-12 h-12 bg-brand-50 rounded-2xl group-hover:bg-brand-100 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-600 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        </section>
+      )}
+
+      <!-- Clusters by category -->
+      {Array.from(grouped.entries()).map(([category, articles]) => (
+        <section class="mb-12">
+          <div class="flex items-center mb-5">
+            <span class="inline-flex items-center justify-center w-9 h-9 bg-slate-100 text-lg rounded-lg mr-2.5">
+              {categoryIcons[category] || '📄'}
+            </span>
+            <div>
+              <h2 class="text-lg font-bold text-slate-800">{category}</h2>
+              <p class="text-slate-400 text-xs mt-0.5">{categoryDescriptions[category] || ''}</p>
+            </div>
+            <span class="ml-auto text-xs text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full">{articles.length} 篇</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {articles.map((article) => (
+              <a
+                href={`/articles/${article.id}`}
+                class="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 hover:border-brand-200"
+              >
+                <div class="p-4">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="inline-flex items-center px-2 py-0.5 bg-slate-50 text-slate-500 text-xs font-medium rounded">{category}</span>
+                    <span class="text-xs text-slate-300">{formatDate(article.data.created_at)}</span>
+                  </div>
+                  <h3 class="text-sm font-bold text-slate-800 mb-1.5 line-clamp-2 group-hover:text-brand-600 transition-colors leading-snug">
+                    {article.data.title}
+                  </h3>
+                  <p class="text-slate-400 text-xs line-clamp-2 leading-relaxed">{article.data.summary}</p>
+                  <div class="mt-3 flex items-center text-brand-600 text-xs font-medium">
+                    <span>阅读全文</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+
+    </div>
+  </main>
+  <Footer />
+  <AIAssistant />
+</Layout>

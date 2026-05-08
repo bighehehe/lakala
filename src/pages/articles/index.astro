@@ -1,185 +1,75 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AIAssistant from '../../components/AIAssistant.astro';
 
-const allArticles = await getCollection('articles');
-
-// Group definitions
-const siteGroups = [
+const groups = [
   {
-    key: 'A',
-    pillarSlug: 'lakala-pos-banli-zhinan',
+    slug: 'group-a',
     title: '拉卡拉POS办理指南',
-    subtitle: '从申请到使用，全方位解答拉卡拉POS办理的每一个问题',
+    subtitle: '从申请条件、办理流程到激活使用，40篇专题文章全方位解答',
+    icon: '📋',
     bannerClass: 'from-brand-900 via-brand-800 to-brand-700',
+    count: 41,
     categories: ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'],
   },
   {
-    key: 'B',
-    pillarSlug: 'lakala-pos-feilv-zhinan',
+    slug: 'group-b',
     title: '拉卡拉POS费率与费用',
-    subtitle: '手续费、押金、流量费、秒到费，一次讲清所有费用问题',
+    subtitle: '手续费、扫码费率、流量费、押金、秒到费，50篇专题文章一次讲清',
+    icon: '💰',
     bannerClass: 'from-blue-900 via-indigo-800 to-blue-700',
+    count: 51,
     categories: ['手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'],
   },
-] as const;
-
-// Build per-group data
-const categorySet = new Set<string>();
-for (const g of siteGroups) {
-  for (const cat of g.categories) categorySet.add(cat);
-}
-
-const pillars = allArticles.filter(a => a.data.type === 'pillar');
-const clusters = allArticles.filter(a => a.data.type === 'cluster');
-
-function formatDate(dateStr: string | Date) {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
-}
-
-const categoryIcons: Record<string, string> = {
-  '办理条件': '📋',
-  '申请流程': '📝',
-  '费用与合同': '💰',
-  '渠道与避坑': '🛡️',
-  '激活与使用': '🔧',
-  '手续费计算': '🧮',
-  '扫码费率': '📱',
-  '流量费': '📶',
-  '押金规则': '🔐',
-  '秒到费与涨价': '⚡',
-};
-
-const categoryDescriptions: Record<string, string> = {
-  '办理条件': '了解办理拉卡拉POS需要满足的条件和准备的资料',
-  '申请流程': '从提交申请到审核通过，一步步教你操作',
-  '费用与合同': '费用构成、合同条款和常见收费陷阱解读',
-  '渠道与避坑': '如何选择靠谱渠道，避开办理中的常见坑',
-  '激活与使用': '设备激活、绑卡、APP使用和日常操作指南',
-  '手续费计算': '刷卡手续费怎么算？不同金额不同费率一目了然',
-  '扫码费率': '微信、支付宝、银联扫码费率和限额详解',
-  '流量费': 'POS机流量费怎么扣？一年多少钱？能退吗？',
-  '押金规则': '激活押金、达标返还、退款条件全解析',
-  '秒到费与涨价': '秒到费、服务费、费率调整，看懂不花冤枉钱',
-};
+];
 ---
 
 <Layout title="资讯动态 - 拉卡拉">
   <Header />
   <main class="flex-grow pt-20 min-h-screen bg-slate-50">
+    <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white py-16 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">拉卡拉POS专题</h1>
+        <p class="text-blue-200 text-lg max-w-2xl mx-auto">两大专题，90+篇文章，全面解答POS办理与费用问题</p>
+      </div>
+    </div>
 
-    {siteGroups.map((group) => {
-      const pillar = pillars.find(p => p.id === group.pillarSlug);
-      const groupCats = new Set(group.categories);
-      const groupClusters = clusters.filter(c => groupCats.has(c.data.category));
-
-      return (
-        <>
-          {/* ====== Group Banner ====== */}
-          <div class={`bg-gradient-to-br ${group.bannerClass} text-white py-16 relative overflow-hidden`}>
-            <div class="absolute inset-0 opacity-10">
-              <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-              <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {groups.map((group) => (
+          <a
+            href={`/articles/${group.slug}`}
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-slate-100 hover:border-brand-300"
+          >
+            <div class={`bg-gradient-to-br ${group.bannerClass} p-6 text-white`}>
+              <span class="text-4xl mb-3 block">{group.icon}</span>
+              <h2 class="text-2xl font-bold mb-2 group-hover:text-blue-200 transition-colors">{group.title}</h2>
+              <p class="text-blue-200 text-sm leading-relaxed">{group.subtitle}</p>
             </div>
-            <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
-              <h1 class="text-4xl md:text-5xl font-bold mb-4">{group.title}</h1>
-              <p class="text-blue-200 text-lg max-w-2xl mx-auto">{group.subtitle}</p>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-2xl font-bold text-brand-600">{group.count}<span class="text-sm font-normal text-slate-400 ml-1">篇文章</span></span>
+                <span class="inline-flex items-center text-brand-600 text-sm font-medium group-hover:translate-x-1 transition-transform">
+                  查看全部
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {group.categories.map((cat) => (
+                  <span class="inline-flex items-center px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">{cat}</span>
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div class="max-w-7xl mx-auto px-4 py-12">
-
-            {/* ====== Pillar Article ====== */}
-            {pillar && (
-              <section class="mb-16">
-                <div class="flex items-center mb-8">
-                  <span class="inline-flex items-center justify-center w-10 h-10 bg-brand-600 text-white rounded-xl text-xl mr-3">📖</span>
-                  <div>
-                    <h2 class="text-2xl font-bold text-slate-800">完整指南</h2>
-                    <p class="text-slate-500 text-sm mt-0.5">一站式了解{group.title}的全部内容</p>
-                  </div>
-                </div>
-
-                <a
-                  href={`/articles/${pillar.id}`}
-                  class="group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-brand-100 hover:border-brand-300"
-                >
-                  <div class="p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6">
-                    <div class="flex-1">
-                      <div class="flex items-center gap-3 mb-3">
-                        <span class="inline-flex items-center px-3 py-1 bg-brand-600 text-white text-xs font-bold rounded-full uppercase tracking-wide">支柱文章</span>
-                        <span class="text-xs text-slate-400">{formatDate(pillar.data.created_at)}</span>
-                      </div>
-                      <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-3 group-hover:text-brand-600 transition-colors leading-tight">
-                        {pillar.data.title}
-                      </h3>
-                      <p class="text-slate-500 text-base leading-relaxed line-clamp-2">{pillar.data.summary}</p>
-                    </div>
-                    <div class="flex-shrink-0">
-                      <span class="inline-flex items-center justify-center w-14 h-14 bg-brand-50 rounded-2xl group-hover:bg-brand-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-600 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </section>
-            )}
-
-            {/* ====== Cluster Articles by Category ====== */}
-            {group.categories.map((category) => {
-              const catArticles = groupClusters.filter(a => a.data.category === category);
-              if (catArticles.length === 0) return null;
-              return (
-                <section class="mb-14">
-                  <div class="flex items-center mb-6">
-                    <span class="inline-flex items-center justify-center w-10 h-10 bg-slate-100 text-xl rounded-xl mr-3">
-                      {categoryIcons[category] || '📄'}
-                    </span>
-                    <div>
-                      <h2 class="text-xl font-bold text-slate-800">{category}</h2>
-                      <p class="text-slate-400 text-sm mt-0.5">{categoryDescriptions[category] || ''}</p>
-                    </div>
-                    <span class="ml-auto text-xs text-slate-400 bg-slate-100 px-3 py-1 rounded-full">{catArticles.length} 篇</span>
-                  </div>
-
-                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {catArticles.map((article) => (
-                      <a
-                        href={`/articles/${article.id}`}
-                        class="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 hover:border-brand-200"
-                      >
-                        <div class="p-5">
-                          <div class="flex items-center gap-2 mb-3">
-                            <span class="inline-flex items-center px-2.5 py-0.5 bg-slate-50 text-slate-500 text-xs font-medium rounded-md">
-                              {category}
-                            </span>
-                            <span class="text-xs text-slate-300">{formatDate(article.data.created_at)}</span>
-                          </div>
-                          <h3 class="text-base font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-brand-600 transition-colors leading-snug">
-                            {article.data.title}
-                          </h3>
-                          <p class="text-slate-400 text-sm line-clamp-2 leading-relaxed">{article.data.summary}</p>
-                          <div class="mt-4 flex items-center text-brand-600 text-sm font-medium">
-                            <span>阅读全文</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </section>
-              );
-            })}
-
-          </div>
-        </>
-      );
-    })}
-
+          </a>
+        ))}
+      </div>
+    </div>
   </main>
   <Footer />
   <AIAssistant />
