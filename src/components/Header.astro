@@ -1,7 +1,13 @@
 ---
+import { products } from '../data/products';
+
 const NAV_ITEMS = [
   { label: '首页', path: '/' },
-  { label: '智能终端', path: '/products' },
+  { 
+    label: '智能终端', 
+    path: '#',
+    children: products.map(p => ({ label: p.name, path: `/products/${p.slug}` }))
+  },
   { label: 'POS办理', path: '/articles/group-a' },
   { label: 'POS费率', path: '/articles/group-b' },
   { label: 'POS产品', path: '/articles/group-c' },
@@ -22,16 +28,46 @@ const currentPath = Astro.url.pathname;
 
       <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
         {NAV_ITEMS.map((item) => (
-          <a
-            href={item.path}
-            class={`text-sm lg:text-base font-medium transition-colors duration-200 ${
-              currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path))
-                ? 'text-brand-600 font-bold'
-                : 'text-slate-600 hover:text-brand-600'
-            }`}
-          >
-            {item.label}
-          </a>
+          item.children ? (
+            <div class="relative group">
+              <a
+                href={item.path}
+                class={`flex items-center text-sm lg:text-base font-medium transition-colors duration-200 py-4 ${
+                  currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path))
+                    ? 'text-brand-600 font-bold'
+                    : 'text-slate-600 hover:text-brand-600'
+                }`}
+              >
+                {item.label}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+              </a>
+              <div class="absolute left-0 top-full hidden group-hover:block w-48 bg-white shadow-xl rounded-xl border border-slate-100 py-2 z-50 transform opacity-0 group-hover:opacity-100 transition-opacity">
+                {item.children.map((child) => (
+                  <a
+                    href={child.path}
+                    class={`block px-4 py-2.5 text-sm transition-colors ${
+                      currentPath === child.path
+                        ? 'text-brand-600 bg-brand-50 font-medium'
+                        : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'
+                    }`}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.path}
+              class={`block text-sm lg:text-base font-medium transition-colors duration-200 py-4 ${
+                currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path))
+                  ? 'text-brand-600 font-bold'
+                  : 'text-slate-600 hover:text-brand-600'
+              }`}
+            >
+              {item.label}
+            </a>
+          )
         ))}
       </nav>
 
@@ -57,18 +93,47 @@ const currentPath = Astro.url.pathname;
     id="mobile-drawer"
     class="md:hidden fixed inset-y-0 right-0 w-64 bg-white shadow-2xl z-50 transform transition-transform duration-300 translate-x-full overflow-y-auto"
   >
-    <div class="flex flex-col h-full pt-20 px-6 pb-6 space-y-6">
+    <div class="flex flex-col h-full pt-20 px-6 pb-6 space-y-2">
       {NAV_ITEMS.map((item) => (
-        <a
-          href={item.path}
-          class={`text-lg font-medium border-b border-gray-100 pb-2 ${
-            currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path))
-              ? 'text-brand-600 border-brand-600'
-              : 'text-slate-600'
-          }`}
-        >
-          {item.label}
-        </a>
+        item.children ? (
+          <div class="flex flex-col border-b border-gray-100 pb-2 mb-2">
+            <a
+              href={item.path}
+              class={`text-lg font-medium py-2 ${
+                currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path))
+                  ? 'text-brand-600'
+                  : 'text-slate-600'
+              }`}
+            >
+              {item.label}
+            </a>
+            <div class="flex flex-col pl-4 space-y-1 mt-1">
+              {item.children.map((child) => (
+                <a
+                  href={child.path}
+                  class={`text-base py-1.5 ${
+                    currentPath === child.path
+                      ? 'text-brand-600 font-medium'
+                      : 'text-slate-500'
+                  }`}
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.path}
+            class={`text-lg font-medium border-b border-gray-100 pb-4 mb-2 py-2 ${
+              currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path))
+                ? 'text-brand-600 border-brand-600'
+                : 'text-slate-600'
+            }`}
+          >
+            {item.label}
+          </a>
+        )
       ))}
     </div>
   </div>
