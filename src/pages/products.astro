@@ -3,25 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import AIAssistant from '../components/AIAssistant.astro';
-
-const products = [
-  {
-    id: 1,
-    name: "拉卡拉智能POS",
-    category: "智能POS",
-    desc: "安卓系统，5.5寸高清触屏，内置高速打印机，支持海量APP下载。",
-    features: ["Android 11 系统", "4G + WiFi 双模", "5000mAh 大电池", "支持扫码/刷卡/NFC"],
-    image: "/img/拉卡拉大POS.jpg"
-  },
-  {
-    id: 2,
-    name: "拉卡拉电签POS",
-    category: "传统POS",
-    desc: "机身小巧，功能强大。自带电子签名屏幕，无需连接手机，开机即用。",
-    features: ["2.4寸 彩屏", "电子签名", "GPRS/4G 通讯", "超长待机"],
-    image: "/img/拉卡拉电签.png"
-  }
-];
+import { products } from '../data/products';
 ---
 
 <Layout title="智能终端 - 拉卡拉">
@@ -45,11 +27,8 @@ const products = [
               <img
                 src={product.image}
                 alt={product.name}
-                class="w-full h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                class="w-full h-auto md:h-full object-contain md:object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div class="absolute top-4 left-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                {product.category}
-              </div>
             </div>
             <div class="p-8 md:w-1/2 flex flex-col justify-between">
               <div>
@@ -65,8 +44,8 @@ const products = [
                 </ul>
               </div>
               <div class="flex space-x-4">
-                <button class="inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-500/30 focus:ring-brand-500 px-4 py-1.5 text-sm flex-1">查看详情</button>
-                <button class="inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-brand-600 text-brand-600 hover:bg-brand-50 focus:ring-brand-500 px-4 py-1.5 text-sm flex-1">立即办理</button>
+                <a href={`/products/${product.slug}`} class="inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-500/30 focus:ring-brand-500 px-4 py-1.5 text-sm flex-1">查看详情</a>
+                <a href="/contact" class="inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-brand-600 text-brand-600 hover:bg-brand-50 focus:ring-brand-500 px-4 py-1.5 text-sm flex-1">立即办理</a>
               </div>
             </div>
           </div>
@@ -81,31 +60,41 @@ const products = [
           <table class="w-full text-left border-collapse">
             <thead>
               <tr>
-                <th class="p-4 border-b-2 border-slate-100 text-slate-500 font-semibold">功能特性</th>
-                <th class="p-4 border-b-2 border-brand-100 text-brand-700 font-bold bg-brand-50 rounded-t-lg">智能POS</th>
-                <th class="p-4 border-b-2 border-slate-100 text-slate-800 font-bold">电签POS</th>
+                <th class="p-4 border-b-2 border-slate-100 text-slate-500 font-semibold min-w-[100px]">功能特性</th>
+                <th class="p-4 border-b-2 border-brand-100 text-brand-700 font-bold bg-brand-50 rounded-t-lg">电签POS机</th>
+                <th class="p-4 border-b-2 border-slate-100 text-slate-800 font-bold">大POS机</th>
+                <th class="p-4 border-b-2 border-brand-100 text-brand-700 font-bold bg-brand-50 rounded-t-lg">智能POS机</th>
+                <th class="p-4 border-b-2 border-slate-100 text-slate-800 font-bold">收款码</th>
               </tr>
             </thead>
             <tbody class="text-sm text-slate-600">
               <tr>
-                <td class="p-4 border-b border-slate-100 font-medium">刷卡/插卡</td>
+                <td class="p-4 border-b border-slate-100 font-medium">刷卡/插卡/挥卡</td>
                 <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700">支持</td>
                 <td class="p-4 border-b border-slate-100">支持</td>
+                <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700">支持</td>
+                <td class="p-4 border-b border-slate-100 text-gray-400">不支持</td>
               </tr>
               <tr>
                 <td class="p-4 border-b border-slate-100 font-medium">扫码支付</td>
+                <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700">主扫</td>
+                <td class="p-4 border-b border-slate-100">主扫/被扫</td>
                 <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700">主扫/被扫</td>
-                <td class="p-4 border-b border-slate-100">主扫</td>
+                <td class="p-4 border-b border-slate-100">主扫/被扫</td>
               </tr>
               <tr>
                 <td class="p-4 border-b border-slate-100 font-medium">小票打印</td>
+                <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700 text-gray-500">电子小票</td>
+                <td class="p-4 border-b border-slate-100">内置打印机</td>
                 <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700">内置打印机</td>
-                <td class="p-4 border-b border-slate-100 text-gray-400">电子小票</td>
+                <td class="p-4 border-b border-slate-100 text-gray-400">无</td>
               </tr>
               <tr>
                 <td class="p-4 border-b border-slate-100 font-medium">适用场景</td>
+                <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700">个人/小微商户</td>
+                <td class="p-4 border-b border-slate-100">高频交易商户</td>
                 <td class="p-4 border-b border-brand-50 bg-brand-50 text-brand-700">全行业商户</td>
-                <td class="p-4 border-b border-slate-100">小微/个人</td>
+                <td class="p-4 border-b border-slate-100">小微/摊位/门店</td>
               </tr>
             </tbody>
           </table>
