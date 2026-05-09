@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props;
-const keySpecs = product.specs.slice(0, 3);
+const keySpecs = product.specs.slice(0, 4); // 提取前4个核心参数展示在Hero区
 const scenarioSummary =
   product.category === '智能POS'
     ? '连锁门店、餐饮收银、会员运营、外卖接单'
@@ -22,192 +22,202 @@ const scenarioSummary =
       : product.category === '电签POS'
         ? '个人小微、移动展业、上门收款'
         : '街边门店、小微摊位、轻量化收款';
+
+const bannerMap: Record<string, string> = {
+  '拉卡拉电签POS机': '拉卡拉电签banner.png',
+  '拉卡拉大POS机': '拉卡拉大posbanner.png',
+  '拉卡拉智能POS机': '智能posbanner.png',
+  '拉卡拉收款码': '收款码牌banner.png'
+};
+
+const bannerImage = bannerMap[product.name] || '拉卡拉电签banner.png';
+
+const carouselImagesMap: Record<string, string[]> = {
+  '拉卡拉电签POS机': ['/img/拉卡拉电签.png', '/img/拉卡拉电签1.png', '/img/拉卡拉电签2.jpg'],
+  '拉卡拉大POS机': ['/img/拉卡拉大pos.png', '/img/拉卡拉大pos1.png', '/img/拉卡拉大POS2.jpg'],
+  '拉卡拉智能POS机': ['/img/拉卡拉智能pos.jpg', '/img/智能pos1.webp', '/img/拉卡拉智能pos2.jpg'],
+  '拉卡拉收款码': ['/img/拉卡拉收款码牌.jpg', '/img/收款码1.webp', '/img/收款码2.png']
+};
+const carouselImages = carouselImagesMap[product.name] || [product.image];
 ---
 
 <Layout title={`${product.name} - 智能终端 - 拉卡拉`}>
   <Header />
-  <main class="flex-grow min-h-screen bg-slate-50 pt-20">
-    <div class="border-b border-slate-100 bg-white">
-      <div class="mx-auto flex max-w-7xl px-4 py-4 text-sm text-slate-500">
-        <a href="/" class="hover:text-brand-600">首页</a>
-        <span class="mx-2">/</span>
-        <a href="/products" class="hover:text-brand-600">智能终端</a>
-        <span class="mx-2">/</span>
-        <span class="font-medium text-slate-800">{product.name}</span>
+  <main class="flex-grow min-h-screen bg-white pt-20">
+    <!-- Sticky Sub-Nav (小米风格悬浮导航) -->
+    <div class="sticky top-10 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+        <h2 class="text-lg font-bold text-slate-900">{product.name}</h2>
+        <div class="flex items-center gap-6 text-sm font-medium text-slate-600">
+          <a href="#overview" class="hidden hover:text-brand-600 sm:block transition-colors">概述</a>
+          <a href="#features" class="hidden hover:text-brand-600 sm:block transition-colors">特性</a>
+          <a href="#specs" class="hidden hover:text-brand-600 sm:block transition-colors">参数</a>
+          <a href="/contact" class="rounded-full bg-slate-900 px-5 py-2 text-white hover:bg-slate-800 transition-colors">
+            立即办理
+          </a>
+        </div>
       </div>
     </div>
 
-    <section class="bg-gradient-to-b from-white via-slate-50 to-slate-50 py-10 md:py-16">
-      <div class="mx-auto max-w-7xl px-4">
-        <!-- 移除 items-stretch，改为默认行为或 items-start，我们通过内部结构控制等高 -->
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1fr] xl:gap-12">
-          <!-- 左侧：图片展示区，移除相对高度，依靠 flex 拉伸 -->
-          <div class="relative overflow-hidden rounded-[28px] border border-brand-100 bg-gradient-to-br from-brand-50 via-white to-slate-100 p-4 sm:p-5 lg:p-6 flex flex-col">
-            <div class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-brand-100/70 to-transparent"></div>
-            <div class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-200/40 blur-3xl"></div>
-            <div class="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-sky-200/40 blur-3xl"></div>
-
-            <div class="relative flex h-full flex-col justify-between">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <span class="inline-flex items-center rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-brand-600 shadow-sm ring-1 ring-brand-100">
-                    {product.category}
-                  </span>
+    <!-- Hero Section: PC端和移动端独立布局，确保图片比例与文字排版完美契合 -->
+    <section id="overview" class="relative w-full overflow-hidden bg-white">
+      <!-- PC 端布局 (大屏) -->
+      <div class="hidden sm:flex relative items-center min-h-[800px]" style={`background-image: url('/img/${bannerImage}'); background-size: contain; background-position: center right; background-repeat: no-repeat;`}>
+        <div class="max-w-7xl mx-auto px-4 w-full relative z-10">
+          <div class="max-w-xl text-left">
+            <h1 class="text-6xl font-extrabold tracking-tight text-slate-900 mb-6">{product.name}</h1>
+            <p class="text-xl text-slate-600 mb-12 leading-loose max-w-md" set:html={product.desc.replace('，功能强大', '').replace('，无需连接手机', '').replace(/[，。]/g, '<br/>')}></p>
+            
+            <div class="flex flex-wrap justify-start gap-12 mb-8">
+              {keySpecs.map((spec) => (
+                <div class="flex flex-col items-start">
+                  <span class="text-2xl font-bold text-slate-900">{spec.value}</span>
+                  <span class="text-sm text-slate-500 mt-1">{spec.label}</span>
                 </div>
-                <div class="hidden rounded-2xl bg-white/80 px-4 py-3 text-right shadow-sm ring-1 ring-slate-200/70 backdrop-blur sm:flex">
-                  <div>
-                    <p class="text-xs text-slate-400">适用场景</p>
-                    <p class="mt-1 text-sm font-semibold text-slate-700">{product.category}</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 图片和标签水平排列 -->
-              <div class="relative flex flex-1 items-center justify-center gap-8 py-5 md:py-6">
-                <!-- 左侧图片 -->
-                <div class="w-1/2 flex justify-center">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    class="max-h-[320px] w-full max-w-[280px] object-contain drop-shadow-[0_24px_40px_rgba(15,23,42,0.18)] transition-transform duration-500 hover:scale-[1.03] md:max-h-[360px]"
-                  />
-                </div>
-                
-                <!-- 右侧标签 -->
-                <div class="flex w-1/2 flex-col justify-center items-start gap-4">
-                  {product.features.map((feat) => (
-                    <div class="flex items-center rounded-2xl bg-white/85 px-4 py-3 shadow-sm ring-1 ring-slate-200/70 backdrop-blur transition-colors hover:bg-white w-max">
-                      <div class="mr-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                      </div>
-                      <p class="text-sm font-semibold text-slate-700">{feat}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="flex flex-col gap-6">
-              <div class="rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-slate-200 md:p-8 flex-1 flex flex-col justify-center">
-              <div class="mb-4 flex items-center gap-3">
-                <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-600">
-                  官方推荐
-                </span>
-                <span class="text-sm text-slate-400">支持全国商户申请</span>
-              </div>
-              <h1 class="text-2xl font-extrabold leading-tight text-slate-900 md:text-3xl xl:text-4xl">
-                {product.name}
-              </h1>
-              <p class="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-                {product.desc}
-              </p>
+      <!-- 移动端布局 (小屏) -->
+      <div class="sm:hidden relative w-full flex items-center bg-[#F8F9FA]">
+        <!-- 使用 img 标签撑开高度，完美保持比例且不留白 -->
+        <img src={`/img/${bannerImage}`} alt={product.name} class="w-full h-auto object-contain" />
+        
+        <!-- 文字绝对定位悬浮在图片上 -->
+        <div class="absolute inset-0 px-6 flex flex-col justify-center">
+          <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 mb-2 drop-shadow-sm">{product.name}</h1>
+          <p class="text-[13px] text-slate-800 font-medium leading-relaxed drop-shadow-sm max-w-[55%]" set:html={product.desc.replace('，功能强大', '').replace('，无需连接手机', '').replace(/[，。]/g, '<br/>')}></p>
+        </div>
+      </div>
+    </section>
 
-              <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                {keySpecs.map((spec) => (
-                  <div class="rounded-2xl border border-slate-100 bg-slate-50 p-3.5">
-                    <p class="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">{spec.label}</p>
-                    <p class="mt-2 text-sm font-semibold leading-5 text-slate-800">{spec.value}</p>
-                  </div>
-                ))}
-              </div>
+    <!-- Features Section: 大区块、大数字、留白设计 -->
+    <section id="features" class="py-24 sm:py-32 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16 sm:mb-24">
+          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight">硬核实力，全面进化</h2>
+        </div>
 
-              <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a href="/contact" class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand-500/30 transition-all duration-300 hover:bg-brand-700 hover:shadow-brand-500/40">
-                  立即申请办理
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
-                <a href="tel:400-926-6655" class="inline-flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition-colors duration-300 hover:border-brand-600 hover:text-brand-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.79 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                  电话咨询
-                </a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          {product.features.map((feat, index) => (
+            <div class="group relative overflow-hidden rounded-[2rem] bg-[#F8F9FA] p-10 sm:p-14 transition-all duration-500 hover:bg-slate-100">
+              <span class="text-6xl sm:text-8xl font-black text-slate-200/60 absolute top-8 right-8 transition-transform duration-500 group-hover:scale-110">
+                0{index + 1}
+              </span>
+              <div class="relative z-10 h-full flex flex-col justify-end pt-24">
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">{feat}</h3>
+                <p class="text-slate-500 text-lg leading-relaxed max-w-md">
+                  针对日常交易场景深度优化，提供稳定、高效的收款体验，助力商户经营。
+                </p>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div class="rounded-3xl bg-brand-600 p-6 text-white shadow-sm">
-                <p class="text-xs uppercase tracking-[0.24em] text-white">适用场景</p>
-                <p class="mt-4 text-lg font-bold leading-8">{scenarioSummary}</p>
+    <!-- Deep Dive Section: 现代卡片与微渐变背景，提升质感 -->
+    <section class="py-24 sm:py-32 bg-[#F8F9FA] overflow-hidden relative">
+      <div class="absolute inset-0 bg-gradient-to-br from-brand-50/50 via-transparent to-transparent pointer-events-none"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+        
+        <!-- 图片展示区 (左侧轮播图) -->
+        <div class="order-1 lg:col-span-5 relative flex justify-center items-center p-8 lg:p-0 min-h-[400px]">
+          <div class="absolute inset-0 bg-gradient-to-tr from-brand-100 to-white rounded-[3rem] transform -rotate-3 scale-105 shadow-sm"></div>
+          <div class="absolute inset-0 bg-white rounded-[3rem] shadow-xl shadow-slate-200/50"></div>
+          
+          <product-carousel class="relative z-10 w-full h-full flex items-center justify-center group overflow-hidden rounded-[3rem]">
+            <div class="grid w-full place-items-center">
+              {carouselImages.map((img, i) => (
+                <img 
+                  src={img} 
+                  alt={`${product.name} - 细节图 ${i + 1}`} 
+                  class={`col-start-1 row-start-1 w-3/4 object-contain py-12 transition-all duration-700 ease-in-out carousel-slide ${i === 0 ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-95 pointer-events-none'}`} 
+                  style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.08));" 
+                />
+              ))}
+            </div>
+            
+            {carouselImages.length > 1 && (
+              <>
+                <button class="absolute left-4 z-20 p-2.5 rounded-full bg-white/60 hover:bg-white text-slate-800 transition-all duration-300 carousel-prev backdrop-blur-sm shadow-sm hover:shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button class="absolute right-4 z-20 p-2.5 rounded-full bg-white/60 hover:bg-white text-slate-800 transition-all duration-300 carousel-next backdrop-blur-sm shadow-sm hover:shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+                <div class="absolute bottom-6 z-20 flex gap-2.5">
+                  {carouselImages.map((_, i) => (
+                    <button class={`h-1.5 rounded-full transition-all duration-300 carousel-dot ${i === 0 ? 'bg-brand-600 w-5' : 'bg-slate-300 w-1.5 hover:bg-slate-400'}`} data-index={i} aria-label={`切换到第 ${i + 1} 张图片`}></button>
+                  ))}
+                </div>
+              </>
+            )}
+          </product-carousel>
+        </div>
+
+        <!-- 内容文本区 (右侧) -->
+        <div class="order-2 lg:col-span-6 lg:col-start-7">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-600 font-semibold text-sm mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+            深度解析
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-extrabold mb-8 text-slate-900 leading-tight tracking-tight">全场景覆盖<br/><span class="text-brand-600">打造极致收款体验</span></h2>
+          
+          <div class="prose prose-lg prose-slate max-w-none mb-12">
+            <p class="text-slate-600 leading-relaxed">
+              {product.longDesc}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-slate-200">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 transition-shadow hover:shadow-md">
+              <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
               </div>
-              <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <p class="text-xs uppercase tracking-[0.24em] text-slate-400">服务保障</p>
-                <ul class="mt-4 space-y-3 text-sm font-medium text-slate-700">
-                  <li class="flex items-center"><span class="mr-3 h-2.5 w-2.5 rounded-full bg-emerald-500"></span>官方顾问一对一配置方案</li>
-                  <li class="flex items-center"><span class="mr-3 h-2.5 w-2.5 rounded-full bg-emerald-500"></span>快速审核，支持远程指导开通</li>
-                  <li class="flex items-center"><span class="mr-3 h-2.5 w-2.5 rounded-full bg-emerald-500"></span>售后响应及时，使用更省心</li>
-                </ul>
+              <p class="text-sm text-slate-500 font-medium mb-1">适用场景</p>
+              <p class="text-base font-bold text-slate-900">{scenarioSummary}</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 transition-shadow hover:shadow-md">
+              <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
               </div>
+              <p class="text-sm text-slate-500 font-medium mb-1">服务保障</p>
+              <p class="text-base font-bold text-slate-900">官方顾问1对1配置方案</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-      <!-- 移除 xl:items-start 让网格默认拉伸等高 -->
-      <div class="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_320px]">
-        <!-- 左侧产品亮点：使用 flex flex-col justify-between 吸收高度 -->
-        <div class="rounded-[28px] bg-white p-8 shadow-sm ring-1 ring-slate-200 md:p-9 xl:col-start-1 xl:row-start-1 flex flex-col h-full">
-          <div class="mb-6">
-            <p class="text-sm font-semibold text-brand-600">产品亮点</p>
-            <h2 class="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">更适合门店经营的终端布局</h2>
-          </div>
-
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 flex-1 items-center">
-            {product.features.map((feat, index) => (
-              <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                <div class="flex items-start gap-3">
-                  <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-xs font-bold text-white">
-                    0{index + 1}
-                  </div>
-                  <div>
-                    <h3 class="text-sm font-bold text-slate-800 md:text-[15px]">{feat}</h3>
-                    <p class="mt-1.5 text-xs leading-6 text-slate-500 md:text-sm">围绕真实收款场景优化体验，兼顾效率、稳定性与后续经营扩展。</p>
-                  </div>
-                </div>
+    <!-- Specs Section: 极简卡片参数列表 -->
+    <section id="specs" class="py-24 sm:py-32 bg-white">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-16 sm:mb-24">
+          <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight mb-6">技术规格</h2>
+          <p class="text-lg text-slate-500">精工细作，各项参数一目了然</p>
+        </div>
+        
+        <div class="bg-[#F8F9FA] rounded-[2rem] p-8 sm:p-16">
+          <div class="divide-y divide-slate-200/70">
+            {product.specs.map((spec) => (
+              <div class="py-6 sm:py-8 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8">
+                <span class="text-slate-500 font-medium text-lg w-full sm:w-1/3 shrink-0">{spec.label}</span>
+                <span class="text-slate-900 font-medium text-lg w-full sm:w-2/3">{spec.value}</span>
               </div>
             ))}
           </div>
         </div>
-
-        <!-- 右侧技术参数：移除 self-start，使用 flex flex-col justify-between 吸收高度 -->
-        <div class="rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-slate-200 xl:col-start-2 xl:row-start-1 flex flex-col h-full">
-          <div>
-            <p class="text-xs font-semibold text-brand-600 md:text-sm">技术参数</p>
-            <h2 class="mt-2 text-xl font-bold text-slate-900 md:text-2xl">规格一览</h2>
-          </div>
-          <ul class="mt-6 flex flex-col justify-around flex-1">
-            {product.specs.map((spec) => (
-              <li class="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-                <p class="text-[11px] uppercase tracking-[0.16em] text-slate-400">{spec.label}</p>
-                <p class="mt-1.5 text-xs font-semibold leading-6 text-slate-800 md:text-sm">{spec.value}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="rounded-[28px] bg-white p-8 shadow-sm ring-1 ring-slate-200 md:p-10 xl:col-start-1 xl:row-start-2">
-          <p class="text-sm font-semibold text-brand-600">详细介绍</p>
-          <h2 class="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">设备能力与使用价值</h2>
-          <div class="mt-8 text-base leading-8 text-slate-600">
-            <p>{product.longDesc}</p>
-          </div>
-        </div>
-
-        <div class="rounded-[28px] bg-gradient-to-br from-brand-600 to-brand-700 p-8 text-white shadow-lg shadow-brand-500/20 xl:col-start-2 xl:row-start-2">
-          <p class="text-sm font-semibold text-white/80">快速咨询</p>
-          <h3 class="mt-2 text-2xl font-bold">获取适合您的终端方案</h3>
-          <p class="mt-4 text-sm leading-7 text-blue-50/90">
-            告诉我们您的经营类型、收款场景和月交易需求，我们将为您推荐更合适的机型。
-          </p>
-          <div class="mt-8 space-y-3">
-            <a href="/contact" class="inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3.5 text-base font-bold text-brand-700 transition-colors hover:bg-slate-100">
-              在线提交需求
-            </a>
-            <a href="tel:400-926-6655" class="inline-flex w-full items-center justify-center rounded-2xl border border-white/25 px-6 py-3.5 text-base font-bold text-white transition-colors hover:bg-white/10">
-              拨打 400-926-6655
-            </a>
-          </div>
+        
+        <div class="mt-16 text-center">
+          <a href="/contact" class="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-500/30">
+            立即申请办理
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -215,3 +225,70 @@ const scenarioSummary =
   <Footer />
   <AIAssistant />
 </Layout>
+
+<script>
+  class ProductCarousel extends HTMLElement {
+    private currentIndex: number;
+    private slides: NodeListOf<HTMLElement>;
+    private dots: NodeListOf<HTMLElement>;
+    private prevBtn: HTMLElement | null;
+    private nextBtn: HTMLElement | null;
+    private interval: number | null;
+
+    constructor() {
+      super();
+      this.currentIndex = 0;
+      this.slides = this.querySelectorAll('.carousel-slide');
+      this.dots = this.querySelectorAll('.carousel-dot');
+      this.prevBtn = this.querySelector('.carousel-prev');
+      this.nextBtn = this.querySelector('.carousel-next');
+      this.interval = null;
+      
+      if (this.slides.length <= 1) return;
+
+      this.prevBtn?.addEventListener('click', () => this.showSlide(this.currentIndex - 1));
+      this.nextBtn?.addEventListener('click', () => this.showSlide(this.currentIndex + 1));
+      
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.showSlide(index));
+      });
+
+      // 自动播放
+      this.startAutoPlay();
+      
+      this.addEventListener('mouseenter', () => this.stopAutoPlay());
+      this.addEventListener('mouseleave', () => this.startAutoPlay());
+    }
+
+    startAutoPlay() {
+      this.interval = window.setInterval(() => this.showSlide(this.currentIndex + 1), 3500);
+    }
+
+    stopAutoPlay() {
+      if (this.interval) clearInterval(this.interval);
+    }
+
+    showSlide(index: number) {
+      // 隐藏当前 slide
+      this.slides[this.currentIndex].classList.remove('opacity-100', 'z-10', 'scale-100');
+      this.slides[this.currentIndex].classList.add('opacity-0', 'z-0', 'scale-95', 'pointer-events-none');
+      if (this.dots[this.currentIndex]) {
+        this.dots[this.currentIndex].classList.remove('bg-brand-600', 'w-5');
+        this.dots[this.currentIndex].classList.add('bg-slate-300', 'w-1.5');
+      }
+
+      // 计算新索引 (循环)
+      this.currentIndex = (index + this.slides.length) % this.slides.length;
+
+      // 显示新 slide
+      this.slides[this.currentIndex].classList.remove('opacity-0', 'z-0', 'scale-95', 'pointer-events-none');
+      this.slides[this.currentIndex].classList.add('opacity-100', 'z-10', 'scale-100');
+      if (this.dots[this.currentIndex]) {
+        this.dots[this.currentIndex].classList.remove('bg-slate-300', 'w-1.5');
+        this.dots[this.currentIndex].classList.add('bg-brand-600', 'w-5');
+      }
+    }
+  }
+  
+  customElements.define('product-carousel', ProductCarousel);
+</script>
