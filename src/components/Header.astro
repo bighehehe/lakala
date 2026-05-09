@@ -4,13 +4,12 @@ import { products } from '../data/products';
 const NAV_ITEMS = [
   { label: '首页', path: '/' },
   { 
-    label: '智能终端', 
+    label: 'POS产品', 
     path: '#',
     children: products.map(p => ({ label: p.name, path: `/products/${p.slug}` }))
   },
   { label: 'POS办理', path: '/articles/group-a' },
   { label: 'POS费率', path: '/articles/group-b' },
-  { label: 'POS产品', path: '/articles/group-c' },
   { label: '使用问题', path: '/articles/group-d' },
   { label: '联系我们', path: '/contact' },
 ];
