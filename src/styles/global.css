@@ -71,3 +71,45 @@ body {
   color: #2563eb;
   text-decoration: underline;
 }
+
+.prose-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.prose-content th,
+.prose-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.prose-content th {
+  font-weight: 600;
+  color: #1e293b;
+  background-color: #f8fafc;
+}
+
+.prose-content tr:last-child td {
+  border-bottom: none;
+}
+
+/* Custom Scrollbar for Sidebar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 20px;
+}
+
+.scrollbar-thin:hover::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+}
