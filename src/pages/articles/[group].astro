@@ -59,6 +59,9 @@ const groupCats = new Set(group.categories);
 const pillar = allArticles.find(a => a.id === group.pillarSlug);
 const clusters = allArticles
   .filter(a => a.data.type === 'cluster' && groupCats.has(a.data.category));
+const groupEntries = group.categories
+  .map((category) => [category, clusters.filter((a) => a.data.category === category)] as const)
+  .filter(([, items]) => items.length > 0);
 
 // Group clusters by category in order
 const grouped = new Map<string, typeof clusters>();
@@ -67,15 +70,15 @@ for (const cat of group.categories) {
   if (items.length > 0) grouped.set(cat, items);
 }
 
-const categoryIcons: Record<string, string> = {
-  '办理条件': '📋', '申请流程': '📝', '费用与合同': '💰',
-  '渠道与避坑': '🛡️', '激活与使用': '🔧',
-  '手续费计算': '🧮', '扫码费率': '📱', '流量费': '📶',
-  '押金规则': '🔐', '秒到费与涨价': '⚡',
-  '不到账': '❌', '交易失败': '⚠️', '限额': '📊',
-  '结算卡与账户': '💳', '机器故障、流量卡、注销': '🔧',
-  '正规性与安全': '🔒', '政策与行业变化': '📜',
-  '风控、跳码、商户': '🔍', '使用边界与风险提示': '⚠️', '骗局与避坑': '🚫',
+const categoryBadges: Record<string, string> = {
+  '办理条件': '01', '申请流程': '02', '费用与合同': '03',
+  '渠道与避坑': '04', '激活与使用': '05',
+  '手续费计算': '01', '扫码费率': '02', '流量费': '03',
+  '押金规则': '04', '秒到费与涨价': '05',
+  '不到账': '01', '交易失败': '02', '限额': '03',
+  '结算卡与账户': '04', '机器故障、流量卡、注销': '05',
+  '正规性与安全': '01', '政策与行业变化': '02',
+  '风控、跳码、商户': '03', '使用边界与风险提示': '04', '骗局与避坑': '05',
 };
 
 const categoryDescriptions: Record<string, string> = {
@@ -101,6 +104,75 @@ const categoryDescriptions: Record<string, string> = {
   '骗局与避坑': '办理骗局、押金套路、费率陷阱、代理失联处理',
 };
 
+const totalArticles = clusters.length;
+const isApplyPage = groupKey === 'A';
+
+const applyHighlights = [
+  '先确认自己是个人办理还是商户办理，再准备资料。',
+  '办理前把押金、流量费、首刷条件和售后政策一次问清。',
+  '优先走官方或授权渠道，避免低费率和免费送机话术误导。',
+];
+
+const applyDecisionCards = [
+  {
+    title: '先看适用人群',
+    description: '个体商户、流动收款用户、个人临时收款和企业门店，适配机型与资料要求不同。',
+    items: ['个人用户可先看电签版', '商户办理需关注营业执照与门店照片'],
+  },
+  {
+    title: '再看办理资料',
+    description: '身份证、结算银行卡、手机号是基础资料，商户通常还要补营业执照和经营场景照片。',
+    items: ['证件必须清晰且在有效期内', '结算卡建议使用本人名下一类卡'],
+  },
+  {
+    title: '最后看综合成本',
+    description: '不要只看费率，押金、流量费、VIP 服务费、到账规则都要一起核算。',
+    items: ['重点确认是否首刷激活', '要求对方明确退还条件和时点'],
+  },
+];
+
+const applySteps = [
+  {
+    step: '01',
+    title: '确认场景与产品',
+    description: '根据是个人收款、门店经营还是企业需求，选择电签版、大 POS 或智能终端。',
+  },
+  {
+    step: '02',
+    title: '准备并提交资料',
+    description: '提交身份证、银行卡、手机号，商户再补营业执照与门店资料，确保一次通过审核。',
+  },
+  {
+    step: '03',
+    title: '审核与发机',
+    description: '一般 1-3 个工作日完成审核，通过后安排发货，正常 3-7 天可收到设备。',
+  },
+  {
+    step: '04',
+    title: '激活并开始使用',
+    description: '开机联网、APP 实名、绑定终端和结算卡，完成首笔测试交易后即可正常使用。',
+  },
+];
+
+const applyFaqs = [
+  {
+    question: '个人没有营业执照，能办理拉卡拉 POS 吗？',
+    answer: '可以。个人用户通常可以办理拉卡拉电签版等轻量产品，只需身份证、银行卡和实名手机号，具体还要看产品和渠道要求。',
+  },
+  {
+    question: '办理时说免费，后面为什么还可能扣费？',
+    answer: '“免费”通常只代表设备费不单独收取，但仍可能存在流量费、首刷激活门槛、押金或增值服务费，所以办理前一定要逐项确认。',
+  },
+  {
+    question: '从提交申请到可以正常使用，大概需要多久？',
+    answer: '资料齐全时，审核通常 1-3 个工作日，通过后发货 3-7 天，整体通常 5-10 个工作日可完成。',
+  },
+  {
+    question: '办理渠道怎么判断是否靠谱？',
+    answer: '优先看是否官方或授权、费用是否透明、是否能提供明确的办理协议与售后联系人，不建议仅凭低费率或“免费送机”宣传下单。',
+  },
+];
+
 function formatDate(dateStr: string | Date) {
   const date = new Date(dateStr);
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -109,180 +181,477 @@ function formatDate(dateStr: string | Date) {
 
 <Layout title={`${group.title} - 拉卡拉`}>
   <Header />
-  <main class="flex-grow pt-16 min-h-screen bg-slate-50">
-    <!-- Hero Banner -->
-    <section class={`bg-gradient-to-br ${group.bannerClass} text-white pt-24 pb-32 relative overflow-hidden`}>
-      <!-- Background Effects -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div class="absolute top-1/2 right-0 w-[30rem] h-[30rem] bg-brand-400/20 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/2"></div>
-        <div class="absolute bottom-0 left-1/4 w-[40rem] h-64 bg-brand-500/20 blur-3xl"></div>
-      </div>
-      
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <span class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-white/90 text-sm font-medium tracking-wider mb-6 backdrop-blur-sm">
-          知识专栏
-        </span>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight">
-          {group.title}
-        </h1>
-        <p class="text-brand-100 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-          {group.subtitle}
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#topics" class="px-8 py-3.5 bg-white text-brand-900 font-bold rounded-full hover:bg-brand-50 transition-all duration-300 shadow-lg shadow-white/20 hover:scale-105">
-            浏览话题
-          </a>
-          {pillar && (
-            <a href={`/articles/${pillar.id}`} class="px-8 py-3.5 bg-brand-800/50 text-white border border-white/20 font-bold rounded-full hover:bg-brand-700/50 transition-all duration-300 backdrop-blur-sm hover:scale-105">
-              阅读完整指南
-            </a>
-          )}
-        </div>
-      </div>
-    </section>
-
-    <!-- Quick Navigation (Table of Contents) -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20 mb-16">
-      <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 backdrop-blur-xl">
-        <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-6 text-center">快速导航</h3>
-        <div class="flex flex-wrap justify-center gap-3">
-          {Array.from(grouped.keys()).map((category) => (
-            <a href={`#cat-${category}`} class="inline-flex items-center px-4 py-2 bg-slate-50 hover:bg-brand-50 border border-slate-100 hover:border-brand-200 rounded-full text-sm font-medium text-slate-700 hover:text-brand-700 transition-all duration-200 hover:shadow-sm">
-              <span class="mr-2 text-base">{categoryIcons[category]}</span>
-              {category}
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    <div id="topics" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      
-      <!-- Pillar Highlight -->
-      {pillar && (
-        <section class="mb-20">
-          <div class="flex items-center justify-between mb-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 flex items-center">
-              <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center mr-3 text-sm">✨</span>
-              核心指南
-            </h2>
+  <main class="flex-grow pt-16 min-h-screen bg-brand-50/40">
+    {isApplyPage ? (
+      <>
+        <section class={`bg-gradient-to-br ${group.bannerClass} text-white pt-24 pb-24 relative overflow-hidden`}>
+          <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute -top-16 left-[-5rem] w-72 h-72 rounded-full bg-white/10 blur-3xl"></div>
+            <div class="absolute top-10 right-[-4rem] w-80 h-80 rounded-full bg-brand-400/20 blur-3xl"></div>
+            <div class="absolute bottom-[-6rem] left-1/3 w-[28rem] h-[18rem] bg-brand-500/20 blur-3xl"></div>
           </div>
-          <a
-            href={`/articles/${pillar.id}`}
-            class="group block bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100 hover:border-brand-300 relative"
-          >
-            <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-500 transform origin-left scale-y-0 group-hover:scale-y-100 transition-transform duration-500"></div>
-            <div class="p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-8">
-              <div class="flex-1">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center px-3 py-1 bg-brand-50 text-brand-700 text-xs font-bold rounded-full border border-brand-100">必读推荐</span>
-                  <span class="text-sm text-slate-400 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                    {formatDate(pillar.data.created_at)}
-                  </span>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 group-hover:text-brand-600 transition-colors leading-tight">
-                  {pillar.data.title}
-                </h3>
-                <p class="text-slate-500 text-base leading-relaxed mb-6 max-w-3xl">
-                  {pillar.data.summary}
+
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-center">
+              <div>
+                <span class="inline-flex items-center rounded-full border border-white/25 bg-white/15 px-4 py-1.5 text-sm font-medium text-white backdrop-blur">
+                  拉卡拉 POS 办理专题
+                </span>
+                <h1 class="mt-6 text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                  {group.title}
+                </h1>
+                <p class="mt-6 max-w-2xl text-lg md:text-xl text-brand-100 leading-8">
+                  {group.subtitle}。围绕“能不能办、怎么准备、费用怎么看、流程怎么走、激活怎么做”五个关键问题，帮你从零快速建立完整认知。
                 </p>
-                <span class="inline-flex items-center text-brand-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
-                  开始阅读
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </span>
-              </div>
-            </div>
-          </a>
-        </section>
-      )}
 
-      <!-- Clusters by category -->
-      <div class="space-y-20">
-        {Array.from(grouped.entries()).map(([category, articles], catIndex) => (
-          <section id={`cat-${category}`} class="scroll-mt-32">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200">
-              <div class="flex items-center">
-                <span class="inline-flex items-center justify-center w-12 h-12 bg-white shadow-sm border border-slate-100 text-2xl rounded-xl mr-4 transform -rotate-3">
-                  {categoryIcons[category] || '📄'}
-                </span>
-                <div>
-                  <h2 class="text-2xl font-bold text-slate-900">{category}</h2>
-                  <p class="text-slate-500 text-sm mt-1">{categoryDescriptions[category] || ''}</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                  {applyHighlights.map((item) => (
+                    <span class="inline-flex items-center rounded-full border border-white/20 bg-white/15 px-4 py-2 text-sm text-white backdrop-blur">
+                      <span class="mr-2 inline-block h-2 w-2 rounded-full bg-brand-300"></span>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                  <a href="#decision" class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-brand-900 font-bold shadow-lg shadow-black/10 transition-colors hover:bg-brand-50">
+                    先看办理决策
+                  </a>
+                  <a href="#knowledge-map" class="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/15 px-8 py-3.5 text-white font-bold backdrop-blur transition-colors hover:bg-white/20">
+                    浏览知识地图
+                  </a>
+                </div>
+
+                <div class="mt-12 grid gap-4 sm:grid-cols-3">
+                  <div class="rounded-2xl border border-white/20 bg-white/15 p-5 backdrop-blur">
+                    <div class="text-3xl font-black">{group.categories.length}</div>
+                    <div class="mt-1 text-sm text-brand-100">核心专题模块</div>
+                  </div>
+                  <div class="rounded-2xl border border-white/20 bg-white/15 p-5 backdrop-blur">
+                    <div class="text-3xl font-black">{totalArticles}</div>
+                    <div class="mt-1 text-sm text-brand-100">关联专题文章</div>
+                  </div>
+                  <div class="rounded-2xl border border-white/20 bg-white/15 p-5 backdrop-blur">
+                    <div class="text-3xl font-black">1-3 天</div>
+                    <div class="mt-1 text-sm text-brand-100">常规审核周期</div>
+                  </div>
                 </div>
               </div>
-              <div class="mt-4 md:mt-0 flex items-center gap-4">
-                <span class="inline-flex items-center px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm font-medium">
-                  共 {articles.length} 篇文章
-                </span>
-                {articles.length > 3 && (
-                  <div class="view-more-wrapper">
-                    <button
-                      class="inline-flex items-center px-4 py-1 bg-white border border-slate-200 text-slate-600 text-sm font-medium rounded-full hover:bg-slate-50 hover:text-brand-600 transition-colors shadow-sm view-more-btn"
-                      data-target={`article-card-${catIndex}`}
-                    >
-                      查看更多
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m6 9 6 6 6-6"/></svg>
-                    </button>
+
+              <div class="relative">
+                <div class="rounded-[2rem] border border-white/20 bg-white/15 p-6 md:p-8 shadow-2xl shadow-brand-900/20 backdrop-blur-xl">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm uppercase tracking-[0.24em] text-brand-100">办理速览</p>
+                      <h2 class="mt-2 text-2xl font-bold text-white">新手最容易踩坑的 3 件事</h2>
+                    </div>
+                    <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-lg font-bold text-white">A</div>
                   </div>
-                )}
+
+                  <div class="mt-8 space-y-4">
+                    <div class="rounded-2xl border border-white/10 bg-white/12 p-5">
+                      <p class="text-sm text-brand-100">先明确你的办理身份</p>
+                      <p class="mt-2 text-base font-semibold text-white">个人办理和商户办理，资料要求、适用产品、审核方式都不同。</p>
+                    </div>
+                    <div class="rounded-2xl border border-white/10 bg-white/12 p-5">
+                      <p class="text-sm text-brand-100">不要只盯着“免费送机”</p>
+                      <p class="mt-2 text-base font-semibold text-white">真正影响成本的是押金、流量费、首刷达标和后续费率规则。</p>
+                    </div>
+                    <div class="rounded-2xl border border-white/10 bg-white/12 p-5">
+                      <p class="text-sm text-brand-100">优先确认售后是否可追踪</p>
+                      <p class="mt-2 text-base font-semibold text-white">能否提供办理协议、售后联系人和官方/授权身份，比低费率更重要。</p>
+                    </div>
+                  </div>
+
+                  <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="rounded-2xl bg-brand-900/25 p-4">
+                      <div class="text-sm text-brand-100">建议先读</div>
+                      <div class="mt-1 font-semibold text-white">资料准备</div>
+                    </div>
+                    <div class="rounded-2xl bg-brand-900/25 p-4">
+                      <div class="text-sm text-brand-100">再确认</div>
+                      <div class="mt-1 font-semibold text-white">费用与合同</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article, index) => (
-                <a
-                  href={`/articles/${article.id}`}
-                  class={`group flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-100 hover:border-brand-200 h-full ${index >= 3 ? 'hidden' : ''} article-card-${catIndex}`}
-                >
-                  <div class="p-6 flex flex-col flex-grow">
-                    <div class="flex items-center justify-between mb-4">
-                      <span class="inline-flex items-center px-2.5 py-1 bg-slate-50 text-slate-600 text-xs font-medium rounded-md border border-slate-100">{category}</span>
-                      <span class="text-xs text-slate-400">{formatDate(article.data.created_at)}</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors leading-snug">
-                      {article.data.title}
-                    </h3>
-                    <p class="text-slate-500 text-sm line-clamp-3 leading-relaxed mb-6 flex-grow">
-                      {article.data.summary}
-                    </p>
-                    <div class="mt-auto pt-4 border-t border-slate-50 flex items-center text-brand-600 text-sm font-medium">
-                      <span>阅读全文</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1.5 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+          <div class="rounded-3xl border border-brand-100 bg-white/95 p-5 shadow-xl shadow-brand-100/60 backdrop-blur">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p class="text-sm font-semibold text-brand-600">页面导航</p>
+                <p class="mt-1 text-sm text-brand-800/70">按照办理前决策、流程、完整指南、专题地图和常见问题的顺序阅读。</p>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <a href="#decision" class="rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-100 hover:text-brand-900">办理决策</a>
+                <a href="#process" class="rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-100 hover:text-brand-900">办理流程</a>
+                <a href="#pillar-guide" class="rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-100 hover:text-brand-900">完整指南</a>
+                <a href="#knowledge-map" class="rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-100 hover:text-brand-900">知识地图</a>
+                <a href="#faq" class="rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-100 hover:text-brand-900">常见问题</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-20">
+          <section id="decision">
+            <div class="max-w-3xl">
+              <p class="text-sm font-semibold tracking-[0.24em] text-brand-600">办理决策</p>
+              <h2 class="mt-3 text-3xl md:text-4xl font-black tracking-tight text-slate-900">办理前，先把关键决策做对</h2>
+              <p class="mt-4 text-lg leading-8 text-slate-600">
+                第一次办理拉卡拉 POS，最容易卡在适用人群、资料准备和实际成本这三个问题。先把这 3 点看明白，后面的申请和激活会更顺利。
+              </p>
+            </div>
+
+            <div class="mt-10 grid gap-6 lg:grid-cols-3">
+              {applyDecisionCards.map((card, index) => (
+                <div class="rounded-3xl border border-brand-100 bg-white p-7 shadow-sm shadow-brand-100/50">
+                  <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 text-sm font-black">
+                    0{index + 1}
                   </div>
-                </a>
+                  <h3 class="mt-5 text-xl font-bold text-slate-900">{card.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">{card.description}</p>
+                  <div class="mt-5 space-y-3">
+                    {card.items.map((item) => (
+                      <div class="flex items-start gap-3 rounded-2xl border border-brand-100 bg-brand-50/70 px-4 py-3 text-sm text-brand-900">
+                        <span class="mt-1 inline-block h-2 w-2 rounded-full bg-brand-500"></span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </section>
-        ))}
-      </div>
 
-      <!-- Bottom CTA Section -->
-      <section class="mt-24 mb-12">
-        <div class="bg-gradient-to-r from-brand-900 to-brand-800 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-          <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
-          <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-brand-400 opacity-20 rounded-full blur-2xl"></div>
-          
-          <div class="relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">没有找到您想要的答案？</h2>
-            <p class="text-brand-100 text-lg mb-8 max-w-2xl mx-auto">
-              我们的专业客服团队随时为您解答POS办理、费率、售后等任何疑问，欢迎免费咨询。
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="/contact" class="inline-flex justify-center items-center px-8 py-3.5 bg-brand-500 text-white font-bold rounded-full hover:bg-brand-400 transition-colors shadow-lg shadow-brand-500/30">
-                立即咨询
-              </a>
-              <a href="/contact" class="inline-flex justify-center items-center px-8 py-3.5 bg-white/10 text-white border border-white/20 font-bold rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm">
-                在线申请办理
+          <section id="process">
+            <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div class="max-w-3xl">
+                <p class="text-sm font-semibold tracking-[0.24em] text-brand-600">办理流程</p>
+                <h2 class="mt-3 text-3xl md:text-4xl font-black tracking-tight text-slate-900">标准办理流程，一屏看懂</h2>
+                <p class="mt-4 text-lg leading-8 text-slate-600">
+                  从明确使用场景，到资料审核、收货激活，再到正式使用，整个办理路径并不复杂，关键在于每一步都确认清楚。
+                </p>
+              </div>
+              <div class="rounded-2xl border border-brand-100 bg-brand-50 px-5 py-4 text-sm text-brand-700">
+                标准周期：资料齐全通常 5-10 个工作日完成办理并上线使用
+              </div>
+            </div>
+
+            <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {applySteps.map((item) => (
+                <div class="rounded-3xl border border-brand-100 bg-white p-6 shadow-sm shadow-brand-100/40">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold tracking-[0.24em] text-brand-400">步骤</span>
+                    <span class="text-3xl font-black text-brand-600">{item.step}</span>
+                  </div>
+                  <h3 class="mt-6 text-xl font-bold text-slate-900">{item.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {pillar && (
+            <section id="pillar-guide">
+              <div class="rounded-[2rem] border border-brand-100 bg-white p-8 md:p-10 shadow-xl shadow-brand-100/50">
+                <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+                  <div>
+                    <div class="flex flex-wrap items-center gap-3">
+                      <span class="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700 border border-brand-100">
+                        支柱主文
+                      </span>
+                      <span class="text-sm text-brand-400">{formatDate(pillar.data.created_at)}</span>
+                    </div>
+                    <h2 class="mt-5 text-3xl md:text-4xl font-black tracking-tight text-slate-900">{pillar.data.title}</h2>
+                    <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">{pillar.data.summary}</p>
+
+                    <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                      <div class="rounded-2xl border border-brand-100 bg-brand-50/70 p-5">
+                        <div class="text-sm font-semibold text-slate-900">适用人群</div>
+                        <div class="mt-2 text-sm leading-7 text-slate-600">个人用户、个体商户、流动商户、企业门店</div>
+                      </div>
+                      <div class="rounded-2xl border border-brand-100 bg-brand-50/70 p-5">
+                        <div class="text-sm font-semibold text-slate-900">重点费用</div>
+                        <div class="mt-2 text-sm leading-7 text-slate-600">费率、流量费、押金、首刷条件、售后服务费</div>
+                      </div>
+                      <div class="rounded-2xl border border-brand-100 bg-brand-50/70 p-5">
+                        <div class="text-sm font-semibold text-slate-900">办理节奏</div>
+                        <div class="mt-2 text-sm leading-7 text-slate-600">准备资料、审核发机、激活绑卡、首刷验证</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-3xl bg-brand-900 p-7 text-white shadow-xl shadow-brand-900/20">
+                    <p class="text-sm uppercase tracking-[0.24em] text-brand-200">阅读收益</p>
+                    <h3 class="mt-3 text-2xl font-bold">这篇完整指南能帮你解决什么</h3>
+                    <div class="mt-6 space-y-4">
+                      {applyHighlights.map((item) => (
+                        <div class="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-sm text-brand-50">
+                          <span class="mt-1 inline-block h-2 w-2 rounded-full bg-brand-400"></span>
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <a
+                      href={`/articles/${pillar.id}`}
+                      class="mt-8 inline-flex items-center rounded-full bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-400"
+                    >
+                      阅读完整办理指南
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          <section id="knowledge-map">
+            <div class="max-w-3xl">
+              <p class="text-sm font-semibold tracking-[0.24em] text-brand-600">知识地图</p>
+              <h2 class="mt-3 text-3xl md:text-4xl font-black tracking-tight text-slate-900">POS 办理知识地图</h2>
+              <p class="mt-4 text-lg leading-8 text-slate-600">
+                下面按办理条件、申请流程、费用与合同、渠道避坑、激活使用五个模块整理相关内容，你可以按自己的问题直接进入对应专题查看。
+              </p>
+            </div>
+
+            <div class="mt-10 space-y-8">
+              {groupEntries.map(([category, articles], catIndex) => (
+                <section id={`cat-${category}`} class="scroll-mt-32 rounded-[2rem] border border-brand-100 bg-white p-6 md:p-8 shadow-sm shadow-brand-100/40">
+                  <div class="grid gap-8 lg:grid-cols-[280px_1fr]">
+                    <div class="rounded-3xl bg-gradient-to-br from-brand-900 to-brand-800 p-6 text-white shadow-xl shadow-brand-900/15">
+                      <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-sm font-black">
+                        {categoryBadges[category] || '00'}
+                      </div>
+                      <h3 class="mt-5 text-2xl font-bold">{category}</h3>
+                      <p class="mt-4 text-sm leading-7 text-brand-100">{categoryDescriptions[category] || ''}</p>
+                      <div class="mt-6 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-brand-50">
+                        当前专题收录 {articles.length} 篇文章
+                      </div>
+                    </div>
+
+                    <div>
+                      <div class="flex flex-col gap-4 border-b border-brand-100 pb-5 md:flex-row md:items-center md:justify-between">
+                        <div>
+                          <p class="text-sm font-semibold text-brand-600">专题内容</p>
+                          <p class="mt-1 text-sm text-brand-800/70">优先阅读前 3 篇高相关内容，需要时可展开查看全部。</p>
+                        </div>
+                        {articles.length > 3 && (
+                          <button
+                            class="inline-flex items-center self-start rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700 shadow-sm shadow-brand-100/30 transition-colors hover:bg-brand-100 hover:text-brand-800 view-more-btn"
+                            data-target={`article-card-${catIndex}`}
+                          >
+                            查看更多
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                              <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+
+                      <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                        {articles.map((article, index) => (
+                          <a
+                            href={`/articles/${article.id}`}
+                            class={`group flex h-full flex-col rounded-3xl border border-brand-100 bg-brand-50/45 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:bg-white hover:shadow-xl hover:shadow-brand-100/50 ${index >= 3 ? 'hidden' : ''} article-card-${catIndex}`}
+                          >
+                            <div class="flex items-center justify-between gap-3">
+                              <span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-700 border border-brand-100">
+                                {category}
+                              </span>
+                              <span class="text-xs text-brand-400">{formatDate(article.data.created_at)}</span>
+                            </div>
+                            <h4 class="mt-5 text-lg font-bold leading-8 text-slate-900 transition-colors group-hover:text-brand-600">
+                              {article.data.title}
+                            </h4>
+                            <p class="mt-3 flex-grow text-sm leading-7 text-slate-600 line-clamp-3">
+                              {article.data.summary}
+                            </p>
+                            <div class="mt-6 flex items-center text-sm font-semibold text-brand-600">
+                              阅读专题
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1.5 transition-transform group-hover:translate-x-1">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                              </svg>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              ))}
+            </div>
+          </section>
+
+          <section id="faq">
+            <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div class="max-w-3xl">
+                <p class="text-sm font-semibold tracking-[0.24em] text-brand-600">常见问题</p>
+                <h2 class="mt-3 text-3xl md:text-4xl font-black tracking-tight text-slate-900">办理前常见问题</h2>
+                <p class="mt-4 text-lg leading-8 text-slate-600">
+                  这里汇总的是 POS 办理页最常被问到的几个问题，适合在提交资料前快速确认，避免后续返工。
+                </p>
+              </div>
+              <a href="/contact" class="inline-flex items-center rounded-full border border-brand-100 bg-white px-5 py-3 text-sm font-semibold text-brand-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800">
+                还有问题，立即咨询
               </a>
             </div>
-          </div>
-        </div>
-      </section>
 
-    </div>
+            <div class="mt-10 grid gap-5 lg:grid-cols-2">
+              {applyFaqs.map((faq, index) => (
+                <div class="rounded-3xl border border-brand-100 bg-white p-7 shadow-sm shadow-brand-100/40">
+                  <div class="flex items-start gap-4">
+                    <div class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-sm font-black text-brand-700">
+                      Q{index + 1}
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-slate-900">{faq.question}</h3>
+                      <p class="mt-3 text-sm leading-7 text-slate-600">{faq.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="pb-8">
+            <div class="overflow-hidden rounded-[2rem] bg-gradient-to-r from-brand-800 via-brand-900 to-brand-700 p-8 md:p-12 text-white relative shadow-2xl shadow-brand-900/20">
+              <div class="absolute -top-10 right-0 h-48 w-48 rounded-full bg-white/10 blur-3xl"></div>
+              <div class="absolute -bottom-16 left-10 h-48 w-48 rounded-full bg-brand-400/20 blur-3xl"></div>
+              <div class="relative z-10 max-w-3xl">
+                <p class="text-sm font-semibold tracking-[0.24em] text-brand-200">下一步</p>
+                <h2 class="mt-4 text-3xl md:text-4xl font-black tracking-tight">准备办理之前，先把渠道、资料和费用一次确认清楚</h2>
+                <p class="mt-5 text-lg leading-8 text-brand-100">
+                  如果你已经明确了办理需求，但还不确定应该选哪种机型、是否需要营业执照、押金和费率规则怎么问，直接联系我们即可。
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                  <a href="/contact" class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 font-bold text-brand-900 transition-colors hover:bg-brand-50">
+                    立即咨询办理方案
+                  </a>
+                  {pillar && (
+                    <a href={`/articles/${pillar.id}`} class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-3.5 font-bold text-white transition-colors hover:bg-white/15">
+                      返回完整办理指南
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    ) : (
+      <>
+        <section class={`bg-gradient-to-br ${group.bannerClass} text-white pt-24 pb-24 relative overflow-hidden`}>
+          <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 right-0 w-[30rem] h-[30rem] bg-brand-400/20 rounded-full blur-3xl translate-x-1/3 -translate-y-1/2"></div>
+          </div>
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+              <span class="inline-flex rounded-full border border-white/20 bg-white/15 px-4 py-1.5 text-sm font-medium text-white backdrop-blur">
+                专题聚合页
+              </span>
+              <h1 class="mt-6 text-4xl md:text-5xl font-black tracking-tight">{group.title}</h1>
+              <p class="mt-5 text-lg md:text-xl leading-8 text-brand-100">{group.subtitle}</p>
+              <div class="mt-8 flex flex-wrap gap-3">
+                {groupEntries.map(([category]) => (
+                  <a href={`#cat-${category}`} class="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/90 transition-colors hover:bg-white/15">
+                    {category}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+          {pillar && (
+            <section>
+              <div class="rounded-[2rem] border border-brand-100 bg-white p-8 md:p-10 shadow-xl shadow-brand-100/50">
+                <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                  <div class="max-w-3xl">
+                    <div class="flex items-center gap-3">
+                      <span class="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700 border border-brand-100">完整指南</span>
+                      <span class="text-sm text-brand-400">{formatDate(pillar.data.created_at)}</span>
+                    </div>
+                    <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-900">{pillar.data.title}</h2>
+                    <p class="mt-4 text-lg leading-8 text-slate-600">{pillar.data.summary}</p>
+                  </div>
+                  <a href={`/articles/${pillar.id}`} class="inline-flex items-center justify-center rounded-full bg-brand-600 px-7 py-3.5 font-semibold text-white transition-colors hover:bg-brand-700">
+                    阅读完整指南
+                  </a>
+                </div>
+              </div>
+            </section>
+          )}
+
+          <section class="space-y-8">
+            {groupEntries.map(([category, articles], catIndex) => (
+              <section id={`cat-${category}`} class="scroll-mt-32 rounded-[2rem] border border-brand-100 bg-white p-6 md:p-8 shadow-sm shadow-brand-100/40">
+                <div class="flex flex-col gap-4 border-b border-brand-100 pb-5 md:flex-row md:items-end md:justify-between">
+                  <div class="flex items-start gap-4">
+                    <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-sm font-black text-brand-700">
+                      {categoryBadges[category] || '00'}
+                    </div>
+                    <div>
+                      <h2 class="text-2xl font-bold text-slate-900">{category}</h2>
+                      <p class="mt-2 text-sm leading-7 text-brand-800/70">{categoryDescriptions[category] || ''}</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <span class="inline-flex items-center rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-sm font-medium text-brand-700">
+                      共 {articles.length} 篇文章
+                    </span>
+                    {articles.length > 3 && (
+                      <button
+                        class="inline-flex items-center rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700 shadow-sm shadow-brand-100/30 transition-colors hover:bg-brand-100 hover:text-brand-800 view-more-btn"
+                        data-target={`article-card-${catIndex}`}
+                      >
+                        查看更多
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                          <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                  {articles.map((article, index) => (
+                    <a
+                      href={`/articles/${article.id}`}
+                      class={`group flex h-full flex-col rounded-3xl border border-brand-100 bg-brand-50/45 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:bg-white hover:shadow-xl hover:shadow-brand-100/50 ${index >= 3 ? 'hidden' : ''} article-card-${catIndex}`}
+                    >
+                      <div class="flex items-center justify-between gap-3">
+                        <span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-700 border border-brand-100">
+                          {category}
+                        </span>
+                        <span class="text-xs text-brand-400">{formatDate(article.data.created_at)}</span>
+                      </div>
+                      <h3 class="mt-5 text-lg font-bold leading-8 text-slate-900 transition-colors group-hover:text-brand-600">
+                        {article.data.title}
+                      </h3>
+                      <p class="mt-3 flex-grow text-sm leading-7 text-slate-600 line-clamp-3">{article.data.summary}</p>
+                      <div class="mt-6 flex items-center text-sm font-semibold text-brand-600">
+                        阅读专题
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1.5 transition-transform group-hover:translate-x-1">
+                          <path d="M5 12h14"></path>
+                          <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </section>
+        </div>
+      </>
+    )}
   </main>
   <Footer />
   <AIAssistant />
@@ -292,7 +661,6 @@ function formatDate(dateStr: string | Date) {
   function setupViewMore() {
     const buttons = document.querySelectorAll('.view-more-btn');
     buttons.forEach(btn => {
-      // Clone to remove existing event listeners if astro:page-load fires multiple times
       const clone = btn.cloneNode(true);
       btn.parentNode?.replaceChild(clone, btn);
       
@@ -301,14 +669,9 @@ function formatDate(dateStr: string | Date) {
         const targetClass = target.getAttribute('data-target');
         if (!targetClass) return;
 
-        // Toggle state
         const isExpanded = target.getAttribute('data-expanded') === 'true';
         const newExpandedState = !isExpanded;
         target.setAttribute('data-expanded', newExpandedState.toString());
-
-        // Update button text and icon
-        const textNode = target.childNodes[0]; // Text is the first child node before the svg
-        const svgPath = target.querySelector('path');
         
         if (newExpandedState) {
           target.innerHTML = `收起文章 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m18 15-6-6-6 6"/></svg>`;
@@ -316,18 +679,12 @@ function formatDate(dateStr: string | Date) {
           target.innerHTML = `查看更多 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m6 9 6 6 6-6"/></svg>`;
         }
 
-        // Toggle cards visibility
-        // Only target cards from index 3 onwards (they have the hidden class initially)
-        // We select all cards with the target class to figure out which ones to toggle
         const allCards = document.querySelectorAll(`.${targetClass}`);
         
         allCards.forEach((card, index) => {
-          // We only toggle cards starting from the 4th one (index 3)
           if (index >= 3) {
             if (newExpandedState) {
-              // Show card
               card.classList.remove('hidden');
-              // Add a subtle fade-in animation
               card.animate([
                 { opacity: 0, transform: 'translateY(10px)' },
                 { opacity: 1, transform: 'translateY(0)' }
@@ -337,7 +694,6 @@ function formatDate(dateStr: string | Date) {
                 fill: 'forwards'
               });
             } else {
-              // Hide card
               card.classList.add('hidden');
             }
           }
@@ -346,9 +702,6 @@ function formatDate(dateStr: string | Date) {
     });
   }
 
-  // Setup on initial load
   setupViewMore();
-  
-  // Setup on View Transitions navigation
   document.addEventListener('astro:page-load', setupViewMore);
 </script>
