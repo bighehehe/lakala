@@ -1,41 +1,19 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import AIAssistant from '../../components/AIAssistant.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AIAssistant from '../components/AIAssistant.astro';
 
-export async function getStaticPaths() {
-  return [
-    { params: { group: 'group-b' }, props: { groupKey: 'B' } },
-    { params: { group: 'group-e' }, props: { groupKey: 'E' } },
-  ];
-}
-
-const { groupKey } = Astro.props;
 const allArticles = await getCollection('articles');
 
-const groupDefs: Record<string, {
-  title: string;
-  subtitle: string;
-  pillarSlug: string;
-  categories: string[];
-}> = {
-  B: {
-    title: '拉卡拉POS费率与费用',
-    subtitle: '手续费、押金、流量费、秒到费，一次讲清所有费用问题。',
-    pillarSlug: 'lakala-pos-feilv-zhinan',
-    categories: ['手续费计算', '扫码费率', '流量费', '押金规则', '秒到费与涨价'],
-  },
-  E: {
-    title: '拉卡拉POS安全合规与避坑',
-    subtitle: '正规性、风控、跳码、骗局识别，帮你避开常见办理和使用风险。',
-    pillarSlug: 'lakala-pos-anquan-hegui-zhinan',
-    categories: ['正规性与安全', '政策与行业变化', '风控、跳码、商户', '使用边界与风险提示', '骗局与避坑'],
-  },
+const group = {
+  title: '拉卡拉POS办理指南',
+  subtitle: '从办理条件、资料准备、费用确认到激活使用，一页讲清拉卡拉POS怎么办理。',
+  pillarSlug: 'lakala-pos-banli-zhinan',
+  categories: ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'],
 };
 
-const group = groupDefs[groupKey];
 const groupCats = new Set(group.categories);
 const pillar = allArticles.find((article) => article.id === group.pillarSlug);
 const pillarRender = pillar ? await render(pillar) : null;

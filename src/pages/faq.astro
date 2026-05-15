@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AIAssistant from '../components/AIAssistant.astro';
+
+const faqs = [
+  {
+    category: "不到账问题",
+    questions: [
+      {
+        q: "刷卡成功但钱没到账，怎么回事？",
+        a: "不到账常见原因有：1. 触发风控审核（如夜间大额、异地刷卡），需等待支付公司人工审核；2. 结算银行卡状态异常（如冻结、注销、超限）；3. 节假日或系统结算延迟。建议先登录拉卡拉App或小程序查看该笔交易状态，若显示“处理中”，请耐心等待；若显示“已结算”但卡内无资金，请联系发卡行确认。"
+      },
+      {
+        q: "节假日刷卡会延迟到账吗？",
+        a: "拉卡拉目前大部分机型均支持D+0（即秒到账），无论是周末还是法定节假日，只要在规定时间段内交易，基本都能实现实时到账。如果遇到特殊情况延迟，通常会在下一个工作日（T+1）统一结算。"
+      },
+      {
+        q: "第二天才到账（T+1）是怎么回事？",
+        a: "有些商户办理的可能不是秒到机，或者是交易时间超过了当天的秒到时间段（通常是晚上23:00以后）。这种情况下，资金会自动转为T+1模式，即在下一个工作日到账。"
+      }
+    ]
+  },
+  {
+    category: "交易与限额问题",
+    questions: [
+      {
+        q: "刷卡提示“交易失败/受限”怎么办？",
+        a: "提示交易受限通常是因为：1. 发卡行风控（认为该笔交易有风险）；2. 单笔或单日交易金额超过了POS机的限额或信用卡的限额；3. 密码连续输错或卡片被冻结。建议更换其他信用卡尝试，或者降低刷卡金额再试。"
+      },
+      {
+        q: "拉卡拉POS机的单笔和单日限额是多少？",
+        a: "不同机型和认证等级的限额不同。通常个人电签机单笔限额在3-5万元，单日限额在10-30万元。如果您需要更高的额度，可以在拉卡拉App中提交更多资质（如营业执照、人脸识别等）来提升交易额度。"
+      },
+      {
+        q: "晚上刷卡有限制吗？",
+        a: "为了防范风险，部分机型在夜间（如23:00至次日6:00）的单笔刷卡额度会有所限制，或者该时段的交易统一改为T+1到账。建议尽量在白天正常的营业时间内进行大额交易。"
+      }
+    ]
+  },
+  {
+    category: "设备与账户问题",
+    questions: [
+      {
+        q: "如何更换绑定的结算储蓄卡？",
+        a: "您可以直接登录拉卡拉商户版App或小程序，在“我的”-“结算卡管理”中申请变更。通常需要重新上传新银行卡的照片并进行短信验证，审核通过后新卡即可生效。"
+      },
+      {
+        q: "POS机开不了机或充不进电怎么办？",
+        a: "请先检查充电器和数据线是否正常，尝试更换充电设备并充电30分钟以上。如果仍然无法开机，可能是电池老化或主板故障，请联系办理该机器的代理商或拉卡拉官方客服申请换机维修。"
+      },
+      {
+        q: "机器提示“网络连接失败”怎么解决？",
+        a: "1. 如果是内置流量卡的电签机，请检查是否因欠费停机，如果是，需在App内充值流量费；2. 尝试重启机器重新寻找基站信号；3. 如果是智能POS机，请检查WiFi连接是否正常。"
+      },
+      {
+        q: "不想用了，怎么注销POS机？",
+        a: "如果暂时不用，您可以直接将其闲置，不会产生额外扣费（流量费通常在有交易时才扣除）。如果您确定要彻底注销，请联系您的办理专员，或拨打拉卡拉官方客服电话进行商户信息注销操作。"
+      }
+    ]
+  }
+];
+---
+
+<Layout title="常见问题解答 (FAQ) - 拉卡拉" description="拉卡拉POS机常见问题解答，包括不到账、交易失败、限额、换卡、注销等问题的处理指南。">
+  <Header />
+  <main class="flex-grow pt-24 pb-20 bg-slate-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-16">
+        <h1 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900 mb-4">常见问题解答</h1>
+        <p class="text-lg text-slate-600">我们为您整理了办理和使用过程中最常遇到的问题与解决方案</p>
+      </div>
+
+      <div class="space-y-12">
+        {faqs.map((section) => (
+          <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-brand-50 border-b border-slate-200 px-6 py-4">
+              <h2 class="text-xl font-bold text-brand-900">{section.category}</h2>
+            </div>
+            <div class="divide-y divide-slate-100">
+              {section.questions.map((faq) => (
+                <details class="group px-6 py-5 cursor-pointer">
+                  <summary class="flex justify-between items-center font-medium text-slate-900 list-none">
+                    <span class="pr-6">{faq.q}</span>
+                    <span class="transition group-open:rotate-180">
+                      <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" class="text-slate-400">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </summary>
+                  <p class="text-slate-600 mt-4 leading-relaxed pl-2 border-l-2 border-brand-200">
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div class="mt-16 bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">没有找到您的问题？</h3>
+        <p class="text-slate-600 mb-6">我们的专业客服团队随时为您提供支持</p>
+        <a href="/contact" class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-6 py-3 text-base font-bold text-white transition-colors hover:bg-brand-700">
+          联系在线客服
+        </a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+  <AIAssistant />
+</Layout>
+
+<style>
+  /* 隐藏 details 的默认三角箭头 (Webkit) */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
