@@ -80,15 +80,33 @@ const groupRouteMap: Record<string, string> = { A: '/pos-guide', B: '/articles/g
 
 function formatDate(dateStr: string | Date) {
   const date = new Date(dateStr);
-  return date.toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
 }
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.data.title,
+  "description": article.data.summary,
+  "image": article.data.cover_image ? `https://www.pospee.com${encodeURI(article.data.cover_image)}` : undefined,
+  "author": {
+    "@type": "Organization",
+    "name": article.data.author || "拉卡拉官方"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "拉卡拉",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.pospee.com/img/logo.webp"
+    }
+  },
+  "datePublished": new Date(article.data.created_at).toISOString(),
+  "dateModified": article.data.updated_at ? new Date(article.data.updated_at).toISOString() : new Date(article.data.created_at).toISOString()
+};
 ---
 
-<Layout title={`${article.data.title} - 拉卡拉`} description={article.data.summary}>
+<Layout title={`${article.data.title} - 拉卡拉`} description={article.data.summary} schema={articleSchema}>
   <Header />
   <main class="flex-grow pt-16 min-h-screen bg-slate-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

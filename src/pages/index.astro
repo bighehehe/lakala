@@ -49,9 +49,30 @@ const latestArticles = allArticles
   .filter(article => article.data.status === 'published')
   .sort((a, b) => new Date(b.data.created_at).getTime() - new Date(a.data.created_at).getTime())
   .slice(0, 3);
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "拉卡拉 - 智能支付解决方案",
+  "url": "https://www.pospee.com",
+  "description": "致力于为中小微商户提供智能、安全、高效的支付解决方案。"
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "拉卡拉",
+  "url": "https://www.pospee.com",
+  "logo": "https://www.pospee.com/img/logo.webp",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "400-926-6655",
+    "contactType": "customer service"
+  }
+};
 ---
 
-<Layout>
+<Layout schema={[websiteSchema, organizationSchema]}>
   <Header />
   <main class="flex-grow">
     <!-- Hero Section -->

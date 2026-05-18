@@ -40,9 +40,29 @@ const carouselImagesMap: Record<string, string[]> = {
   '拉卡拉收款码': ['/img/拉卡拉收款码牌.jpg', '/img/收款码1.webp', '/img/收款码2.png']
 };
 const carouselImages = carouselImagesMap[product.name] || [product.image];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "image": `https://www.pospee.com${encodeURI(product.image)}`,
+  "description": product.description,
+  "brand": {
+    "@type": "Brand",
+    "name": "拉卡拉"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": `https://www.pospee.com/products/${product.slug}`,
+    "priceCurrency": "CNY",
+    "price": "0.00",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  }
+};
 ---
 
-<Layout title={`${product.name} - 智能终端 - 拉卡拉`}>
+<Layout title={`${product.name} - 智能终端 - 拉卡拉`} schema={productSchema}>
   <Header />
   <main class="flex-grow min-h-screen bg-white pt-20">
     <!-- Sticky Sub-Nav (小米风格悬浮导航) -->
