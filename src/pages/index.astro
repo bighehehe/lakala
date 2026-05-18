@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import AIAssistant from '../components/AIAssistant.astro';
+import ApplyModal from '../components/ApplyModal.astro';
 import Carousel from '../components/Carousel.astro';
 import { getCollection } from 'astro:content';
 
@@ -233,14 +234,15 @@ const latestArticles = allArticles
       <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold text-white mb-6">准备好升级您的支付体验了吗？</h2>
         <p class="text-blue-100 text-lg mb-8">加入数百万商户的选择，立即申请拉卡拉POS机，享受超低费率与优质服务。</p>
-        <a href="/contact" class="inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 bg-accent-500 hover:bg-accent-600 text-white shadow-lg shadow-accent-500/30 focus:ring-accent-500 px-12 py-3.5 text-lg">
+        <button class="apply-modal-trigger inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 bg-accent-500 hover:bg-accent-600 text-white shadow-lg shadow-accent-500/30 focus:ring-accent-500 px-12 py-3.5 text-lg cursor-pointer">
           立即免费申请
-        </a>
+        </button>
       </div>
     </section>
   </main>
   <Footer />
   <AIAssistant />
+  <ApplyModal />
 </Layout>
 
 <script>

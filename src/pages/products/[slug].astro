@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AIAssistant from '../../components/AIAssistant.astro';
+import ApplyModal from '../../components/ApplyModal.astro';
 import { products } from '../../data/products';
 
 export function getStaticPaths() {
@@ -52,9 +53,9 @@ const carouselImages = carouselImagesMap[product.name] || [product.image];
           <a href="#overview" class="hidden hover:text-brand-600 sm:block transition-colors">概述</a>
           <a href="#features" class="hidden hover:text-brand-600 sm:block transition-colors">特性</a>
           <a href="#specs" class="hidden hover:text-brand-600 sm:block transition-colors">参数</a>
-          <a href="/contact" class="rounded-full bg-slate-900 px-5 py-2 text-white hover:bg-slate-800 transition-colors">
+          <button class="apply-modal-trigger rounded-full bg-slate-900 px-5 py-2 text-white hover:bg-slate-800 transition-colors cursor-pointer">
             立即办理
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -214,16 +215,17 @@ const carouselImages = carouselImagesMap[product.name] || [product.image];
         </div>
         
         <div class="mt-16 text-center">
-          <a href="/contact" class="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-500/30">
+          <button class="apply-modal-trigger inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-500/30 cursor-pointer">
             立即申请办理
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
+          </button>
         </div>
       </div>
     </section>
   </main>
   <Footer />
   <AIAssistant />
+  <ApplyModal />
 </Layout>
 
 <script>
