@@ -21,49 +21,21 @@
 
   <div
     id="ai-chat-window"
-    class="fixed right-4 bottom-[6.5rem] sm:right-4 sm:bottom-28 w-[calc(100vw-2rem)] max-w-96 h-[550px] max-h-[78vh] bg-white rounded-3xl shadow-2xl border border-brand-100 flex flex-col overflow-hidden z-50 transition-all hidden"
+    class="fixed right-4 bottom-[6.5rem] sm:right-4 sm:bottom-28 w-[calc(100vw-2rem)] max-w-80 bg-white rounded-3xl shadow-2xl border border-brand-100 flex flex-col overflow-hidden z-50 transition-all hidden"
   >
     <div class="bg-gradient-to-r from-brand-600 to-brand-700 text-white p-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-brand-600 font-bold text-sm shadow-sm">AI</div>
-        <span class="font-medium">智能客服助手</span>
+        <div class="flex items-center space-x-2">
+          <h3 class="font-bold">官方客服</h3>
+        </div>
+        <button id="ai-close-btn" class="text-white hover:text-gray-200 transition-colors cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
-      <button id="ai-close-btn" class="text-white hover:text-gray-200 transition-colors">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-      </button>
-    </div>
-
-    <div class="bg-brand-50 p-4 flex items-center border-b border-brand-100 space-x-4">
-      <div class="w-20 h-20 bg-white border border-brand-100 flex flex-col items-center justify-center text-xs text-brand-400 rounded-2xl shadow-sm">
-        <svg class="w-8 h-8 mb-1 text-brand-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 19h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" /></svg>
-        <span>客服二维码</span>
+    
+    <div class="p-6 bg-slate-50 flex flex-col items-center justify-center">
+      <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-100">
+        <img src="/wechat.jpg" alt="拉卡拉客服微信二维码" class="w-48 h-48 object-contain" />
       </div>
-      <div class="text-sm text-brand-900 flex-1">
-        <p class="font-bold text-brand-900 text-base mb-1">专属客服微信</p>
-        <p class="text-xs leading-relaxed text-brand-800/80">扫码添加微信，获取最新办理优惠和一对一专属指导服务。</p>
-      </div>
-    </div>
-
-    <div id="ai-messages" class="flex-1 p-4 h-72 overflow-y-auto space-y-4 bg-brand-50/40">
-      <div class="flex justify-start">
-        <div class="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 text-xs font-bold mr-2 flex-shrink-0 mt-1">AI</div>
-        <div class="max-w-[75%] rounded-2xl px-4 py-2.5 text-sm whitespace-pre-wrap bg-white border border-brand-100 text-gray-800 rounded-tl-sm shadow-sm">您好！我是AI智能助手，请问有什么可以帮您？</div>
-      </div>
-    </div>
-
-    <div class="p-3 bg-white border-t border-brand-100 flex items-center space-x-2">
-      <input
-        id="ai-input"
-        type="text"
-        placeholder="请输入您的问题..."
-        class="flex-1 bg-brand-50 border border-transparent focus:bg-white focus:border-brand-500 focus:ring-1 focus:ring-brand-500 rounded-full px-4 py-2 text-sm outline-none transition-all"
-      />
-      <button
-        id="ai-send-btn"
-        class="bg-brand-600 text-white p-2.5 rounded-full hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
-      </button>
     </div>
   </div>
 </div>
@@ -72,20 +44,13 @@
   const toggleBtn = document.getElementById('ai-toggle-btn');
   const chatWindow = document.getElementById('ai-chat-window');
   const closeBtn = document.getElementById('ai-close-btn');
-  const messagesContainer = document.getElementById('ai-messages');
-  const input = document.getElementById('ai-input') as HTMLInputElement;
-  const sendBtn = document.getElementById('ai-send-btn');
   const dragStorageKey = 'lakala-ai-toggle-position';
 
   let isOpen = false;
-  let isLoading = false;
   let isDragging = false;
   let dragMoved = false;
   let pointerOffsetX = 0;
   let pointerOffsetY = 0;
-  let messages: { role: 'ai' | 'user'; text: string }[] = [
-    { role: 'ai', text: '您好！我是AI智能助手，请问有什么可以帮您？' }
-  ];
 
   function clamp(value: number, min: number, max: number) {
     return Math.min(Math.max(value, min), max);
@@ -183,133 +148,5 @@
     if (!toggleBtn) return;
     const rect = toggleBtn.getBoundingClientRect();
     setTogglePosition(rect.left, rect.top);
-  });
-
-  function scrollToBottom() {
-    if (messagesContainer) {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-  }
-
-  function renderMessages() {
-    if (!messagesContainer) return;
-    messagesContainer.innerHTML = messages.map((msg, idx) => {
-      if (msg.role === 'user') {
-        return `<div class="flex justify-end"><div class="max-w-[75%] rounded-2xl px-4 py-2.5 text-sm whitespace-pre-wrap bg-brand-600 text-white rounded-tr-sm shadow-sm">${escapeHtml(msg.text)}</div></div>`;
-      } else {
-        return `<div class="flex justify-start"><div class="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 text-xs font-bold mr-2 flex-shrink-0 mt-1">AI</div><div class="max-w-[75%] rounded-2xl px-4 py-2.5 text-sm whitespace-pre-wrap bg-white border border-brand-100 text-gray-800 rounded-tl-sm shadow-sm">${escapeHtml(msg.text)}</div></div>`;
-      }
-    }).join('');
-
-    if (isLoading) {
-      messagesContainer.innerHTML += `<div class="flex justify-start"><div class="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 text-xs font-bold mr-2 flex-shrink-0 mt-1">AI</div><div class="max-w-[75%] rounded-2xl px-4 py-3 bg-white border border-brand-100 text-gray-500 rounded-tl-sm shadow-sm flex space-x-1.5 items-center"><div class="w-1.5 h-1.5 bg-brand-300 rounded-full animate-bounce"></div><div class="w-1.5 h-1.5 bg-brand-300 rounded-full animate-bounce" style="animation-delay: 0.2s"></div><div class="w-1.5 h-1.5 bg-brand-300 rounded-full animate-bounce" style="animation-delay: 0.4s"></div></div></div>`;
-    }
-
-    scrollToBottom();
-  }
-
-  function escapeHtml(text: string): string {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  async function handleSend() {
-    if (!input || isLoading) return;
-    const userMessage = input.value.trim();
-    if (!userMessage) return;
-
-    messages.push({ role: 'user', text: userMessage });
-    input.value = '';
-    isLoading = true;
-    renderMessages();
-
-    try {
-      const apiMessages = [
-        {
-          role: 'system',
-          content: '你是一个拉卡拉网站的智能客服助手。你的目标是热情、专业地解答客户问题，并在每次回答的最后，自然地引导客户添加界面上方的微信二维码，以便获取更详细的专属服务和最新优惠。回答要简短、口语化。'
-        },
-        ...messages.slice(0, -1).map(m => ({
-          role: m.role === 'ai' ? 'assistant' : 'user',
-          content: m.text
-        })),
-        {
-          role: 'user',
-          content: userMessage
-        }
-      ];
-
-      const response = await fetch('/api/ai/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          messages: apiMessages,
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('API请求失败');
-      }
-
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder('utf-8');
-      if (!reader) throw new Error('Stream not supported');
-
-      let done = false;
-      let aiText = '';
-      let buffer = '';
-      let isFirstChunk = true;
-
-      while (!done) {
-        const { value, done: readerDone } = await reader.read();
-        done = readerDone;
-        if (value) {
-          if (isFirstChunk) {
-            isLoading = false;
-            messages.push({ role: 'ai', text: '' });
-            isFirstChunk = false;
-          }
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split('\n');
-          buffer = lines.pop() || '';
-
-          for (const line of lines) {
-            if (line.startsWith('data: ') && line.trim() !== 'data: [DONE]') {
-              try {
-                const data = JSON.parse(line.slice(6));
-                if (data.choices?.[0]?.delta?.content) {
-                  aiText += data.choices[0].delta.content;
-                  messages[messages.length - 1].text = aiText;
-                  renderMessages();
-                }
-              } catch (e) {
-                // Ignore parse errors on incomplete JSON chunks
-              }
-            }
-          }
-        }
-      }
-
-      if (isFirstChunk) {
-        isLoading = false;
-        messages.push({ role: 'ai', text: '抱歉，我现在遇到了一点网络问题，请您直接添加上方的微信联系我们的客服人员吧！' });
-        renderMessages();
-      }
-    } catch (error) {
-      console.error('AI Error:', error);
-      isLoading = false;
-      messages.push({ role: 'ai', text: '网络似乎出了点小差错，您可以直接扫码添加上方的微信，我们的专属客服会立刻为您解答！' });
-      renderMessages();
-    }
-  }
-
-  sendBtn?.addEventListener('click', handleSend);
-  input?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !isLoading) {
-      handleSend();
-    }
   });
 </script>

@@ -7,7 +7,11 @@ import AIAssistant from '../../components/AIAssistant.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
-  return articles.map((article) => ({
+  // 排除属于 POS办理指南 (Group A) 的文章，它们由 pos-guide/[slug].astro 处理
+  const groupACats = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'];
+  const filtered = articles.filter(a => a.id !== 'lakala-pos-banli-zhinan' && !groupACats.includes(a.data.category || ''));
+  
+  return filtered.map((article) => ({
     params: { slug: article.id },
     props: { article },
   }));
@@ -127,8 +131,8 @@ function formatDate(dateStr: string | Date) {
 <Layout title={`${article.data.title} - 拉卡拉`} description={article.data.summary}>
   <Header />
   <main class="flex-grow pt-20 min-h-screen bg-white">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-      <div class="flex gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col lg:flex-row gap-8">
 
         <!-- ====== Left Sidebar ====== -->
         <aside class="hidden lg:block w-72 flex-shrink-0">
@@ -185,11 +189,14 @@ function formatDate(dateStr: string | Date) {
             返回{groupConfig.name}
           </a>
 
-          <article>
+          <article class="order-2 lg:order-1 rounded-none lg:rounded-lg border-0 lg:border border-slate-200 bg-transparent lg:bg-white shadow-none lg:shadow-sm overflow-hidden">
+            <header class="border-b border-slate-200 lg:border-slate-100 p-0 lg:p-10 pb-6 lg:pb-10 mb-6 lg:mb-0">
             <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 leading-tight">
               {article.data.title}
             </h1>
+          </header>
 
+          <div class="p-0 lg:p-10 pt-0 lg:pt-0">
             <div class="flex items-center space-x-6 text-sm text-slate-500 mb-8 pb-6 border-b border-slate-200">
               <span class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -204,6 +211,7 @@ function formatDate(dateStr: string | Date) {
             <div class="prose-content text-slate-700 leading-relaxed text-lg">
               <Content />
             </div>
+          </div>
           </article>
         </div>
 

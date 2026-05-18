@@ -7,6 +7,43 @@ import Carousel from '../components/Carousel.astro';
 import { getCollection } from 'astro:content';
 
 const allArticles = await getCollection('articles');
+const posGuideCategories = new Set(['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用']);
+const getArticleHref = (article: (typeof allArticles)[number]) =>
+  posGuideCategories.has(article.data.category || '') ? `/pos-guide/${article.id}` : `/articles/${article.id}`;
+const productSlides = [
+  {
+    image: '/img/拉卡拉大pos.png',
+    alt: '拉卡拉大POS机',
+    title: '拉卡拉大POS机',
+    desc: '打印一体，适合门店高频交易场景',
+    features: ['支持WIFI/4G双网络', '内置高速热敏打印机', '大容量电池长续航', '全渠道聚合收款'],
+    link: '/products/lakala-da-pos',
+  },
+  {
+    image: '/img/拉卡拉电签.png',
+    alt: '拉卡拉电签POS机',
+    title: '拉卡拉电签POS机',
+    desc: '小巧便携，适合个人和小微商户',
+    features: ['无需连接手机即开即用', '支持高清电子签名', '内置4G网络极速到账', '0押金快速办理'],
+    link: '/products/lakala-dianqian-pos',
+  },
+  {
+    image: '/img/拉卡拉智能pos.jpg',
+    alt: '拉卡拉智能POS机',
+    title: '拉卡拉智能POS机',
+    desc: '安卓触屏，支持更丰富的收银能力',
+    features: ['5.0英寸高清大触屏', '支持海量APP下载扩展', '自带会员营销管理', '真人语音播报防漏单'],
+    link: '/products/lakala-zhineng-pos',
+  },
+  {
+    image: '/img/拉卡拉收款码牌.jpg',
+    alt: '拉卡拉收款码牌',
+    title: '拉卡拉收款码牌',
+    desc: '聚合扫码收款，部署轻便快捷',
+    features: ['微信/支付宝/云闪付聚合', '搭配云音箱语音播报', '支持信用卡花呗支付', '免插电源即放即用'],
+    link: '/products/lakala-shoukuanma',
+  },
+];
 const latestArticles = allArticles
   .filter(article => article.data.status === 'published')
   .sort((a, b) => new Date(b.data.created_at).getTime() - new Date(a.data.created_at).getTime())
@@ -62,125 +99,76 @@ const latestArticles = allArticles
       </div>
     </section>
 
-    <!-- Product Showcase Strip -->
+    <!-- Product Showcase Section -->
     <section class="py-20 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 gap-16 items-center">
-          <div class="order-2 lg:order-1 relative">
-            <div class="grid grid-cols-2 gap-4">
-              <img src="/img/拉卡拉大pos.png" class="rounded-2xl shadow-lg mt-8" alt="拉卡拉大POS机"/>
-              <img src="/img/拉卡拉电签.png" class="rounded-2xl shadow-lg" alt="拉卡拉电签POS机"/>
-            </div>
-          </div>
-          <div class="order-1 lg:order-2 mb-12 lg:mb-0">
-            <h2 class="text-3xl font-bold text-slate-800 mb-6">全系列智能终端，满足多样需求</h2>
-            <p class="text-slate-600 mb-8 text-lg leading-relaxed">
-              无论是大型商超、餐饮连锁，还是街边小店、流动摊位，我们都有适合您的支付终端。支持4G/WIFI通讯，超长续航，打印清晰。
-            </p>
-
-            <div class="space-y-6">
-              <div class="flex items-start">
-                <div class="flex-shrink-0 bg-brand-100 rounded-full p-1 mt-1 mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-600"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </div>
-                <div>
-                  <h4 class="text-lg font-bold text-slate-800">拉卡拉大POS机</h4>
-                  <p class="text-slate-500">全能旗舰，打印一体，适合高频交易</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 bg-brand-100 rounded-full p-1 mt-1 mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-600"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </div>
-                <div>
-                  <h4 class="text-lg font-bold text-slate-800">拉卡拉电签POS机</h4>
-                  <p class="text-slate-500">小巧便携，电子签名，适合个人小微</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 bg-brand-100 rounded-full p-1 mt-1 mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-600"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </div>
-                <div>
-                  <h4 class="text-lg font-bold text-slate-800">拉卡拉智能POS机</h4>
-                  <p class="text-slate-500">安卓系统，高清触屏，支持海量APP</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 bg-brand-100 rounded-full p-1 mt-1 mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-600"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </div>
-                <div>
-                  <h4 class="text-lg font-bold text-slate-800">拉卡拉收款码</h4>
-                  <p class="text-slate-500">多渠道聚合支付，费率低，申请简便</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-10">
-              <a href="/products/lakala-dianqian-pos" class="inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-500/30 focus:ring-brand-500 px-6 py-2.5 text-base">查看产品详情</a>
-            </div>
-          </div>
+        <div class="text-center mb-12 flex flex-col items-center">
+          <h2 class="text-3xl font-bold text-slate-800 mb-4">全系列智能终端</h2>
+          <div class="w-16 h-1 bg-brand-600 rounded-full"></div>
         </div>
-      </div>
-    </section>
+        <div class="relative w-full max-w-7xl mx-auto">
+          <div class="relative w-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-lg" id="product-showcase-carousel">
+                <div class="flex transition-transform duration-500 ease-out" id="product-showcase-track">
+                {productSlides.map((slide) => (
+                  <div class="w-full flex-shrink-0 p-6 sm:p-8 lg:px-20 lg:py-10">
+                    <div class="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center">
+                      <div class="flex items-center justify-center rounded-2xl bg-white p-6 sm:p-8 lg:p-8 shadow-sm min-h-[320px] lg:min-h-[400px]">
+                        <img src={slide.image} class="max-h-[320px] lg:max-h-[360px] w-auto object-contain" alt={slide.alt} />
+                      </div>
+                      <div class="space-y-4">
+                          <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-600">
+                            产品展示
+                          </span>
+                          <div>
+                            <h3 class="text-3xl font-bold text-slate-900">{slide.title}</h3>
+                            <p class="mt-4 text-lg leading-8 text-slate-600">{slide.desc}</p>
+                          </div>
+                          <ul class="space-y-3 pt-2">
+                            {slide.features.map((feature) => (
+                              <li class="flex items-center text-slate-600">
+                                <svg class="w-5 h-5 text-brand-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                          <div class="pt-6">
+                            <a href={slide.link} class="inline-flex items-center justify-center font-medium transition-colors rounded-full border-2 border-brand-600 bg-brand-600 text-white hover:bg-brand-700 hover:border-brand-700 px-6 py-2.5 text-base">
+                              查看详情
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </a>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-    <!-- Industry Empowerment -->
-    <section class="py-20 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-slate-800 mb-4">多场景覆盖，赋能千行百业</h2>
-          <div class="w-16 h-1 bg-brand-600 mx-auto rounded-full"></div>
-          <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
-            深入了解不同行业的经营痛点，量身定制专属的支付与数字化解决方案。
-          </p>
-        </div>
+              <div class="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+                {productSlides.map((_, index) => (
+                  <button
+                    class={`product-showcase-dot h-2.5 rounded-full transition-all cursor-pointer ${index === 0 ? 'w-6 bg-brand-600' : 'w-2.5 bg-slate-300 hover:bg-slate-400'}`}
+                    data-index={index}
+                    aria-label={`查看第 ${index + 1} 张产品图`}
+                  ></button>
+                ))}
+              </div>
+            </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
-          <!-- Item 1 -->
-          <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-64 md:h-80">
-            <img src="/img/智慧零售.png" alt="智慧零售" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 p-5 md:p-6">
-              <h3 class="text-lg md:text-xl font-bold text-white mb-1">智慧零售</h3>
-              <p class="text-white/90 text-xs md:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">商超便利·生鲜水果</p>
-            </div>
-          </div>
-          <!-- Item 2 -->
-          <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-64 md:h-80">
-            <img src="/img/餐饮美食.png" alt="餐饮美食" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 p-5 md:p-6">
-              <h3 class="text-lg md:text-xl font-bold text-white mb-1">餐饮美食</h3>
-              <p class="text-white/90 text-xs md:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">正餐快餐·奶茶烘焙</p>
-            </div>
-          </div>
-          <!-- Item 3 -->
-          <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-64 md:h-80">
-            <img src="/img/美容美发、健身房.png" alt="丽人健身" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 p-5 md:p-6">
-              <h3 class="text-lg md:text-xl font-bold text-white mb-1">丽人健身</h3>
-              <p class="text-white/90 text-xs md:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">美容美发·健身瑜伽</p>
-            </div>
-          </div>
-          <!-- Item 4 -->
-          <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-64 md:h-80">
-            <img src="/img/物流快递.png" alt="物流批发" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 p-5 md:p-6">
-              <h3 class="text-lg md:text-xl font-bold text-white mb-1">物流批发</h3>
-              <p class="text-white/90 text-xs md:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">物流货运·批发市场</p>
-            </div>
-          </div>
-          <!-- Item 5 -->
-          <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-64 md:h-80">
-            <img src="/img/酒吧.png" alt="娱乐酒吧" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 p-5 md:p-6">
-              <h3 class="text-lg md:text-xl font-bold text-white mb-1">娱乐酒吧</h3>
-              <p class="text-white/90 text-xs md:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">清吧夜店·KTV会所</p>
-            </div>
+            <!-- 左右切换按钮（移动到容器外部，PC端外移，移动端基于图片高度完美居中，按钮极简尺寸） -->
+            <button
+              class="absolute -left-3 sm:-left-4 lg:-left-6 top-[184px] sm:top-[192px] md:top-1/2 z-10 flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-600 shadow-md border border-slate-100 transition-all hover:bg-slate-50 hover:text-brand-600 hover:scale-110 cursor-pointer"
+              id="product-showcase-prev"
+              aria-label="上一张产品图"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 lg:w-6 lg:h-6"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button
+              class="absolute -right-3 sm:-right-4 lg:-right-6 top-[184px] sm:top-[192px] md:top-1/2 z-10 flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-600 shadow-md border border-slate-100 transition-all hover:bg-slate-50 hover:text-brand-600 hover:scale-110 cursor-pointer"
+              id="product-showcase-next"
+              aria-label="下一张产品图"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 lg:w-6 lg:h-6"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -194,7 +182,7 @@ const latestArticles = allArticles
             <h2 class="text-3xl font-bold text-slate-800 mb-4">最新资讯动态</h2>
             <div class="w-16 h-1 bg-brand-600 rounded-full"></div>
           </div>
-          <a href="/articles" class="hidden md:flex items-center text-brand-600 hover:text-brand-700 font-medium transition-colors">
+          <a href="/pos-guide" class="hidden md:flex items-center text-brand-600 hover:text-brand-700 font-medium transition-colors">
             查看更多资讯
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m9 18 6-6-6-6"/></svg>
           </a>
@@ -202,7 +190,12 @@ const latestArticles = allArticles
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {latestArticles.map(article => (
-            <a href={`/articles/${article.id}`} class="group flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+            <a href={getArticleHref(article)} class="group flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+              {article.data.cover_image && (
+                <div class="aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100">
+                  <img src={encodeURI(article.data.cover_image)} alt={article.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                </div>
+              )}
               <div class="p-6 md:p-8 flex-grow">
                 <div class="flex items-center justify-between mb-4">
                   <span class="inline-block px-3 py-1 bg-brand-50 text-brand-600 text-xs font-bold rounded-full">
@@ -228,7 +221,7 @@ const latestArticles = allArticles
         </div>
         
         <div class="mt-10 text-center md:hidden">
-          <a href="/articles" class="inline-flex items-center justify-center font-medium transition-colors rounded-full border-2 border-brand-600 text-brand-600 hover:bg-brand-50 px-6 py-2.5 text-base w-full sm:w-auto">
+          <a href="/pos-guide" class="inline-flex items-center justify-center font-medium transition-colors rounded-full border-2 border-brand-600 text-brand-600 hover:bg-brand-50 px-6 py-2.5 text-base w-full sm:w-auto">
             查看更多资讯
           </a>
         </div>
@@ -249,3 +242,74 @@ const latestArticles = allArticles
   <Footer />
   <AIAssistant />
 </Layout>
+
+<script>
+  const showcase = document.getElementById('product-showcase-carousel');
+  const showcaseTrack = document.getElementById('product-showcase-track');
+  const showcasePrev = document.getElementById('product-showcase-prev');
+  const showcaseNext = document.getElementById('product-showcase-next');
+  const showcaseDots = document.querySelectorAll('.product-showcase-dot');
+
+  if (showcase && showcaseTrack && showcasePrev && showcaseNext && showcaseDots.length > 0) {
+    let currentIndex = 0;
+    const totalSlides = showcaseDots.length;
+    let autoplayTimer;
+
+    const updateShowcase = () => {
+      showcaseTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+      showcaseDots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.remove('w-2.5', 'bg-slate-300', 'hover:bg-slate-400');
+          dot.classList.add('w-6', 'bg-brand-600');
+        } else {
+          dot.classList.remove('w-6', 'bg-brand-600');
+          dot.classList.add('w-2.5', 'bg-slate-300', 'hover:bg-slate-400');
+        }
+      });
+    };
+
+    const goToNext = () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateShowcase();
+    };
+
+    const goToPrev = () => {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateShowcase();
+    };
+
+    const startAutoplay = () => {
+      autoplayTimer = window.setInterval(goToNext, 4000);
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    };
+
+    showcaseNext.addEventListener('click', () => {
+      goToNext();
+      stopAutoplay();
+      startAutoplay();
+    });
+
+    showcasePrev.addEventListener('click', () => {
+      goToPrev();
+      stopAutoplay();
+      startAutoplay();
+    });
+
+    showcaseDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateShowcase();
+        stopAutoplay();
+        startAutoplay();
+      });
+    });
+
+    showcase.addEventListener('mouseenter', stopAutoplay);
+    showcase.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+  }
+</script>
