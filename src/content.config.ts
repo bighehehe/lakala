@@ -5,7 +5,7 @@ const articles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
   schema: z.object({
     title: z.string(),
-    summary: z.string(),
+    summary: z.string().optional(),
     author: z.string().default('拉卡拉官方'),
     type: z.enum(['pillar', 'cluster']).default('cluster'),
     category: z.string().default(''),
