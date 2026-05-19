@@ -1,0 +1,323 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AIAssistant from '../components/AIAssistant.astro';
+
+// Fetch all articles
+const allArticles = await getCollection('articles');
+const sortedArticles = allArticles.sort((a, b) => new Date(b.data.created_at).valueOf() - new Date(a.data.created_at).valueOf());
+
+// Map our internal categories to the UI categories shown in the screenshot
+// This allows us to use the exact UI the user requested while still showing our content
+const uiCategories = [
+  "全部", 
+  "行业资讯", 
+  "产品动态", 
+  "使用教程", 
+  "代理加盟", 
+  "费率解读", 
+  "商户经营"
+];
+
+const categoryMapping: Record<string, string> = {
+  "正规性与安全": "行业资讯",
+  "骗局与避坑": "行业资讯",
+  "渠道与避坑": "行业资讯",
+  "申请流程": "产品动态",
+  "办理条件": "使用教程",
+  "激活与使用": "使用教程",
+  "费用与合同": "费率解读",
+  "手续费计算": "费率解读",
+  "风控、跳码、商户": "商户经营",
+};
+
+// Add a mapped_category property to each article for easy filtering
+const articlesWithMappedCategory = sortedArticles.map(article => ({
+  ...article,
+  mappedCategory: categoryMapping[article.data.category || ''] || '行业资讯' // Default to 行业资讯 if not found
+}));
+
+function formatDate(dateStr: string | Date) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+}
+---
+
+<Layout title="博客资讯 - 了解支付行业最新动态 - 拉卡拉" description="拉卡拉博客资讯，为您提供支付行业最新动态、产品资讯、使用教程和商户经营技巧。">
+  <Header />
+  
+  <main class="flex-grow pt-16 min-h-screen bg-slate-50">
+    <!-- Header Section (Dark Blue) -->
+    <section class="bg-brand-900 text-white py-16 md:py-24 text-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4">博客资讯</h1>
+        <p class="text-brand-100 text-sm md:text-lg max-w-2xl mx-auto">了解支付行业最新动态、产品资讯、使用教程和商户经营技巧</p>
+      </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="bg-white border-b border-slate-200 sticky top-16 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 overflow-x-auto hide-scrollbar">
+        <div class="flex space-x-2 md:space-x-4 min-w-max" id="category-filters">
+          {uiCategories.map((cat, index) => (
+            <button 
+              class={`filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                index === 0 
+                  ? 'bg-brand-900 text-white shadow-md' 
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+              data-category={cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+          {articlesWithMappedCategory.map((article) => (
+            <a 
+              href={`/pos-guide/${article.id}`} 
+              class="article-card group flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+              data-category={article.mappedCategory}
+            >
+              {article.data.cover_image ? (
+                <div class="aspect-[16/10] w-full overflow-hidden bg-slate-50">
+                  <img 
+                    src={encodeURI(article.data.cover_image)} 
+                    alt={article.data.title} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div class="aspect-[16/10] w-full bg-brand-50 flex items-center justify-center">
+                  <span class="text-brand-300 text-4xl font-bold">LAKALA</span>
+                </div>
+              )}
+              
+              <div class="p-6 md:p-8 flex-grow flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                  <span class="inline-block px-3 py-1 bg-brand-50 text-brand-600 text-xs font-bold rounded-full">
+                    {article.data.category || article.mappedCategory}
+                  </span>
+                  <span class="text-sm text-slate-400 font-medium flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    {formatDate(article.data.created_at)}
+                  </span>
+                </div>
+                
+                <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-brand-600 transition-colors line-clamp-2">
+                  {article.data.title}
+                </h3>
+                
+                {article.data.summary && (
+                  <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">
+                    {article.data.summary}
+                  </p>
+                )}
+              </div>
+              <div class="px-6 md:px-8 py-4 bg-slate-50 border-t border-slate-100 flex items-center text-brand-600 text-sm font-medium group-hover:bg-brand-50 transition-colors">
+                阅读全文
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transform group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </div>
+            </a>
+          ))}
+        </div>
+        
+        <!-- Pagination Container -->
+        <div id="pagination-container" class="mt-12 flex justify-center items-center space-x-2">
+          <!-- Pagination buttons will be injected here by JS -->
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="empty-state" class="hidden text-center py-20">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 text-slate-400 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <h3 class="text-lg font-medium text-slate-900 mb-2">暂无该分类的文章</h3>
+          <p class="text-slate-500">我们正在努力准备更多精彩内容，请稍后再来查看。</p>
+          <button id="reset-filter-btn" class="mt-6 px-6 py-2 bg-brand-50 text-brand-600 font-medium rounded-full hover:bg-brand-100 transition-colors">
+            查看全部文章
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+  <AIAssistant />
+</Layout>
+
+<style>
+  /* Hide scrollbar for the filter bar on mobile but keep functionality */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const articleCards = Array.from(document.querySelectorAll('.article-card'));
+    const emptyState = document.getElementById('empty-state');
+    const resetBtn = document.getElementById('reset-filter-btn');
+    const paginationContainer = document.getElementById('pagination-container');
+    
+    const itemsPerPage = 9;
+    let currentPage = 1;
+    let currentCategory = '全部';
+    
+    function updateView() {
+      // 1. Filter articles based on category
+      const filteredCards = articleCards.filter(card => {
+        const cardCategory = card.getAttribute('data-category');
+        return currentCategory === '全部' || cardCategory === currentCategory;
+      });
+      
+      // 2. Calculate pagination
+      const totalPages = Math.ceil(filteredCards.length / itemsPerPage);
+      if (currentPage > totalPages && totalPages > 0) {
+        currentPage = totalPages;
+      }
+      
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      
+      // 3. Update visibility
+      articleCards.forEach(card => {
+        (card as HTMLElement).style.display = 'none';
+      });
+      
+      filteredCards.slice(startIndex, endIndex).forEach(card => {
+        (card as HTMLElement).style.display = 'flex';
+      });
+      
+      // 4. Update empty state and pagination UI
+      if (emptyState && paginationContainer) {
+        if (filteredCards.length === 0) {
+          emptyState.classList.remove('hidden');
+          paginationContainer.classList.add('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+          paginationContainer.classList.remove('hidden');
+          renderPagination(totalPages);
+        }
+      }
+      
+      // 5. Update filter button styles
+      filterBtns.forEach(btn => {
+        if (btn.getAttribute('data-category') === currentCategory) {
+          btn.className = 'filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-colors bg-brand-900 text-white shadow-md';
+        } else {
+          btn.className = 'filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200';
+        }
+      });
+    }
+    
+    function renderPagination(totalPages) {
+      if (!paginationContainer) return;
+      
+      if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+      }
+      
+      let html = '';
+      
+      // Previous button
+      const prevDisabled = currentPage === 1 ? 'disabled opacity-50 cursor-not-allowed' : 'hover:bg-slate-50 hover:text-brand-600 cursor-pointer';
+      html += `<button class="page-nav-btn px-3 py-2 rounded-lg border border-slate-200 text-slate-600 font-medium transition-colors text-sm flex items-center ${prevDisabled}" data-action="prev" ${currentPage === 1 ? 'disabled' : ''}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="m15 18-6-6 6-6"/></svg>
+        上一页
+      </button>`;
+      
+      // Page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        const isActive = i === currentPage;
+        const activeClass = isActive 
+          ? 'bg-brand-600 text-white border-brand-600 shadow-sm' 
+          : 'border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-brand-600 cursor-pointer';
+          
+        html += `<button class="page-num-btn w-10 h-10 rounded-lg border font-medium flex items-center justify-center transition-colors text-sm ${activeClass}" data-page="${i}">
+          ${i}
+        </button>`;
+      }
+      
+      // Next button
+      const nextDisabled = currentPage === totalPages ? 'disabled opacity-50 cursor-not-allowed' : 'hover:bg-slate-50 hover:text-brand-600 cursor-pointer';
+      html += `<button class="page-nav-btn px-3 py-2 rounded-lg border border-slate-200 text-slate-600 font-medium transition-colors text-sm flex items-center ${nextDisabled}" data-action="next" ${currentPage === totalPages ? 'disabled' : ''}>
+        下一页
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m9 18 6-6-6-6"/></svg>
+      </button>`;
+      
+      paginationContainer.innerHTML = html;
+      
+      // Add event listeners to new pagination buttons
+      document.querySelectorAll('.page-num-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          currentPage = parseInt((e.currentTarget as HTMLElement).getAttribute('data-page') || '1');
+          updateView();
+          scrollToTop();
+        });
+      });
+      
+      document.querySelectorAll('.page-nav-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const action = (e.currentTarget as HTMLElement).getAttribute('data-action');
+          if (action === 'prev' && currentPage > 1) {
+            currentPage--;
+            updateView();
+            scrollToTop();
+          } else if (action === 'next' && currentPage < totalPages) {
+            currentPage++;
+            updateView();
+            scrollToTop();
+          }
+        });
+      });
+    }
+    
+    function scrollToTop() {
+      const gridElement = document.getElementById('articles-grid');
+      if (gridElement) {
+        const y = gridElement.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+    
+    // Add click listeners to filter buttons
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        if (category) {
+          currentCategory = category;
+          currentPage = 1; // Reset to page 1 on category change
+          updateView();
+        }
+      });
+    });
+    
+    // Add click listener to reset button
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        currentCategory = '全部';
+        currentPage = 1;
+        updateView();
+      });
+    }
+    
+    // Initial render
+    updateView();
+  });
+</script>

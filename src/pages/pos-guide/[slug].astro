@@ -7,8 +7,8 @@ import AIAssistant from '../../components/AIAssistant.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
-  // 只保留属于 POS办理指南 (Group A) 的集群文章
-  const groupACats = ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'];
+  // 只保留属于 POS办理指南 (Group A) 的集群文章，扩展分类以包含新增文章
+  const groupACats = ['办理条件', '申请流程', '费用与合同', '手续费计算', '渠道与避坑', '风控、跳码、商户', '正规性与安全', '骗局与避坑', '激活与使用'];
   const filtered = articles.filter(a => a.id !== 'lakala-pos-banli-zhinan' && groupACats.includes(a.data.category || ''));
   
   return filtered.map((article) => ({
