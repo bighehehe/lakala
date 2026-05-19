@@ -20,7 +20,10 @@ export async function getStaticPaths() {
 const { article, allClusterArticles } = Astro.props;
 const { Content } = await render(article);
 
-// 获取随机 3 篇推荐阅读（不包含当前文章）
+// Get current article's category to find related articles
+const currentCategory = article.data.category;
+
+// 获取随机 3 篇推荐阅读（不包含当前文章，且最好是同一分类的，如果是支柱文章的衍生文章则优先推荐其他衍生文章）
 const recommendedArticles = allClusterArticles
   .filter(a => a.id !== article.id)
   .sort(() => 0.5 - Math.random())
@@ -31,7 +34,7 @@ const groups = {
   A: {
     pillarSlug: 'lakala-pos-banli-zhinan',
     name: 'POS办理指南',
-    categories: ['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用'],
+    categories: ['办理条件', '申请流程', '费用与合同', '手续费计算', '渠道与避坑', '风控、跳码、商户', '正规性与安全', '骗局与避坑', '激活与使用'],
   },
   B: {
     pillarSlug: 'lakala-pos-feilv-zhinan',
@@ -62,16 +65,19 @@ for (const [gk, gv] of Object.entries(groups)) {
     allCategoryGroupMap.set(cat, gk);
   }
 }
+
 function getArticleGroup(art: { id: string; data: { type?: string; category?: string } }): string {
   if (art.data.type === 'pillar') {
     for (const [gk, gv] of Object.entries(groups)) {
       if (art.id === gv.pillarSlug) return gk;
     }
   }
+  // Try to match by category
   if (art.data.category && allCategoryGroupMap.has(art.data.category)) {
     return allCategoryGroupMap.get(art.data.category)!;
   }
-  return 'A'; // fallback
+  // Default fallback to A (POS办理指南) since all these articles are in this group now
+  return 'A'; 
 }
 const currentGroup = getArticleGroup(article);
 const groupConfig = groups[currentGroup as keyof typeof groups];

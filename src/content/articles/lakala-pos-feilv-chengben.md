@@ -2,7 +2,7 @@
 title: "个人 POS 费率成本深度模型：刷卡 1 万，你到底付了多少钱？"
 summary: "使用个人 POS 机并不只是单纯乘以一个“费率百分比”那么简单。本文带您彻底拆解 POS 机的真实成本模型，对比正规拉卡拉与市面常见套路机的真实成本差异。"
 author: "拉卡拉官方"
-cover_image: "/articles_cover/刷卡 1 万扣费 60 元，这笔钱到底被谁赚走了？.png"
+cover_image: "/articles_cover/刷卡 1 万，你到底付了多少钱.png"
 type: "cluster"
 category: "费用与合同"
 created_at: "2026-05-15"

@@ -2,7 +2,7 @@
 title: "30 天提额计划：如何优化个人信用卡账单结构"
 summary: "一份能让银行主动为你提额的“完美账单”，需要经过精密的结构设计。本文为您提供一份“25+3+1”为期 30 天的账单优化实战计划，手把手教您打造极具信誉度的优质信用卡月报。"
 author: "拉卡拉官方"
-cover_image: "/articles_cover/30 天提额计划：如何优化个人信用卡账单结构.png"
+cover_image: "/articles_cover/如何优化个人信用卡账单结构.png"
 type: "cluster"
 category: "风控、跳码、商户"
 created_at: "2026-05-15"
@@ -62,7 +62,7 @@ A：个人精力有限，很难面面俱到。建议挑选 2-3 张“主战卡�
   <ul class="space-y-3">
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-banli-zhinan" class="text-slate-600 hover:text-brand-600 transition-colors">返回主页：2026年拉卡拉个人 POS 机办理与选型终极指南</a>
+      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回主页：2026年拉卡拉个人 POS 机办理与选型终极指南</a>
     </li>
   </ul>
 </div>

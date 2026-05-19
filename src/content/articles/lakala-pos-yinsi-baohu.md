@@ -2,7 +2,7 @@
 title: "隐私保护：个人办理 POS 提交身份证、银行卡信息的安全等级解析"
 summary: "开通个人 POS 机必须上传身份证正反面、手持证件照及银行卡，这是国家《反洗钱法》的硬性规定。本文解析在正规渠道提交资料的安全机制，杜绝隐私泄露风险。"
 author: "拉卡拉官方"
-cover_image: "/articles_cover/隐私保护：个人办理 POS 提交身份证、银行卡信息的安全等级解析.png"
+cover_image: "/articles_cover/个人办理 POS 提交身份证、银行卡信息的安全等级解析.png"
 type: "cluster"
 category: "正规性与安全"
 created_at: "2026-05-15"

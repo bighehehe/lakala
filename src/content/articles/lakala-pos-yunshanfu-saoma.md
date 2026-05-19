@@ -3,7 +3,7 @@ title: "云闪付与扫码：个人 POS 如何支持微信、支付宝及大额�
 summary: "拉卡拉个人 POS 机原生支持微信、支付宝扫码及银联云闪付功能，且单笔 1000 元以内的交易可享 0.38% 优惠费率。"
 author: "拉卡拉官方"
 category: "激活与使用"
-cover_image: "/articles_cover/个人 POS 如何支持微信、支付宝及大额云闪付？.png"
+cover_image: "/articles_cover/个人 POS 如何支持微信、支付宝及大额云闪付.png"
 status: "published"
 created_at: "2026-05-15"
 ---

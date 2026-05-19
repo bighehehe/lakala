@@ -2,7 +2,7 @@
 title: "2026 避坑指南：如何一眼识别非法 POS 及刷卡骗局？"
 summary: "免费送机？超低费率？首刷冻结押金？POS机行业水太深。本文总结2026年最新三大刷卡骗局，教你如何通过央行牌照、SN码等硬核手段，一眼识破非法二清机和套路推销。"
 author: "拉卡拉官方"
-cover_image: "/articles_cover/如何一眼识别非法 POS 及刷卡骗局？.png"
+cover_image: "/articles_cover/如何一眼识别非法 POS 及刷卡骗局.png"
 type: "cluster"
 category: "渠道与避坑"
 created_at: "2026-05-15"

@@ -3,7 +3,7 @@ title: "2026 拉卡拉个人 POS 全能指南：选购、费率解析与安全�
 summary: "在数字化支付高度发达的 2026 年，POS 机早已不再是商户的专属工具。本指南将带你从底层逻辑拆解 POS 行业，让你从小白变专家。"
 author: "拉卡拉官方"
 type: "pillar"
-cover_image: "/img/lakalapos办理指南.png"
+cover_image: "/articles_cover/2026 拉卡拉个人 POS 全能指南.png"
 status: "published"
 created_at: "2026-05-07"
 ---
