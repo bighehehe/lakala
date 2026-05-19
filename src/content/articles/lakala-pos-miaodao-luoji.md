@@ -1,7 +1,7 @@
 ---
 title: "秒到账逻辑：详解 D+0、T+1 与秒到账的时间差及风控规则"
 author: "拉卡拉官方"
-cover_image: "/articles_cover/详解 D+0、T+1 与秒到账的时间差及风控规则.png"
+cover_image: "/articles_cover/秒到账及风控规则.png"
 type: "cluster"
 category: "手续费计算"
 created_at: "2026-05-15"
