@@ -1,7 +1,8 @@
 ---
 title: "费率计算公式：深度解析刷卡 10,000 元，你实际付出了多少？"
+summary: "只要掌握核心的结算公式，就能一眼看穿任何收费套路。本文将通过公式为您深度推演不同场景下的真实扣费明细。"
 author: "拉卡拉官方"
-cover_image: "/articles_cover/深度解析刷卡 10,000 元，你实际付出了多少.png"
+cover_image: "/articles_cover/深度解析刷卡 10,000 元，你实际付出了多少.webp"
 type: "cluster"
 category: "费用与合同"
 created_at: "2026-05-15"

@@ -43,9 +43,28 @@ function formatDate(dateStr: string | Date) {
   const date = new Date(dateStr);
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
 }
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://www.pospee.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客资讯",
+      "item": "https://www.pospee.com/blog"
+    }
+  ]
+};
 ---
 
-<Layout title="博客资讯 - 了解支付行业最新动态 - 拉卡拉" description="拉卡拉博客资讯，为您提供支付行业最新动态、产品资讯、使用教程和商户经营技巧。">
+<Layout title="博客资讯 - 了解支付行业最新动态 - 拉卡拉" description="拉卡拉博客资讯，为您提供支付行业最新动态、产品资讯、使用教程和商户经营技巧。" keywords="拉卡拉资讯, 支付行业动态, POS机使用教程, 商户经营技巧, 拉卡拉费率" schema={breadcrumbSchema}>
   <Header />
   
   <main class="flex-grow pt-16 min-h-screen bg-slate-50">

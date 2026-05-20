@@ -4,14 +4,18 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  schema?: object;
+  keywords?: string;
+  schema?: object | object[];
 }
 
 const { 
   title = '拉卡拉 - 智能支付解决方案', 
   description = '致力于为中小微商户提供智能、安全、高效的支付解决方案。',
+  keywords = '拉卡拉POS机, 个人POS机办理, 正规一清机, 费率计算',
   schema
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.pospee.com');
 ---
 
 <!DOCTYPE html>
@@ -21,10 +25,15 @@ const {
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <link rel="canonical" href={canonicalURL.href} />
   <title>{title}</title>
   {schema && (
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   )}
+  <script is:inline> 
+    (function(){var bp=document.createElement('script');bp.src='//push.zhanzhang.baidu.com/push.js';document.body.appendChild(bp)})(); 
+  </script>
 </head>
 <body class="flex flex-col min-h-screen bg-white overflow-x-clip">
   <slot />

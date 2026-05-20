@@ -13,7 +13,7 @@ const getArticleHref = (article: (typeof allArticles)[number]) =>
   posGuideCategories.has(article.data.category || '') ? `/pos-guide/${article.id}` : `/articles/${article.id}`;
 const productSlides = [
   {
-    image: '/img/拉卡拉大pos.png',
+    image: '/img/拉卡拉大pos.webp',
     alt: '拉卡拉大POS机',
     title: '拉卡拉大POS机',
     desc: '打印一体，适合门店高频交易场景',
@@ -21,7 +21,7 @@ const productSlides = [
     link: '/products/lakala-da-pos',
   },
   {
-    image: '/img/拉卡拉电签.png',
+    image: '/img/拉卡拉电签.webp',
     alt: '拉卡拉电签POS机',
     title: '拉卡拉电签POS机',
     desc: '小巧便携，适合个人和小微商户',
@@ -29,7 +29,7 @@ const productSlides = [
     link: '/products/lakala-dianqian-pos',
   },
   {
-    image: '/img/拉卡拉智能pos.jpg',
+    image: '/img/拉卡拉智能pos.webp',
     alt: '拉卡拉智能POS机',
     title: '拉卡拉智能POS机',
     desc: '安卓触屏，支持更丰富的收银能力',
@@ -37,7 +37,7 @@ const productSlides = [
     link: '/products/lakala-zhineng-pos',
   },
   {
-    image: '/img/拉卡拉收款码牌.jpg',
+    image: '/img/拉卡拉收款码牌.webp',
     alt: '拉卡拉收款码牌',
     title: '拉卡拉收款码牌',
     desc: '聚合扫码收款，部署轻便快捷',
@@ -72,7 +72,7 @@ const organizationSchema = {
 };
 ---
 
-<Layout schema={[websiteSchema, organizationSchema]}>
+<Layout title="拉卡拉 - 智能支付解决方案 | 个人POS机办理" description="拉卡拉致力于为中小微商户和个人提供智能、安全、高效的支付解决方案，支持拉卡拉电签POS、大POS、智能POS办理与申请。" keywords="拉卡拉POS机, 个人POS机办理, 正规一清机, 费率计算, 拉卡拉电签, 智能POS" schema={[websiteSchema, organizationSchema]}>
   <Header />
   <main class="flex-grow">
     <!-- Hero Section -->

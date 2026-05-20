@@ -25,19 +25,19 @@ const scenarioSummary =
         : '街边门店、小微摊位、轻量化收款';
 
 const bannerMap: Record<string, string> = {
-  '拉卡拉电签POS机': '拉卡拉电签banner.png',
-  '拉卡拉大POS机': '拉卡拉大posbanner.png',
-  '拉卡拉智能POS机': '智能posbanner.png',
-  '拉卡拉收款码': '收款码牌banner.png'
+  '拉卡拉电签POS机': '拉卡拉电签banner.webp',
+  '拉卡拉大POS机': '拉卡拉大posbanner.webp',
+  '拉卡拉智能POS机': '智能posbanner.webp',
+  '拉卡拉收款码': '收款码牌banner.webp'
 };
 
-const bannerImage = bannerMap[product.name] || '拉卡拉电签banner.png';
+const bannerImage = bannerMap[product.name] || '拉卡拉电签banner.webp';
 
 const carouselImagesMap: Record<string, string[]> = {
-  '拉卡拉电签POS机': ['/img/拉卡拉电签.png', '/img/拉卡拉电签1.png', '/img/拉卡拉电签2.jpg'],
-  '拉卡拉大POS机': ['/img/拉卡拉大pos.png', '/img/拉卡拉大pos1.png', '/img/拉卡拉大POS2.jpg'],
-  '拉卡拉智能POS机': ['/img/拉卡拉智能pos.jpg', '/img/智能pos1.webp', '/img/拉卡拉智能pos2.jpg'],
-  '拉卡拉收款码': ['/img/拉卡拉收款码牌.jpg', '/img/收款码1.webp', '/img/收款码2.png']
+  '拉卡拉电签POS机': ['/img/拉卡拉电签.webp', '/img/拉卡拉电签1.webp', '/img/拉卡拉电签2.webp'],
+  '拉卡拉大POS机': ['/img/拉卡拉大pos.webp', '/img/拉卡拉大pos1.webp', '/img/拉卡拉大POS2.webp'],
+  '拉卡拉智能POS机': ['/img/拉卡拉智能pos.webp', '/img/智能pos1.webp', '/img/拉卡拉智能pos2.webp'],
+  '拉卡拉收款码': ['/img/拉卡拉收款码牌.webp', '/img/收款码1.webp', '/img/收款码2.webp']
 };
 const carouselImages = carouselImagesMap[product.name] || [product.image];
 
@@ -60,9 +60,34 @@ const productSchema = {
     "itemCondition": "https://schema.org/NewCondition"
   }
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://www.pospee.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "产品介绍",
+      "item": "https://www.pospee.com/#product-showcase-carousel"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": product.name,
+      "item": `https://www.pospee.com/products/${product.slug}`
+    }
+  ]
+};
 ---
 
-<Layout title={`${product.name} - 智能终端 - 拉卡拉`} schema={productSchema}>
+<Layout title={`${product.name} - 智能终端 - 拉卡拉`} description={`${product.name}产品详情。${product.desc}`} keywords={`${product.name}, 拉卡拉POS机, 个人POS机办理, 正规一清机, 费率计算`} schema={[productSchema, breadcrumbSchema]}>
   <Header />
   <main class="flex-grow min-h-screen bg-white pt-20">
     <!-- Sticky Sub-Nav (小米风格悬浮导航) -->

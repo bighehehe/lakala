@@ -110,9 +110,34 @@ const articleSchema = {
   "datePublished": new Date(article.data.created_at).toISOString(),
   "dateModified": article.data.updated_at ? new Date(article.data.updated_at).toISOString() : new Date(article.data.created_at).toISOString()
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://www.pospee.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": groupConfig.name,
+      "item": `https://www.pospee.com${groupRouteMap[currentGroup] || '/articles'}`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": article.data.title,
+      "item": `https://www.pospee.com/pos-guide/${article.id}`
+    }
+  ]
+};
 ---
 
-<Layout title={`${article.data.title} - 拉卡拉`} description={article.data.summary} schema={articleSchema}>
+<Layout title={`${article.data.title} - 拉卡拉`} description={article.data.summary} keywords={article.data.keywords} schema={[articleSchema, breadcrumbSchema]}>
   <Header />
   <main class="flex-grow pt-16 min-h-screen bg-slate-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -137,9 +162,6 @@ const articleSchema = {
             )}
             <header class="border-b border-slate-200 lg:border-slate-100 p-0 lg:p-10 pb-6 lg:pb-10 mb-6 lg:mb-0">
               <h1 class="text-2xl md:text-3xl font-black tracking-tight text-slate-900">{article.data.title}</h1>
-              {article.data.summary && (
-                <p class="mt-4 text-base leading-7 text-slate-600">{article.data.summary}</p>
-              )}
               <div class="mt-6 flex items-center gap-4 text-sm text-slate-500">
                 <span class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>

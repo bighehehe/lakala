@@ -61,9 +61,43 @@ const faqs = [
     ]
   }
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.flatMap(section => 
+    section.questions.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  )
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://www.pospee.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "常见问题",
+      "item": "https://www.pospee.com/faq"
+    }
+  ]
+};
 ---
 
-<Layout title="常见问题解答 (FAQ) - 拉卡拉" description="拉卡拉POS机常见问题解答，包括不到账、交易失败、限额、换卡、注销等问题的处理指南。">
+<Layout title="常见问题解答 (FAQ) - 拉卡拉" description="拉卡拉POS机常见问题解答，包括不到账、交易失败、限额、换卡、注销等问题的处理指南。" keywords="拉卡拉POS机不到账, POS机交易失败, 拉卡拉限额, 拉卡拉换卡, 注销POS机" schema={[faqSchema, breadcrumbSchema]}>
   <Header />
   <main class="flex-grow pt-24 pb-20 bg-slate-50 min-h-screen">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

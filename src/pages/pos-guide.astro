@@ -57,9 +57,28 @@ const articleSchema = pillar ? {
   "datePublished": new Date(pillar.data.created_at).toISOString(),
   "dateModified": pillar.data.updated_at ? new Date(pillar.data.updated_at).toISOString() : new Date(pillar.data.created_at).toISOString()
 } : undefined;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://www.pospee.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": group.title,
+      "item": "https://www.pospee.com/pos-guide"
+    }
+  ]
+};
 ---
 
-<Layout title={`${group.title} - 拉卡拉`} description={group.subtitle} schema={articleSchema}>
+<Layout title={`${group.title} - 拉卡拉`} description={group.subtitle} keywords={pillar?.data.keywords || "拉卡拉POS办理, POS机申请流程, 个人POS机办理, 拉卡拉办理条件"} schema={articleSchema ? [articleSchema, breadcrumbSchema] : breadcrumbSchema}>
   <Header />
   <main class="flex-grow pt-16 min-h-screen bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

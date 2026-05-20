@@ -1,7 +1,8 @@
 ---
 title: "调价内幕：为什么 POS 机用久了费率会突然上涨？如何申请调回？"
+summary: "很多个人 POS 机用户都遭遇过“前期费率超低，后期突然暴涨至 1.5% 甚至 2%”的割韭菜套路。这并非银联政策变动，而是不良操盘机构在补贴期结束后进行的后台强制调价。"
 author: "拉卡拉官方"
-cover_image: "/articles_cover/为什么 POS 机用久了费率会突然上涨？如何申请调回？.png"
+cover_image: "/articles_cover/为什么 POS 机用久了费率会突然上涨？如何申请调回？.webp"
 type: "cluster"
 category: "费用与合同"
 created_at: "2026-05-15"
