@@ -177,7 +177,7 @@ const breadcrumbSchema = {
       // 生产环境如果是纯静态站点，飞书 webhook 不支持跨域，只能使用 no-cors 模式发送数据（单向发送，无法读取响应）
       const fetchOptions: RequestInit = {
         method: 'POST',
-        headers: isDev ? { 'Content-Type': 'application/json' } : { 'Content-Type': 'text/plain' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
         mode: isDev ? 'cors' : 'no-cors'
       };
