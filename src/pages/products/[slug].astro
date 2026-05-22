@@ -87,7 +87,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<Layout title={`${product.name} - 智能终端 - 拉卡拉`} description={`${product.name}产品详情。${product.desc}`} keywords={`${product.name}, 拉卡拉POS机, 个人POS机办理, 正规一清机, 费率计算`} schema={[productSchema, breadcrumbSchema]}>
+<Layout title={product.seoTitle || `${product.name} - 智能终端 - 拉卡拉`} description={product.seoDescription || `${product.name}产品详情。${product.desc}`} keywords={product.seoKeywords || `${product.name}, 拉卡拉POS机, 个人POS机办理, 正规一清机, 费率计算`} schema={[productSchema, breadcrumbSchema]}>
   <Header />
   <main class="flex-grow min-h-screen bg-white pt-20">
     <!-- Sticky Sub-Nav (小米风格悬浮导航) -->
