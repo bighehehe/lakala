@@ -73,7 +73,7 @@ A：先整理机器信息、交易记录和办理记录，再通过正规渠道�
   <ul class="space-y-3">
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-miaodao-luoji" class="text-slate-600 hover:text-brand-600 transition-colors">延伸阅读：拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查</a>
+      <a href="/pos-guide/lakala-pos-budaozhang-paicha" class="text-slate-600 hover:text-brand-600 transition-colors">延伸阅读：拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查</a>
     </li>
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
