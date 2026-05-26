@@ -84,11 +84,11 @@ A：可能正常，要看秒到规则、银行处理和交易状态。
   <ul class="space-y-3">
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-jiaoyi-shibai" class="text-slate-600 hover:text-brand-600 transition-colors">延伸阅读：拉卡拉 POS 交易失败常见原因有哪些？怎么处理？</a>
+      <a href="/pos-guide/lakala-pos-jiaoyi-shibai" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 交易失败常见原因有哪些？怎么处理？</a>
     </li>
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回支柱页：阅读《2026年拉卡拉个人 POS 机办理与选型终极指南》</a>
+      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
     </li>
   </ul>
 </div>

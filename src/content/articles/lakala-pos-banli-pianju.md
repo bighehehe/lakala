@@ -81,11 +81,11 @@ A：要看是否有明确规则，不能只听口头承诺。
   <ul class="space-y-3">
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-mianfeisong-taolu" class="text-slate-600 hover:text-brand-600 transition-colors">延伸阅读：拉卡拉 POS 免费送上门是真的吗？换机、押金、升级套路解析</a>
+      <a href="/pos-guide/lakala-pos-mianfeisong-taolu" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 免费送上门是真的吗？换机、押金、升级套路解析</a>
     </li>
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回支柱页：阅读《2026年拉卡拉个人 POS 机办理与选型终极指南》</a>
+      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
     </li>
   </ul>
 </div>

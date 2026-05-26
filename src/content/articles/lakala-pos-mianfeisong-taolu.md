@@ -77,11 +77,11 @@ A：不要直接相信，不给验证码，不远程操作，先核实来源。
   <ul class="space-y-3">
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-jihuo-shicao" class="text-slate-600 hover:text-brand-600 transition-colors">延伸阅读：激活实操：手把手教你如何完成拉卡拉个人认证与首刷激活</a>
+      <a href="/pos-guide/lakala-pos-jihuo-shicao" class="text-slate-600 hover:text-brand-600 transition-colors">激活实操：手把手教你如何完成拉卡拉个人认证与首刷激活</a>
     </li>
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回支柱页：阅读《2026年拉卡拉个人 POS 机办理与选型终极指南》</a>
+      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
     </li>
   </ul>
 </div>
