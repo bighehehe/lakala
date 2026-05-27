@@ -31,7 +31,7 @@ created_at: "2026-05-22"
 以常见的 0.6% 费率举例：
 
 | 刷卡金额 | 手续费计算 | 手续费 |
-|---------|-----------|-------|
+| :---: | :---: | :---: |
 | 1 万元 | 10000 × 0.6% | 60 元 |
 | 5 万元 | 50000 × 0.6% | 300 元 |
 | 10 万元 | 100000 × 0.6% | 600 元 |
@@ -62,12 +62,15 @@ created_at: "2026-05-22"
 ## 常见问题解答 FAQ
 
 **Q：拉卡拉 POS 刷 1 万一定扣 60 元吗？**
+
 A：不一定。60 元只是按 0.6% 举例，实际要看办理时确认的费率和是否有额外费用。
 
 **Q：0.55% 和 0.6% 差别大吗？**
+
 A：单笔差别不大，但长期交易额高，差额会变明显。
 
 **Q：到账金额少了，是不是乱扣费？**
+
 A：不一定，可能是手续费、秒到费、流量费或其他约定费用，需要结合明细判断。
 
 ## 接下来该做什么？
@@ -81,7 +84,7 @@ A：不一定，可能是手续费、秒到费、流量费或其他约定费用�
   <ul class="space-y-3">
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-feilv-chengben" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 押金能退吗？达标返还、冻结金和退押规则说明</a>
+      <a href="/pos-guide/lakala-pos-yajin-tuibi-guize" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 押金能退吗？达标返还、冻结金和退押规则说明</a>
     </li>
     <li class="flex items-start text-base">
       <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>

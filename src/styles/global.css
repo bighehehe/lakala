@@ -79,7 +79,7 @@ body {
   border-collapse: collapse;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
-  text-align: left;
+  text-align: center;
 }
 
 .prose-content th,
