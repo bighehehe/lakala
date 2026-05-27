@@ -1,152 +1,80 @@
 ---
 ---
 
-<div id="ai-assistant">
-  <button
-    id="ai-toggle-btn"
-    class="fixed right-4 bottom-24 sm:right-6 sm:bottom-8 w-12 h-12 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 shadow-[0_14px_28px_rgba(37,99,235,0.28)] flex items-center justify-center text-white transition-all duration-300 hover:scale-105 hover:from-brand-500 hover:to-brand-600 z-50 group border border-white/20 cursor-grab active:cursor-grabbing touch-none select-none"
-    aria-label="打开AI助手"
-  >
-    <span class="absolute inset-0 rounded-full bg-white/15 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"></span>
-    <span class="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[9px] font-bold text-brand-600 shadow-sm">
-      客
-    </span>
-    <svg class="relative w-5.5 h-5.5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 12a8 8 0 0 1 16 0" />
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 12v3a2 2 0 0 0 2 2h1v-6H7a2 2 0 0 0-2 2Z" />
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 12v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Z" />
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 19a3 3 0 0 0 6 0" />
-    </svg>
-  </button>
-
-  <div
-    id="ai-chat-window"
-    class="fixed right-4 bottom-[6.5rem] sm:right-4 sm:bottom-28 w-[calc(100vw-2rem)] max-w-80 bg-white rounded-3xl shadow-2xl border border-brand-100 flex flex-col overflow-hidden z-50 transition-all hidden"
-  >
-    <div class="bg-gradient-to-r from-brand-600 to-brand-700 text-white p-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-          <h3 class="font-bold">官方客服</h3>
-        </div>
-        <button id="ai-close-btn" class="text-white hover:text-gray-200 transition-colors cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-        </button>
-      </div>
+<div id="ai-assistant" class="relative z-50">
+  <div id="ai-container" class="fixed right-0 top-[80%] -translate-y-1/2 flex items-start z-[60] transition-transform duration-300 translate-x-[200px]">
     
-    <div class="p-6 bg-slate-50 flex flex-col items-center justify-center">
-      <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-100">
-        <img src="/wechat.jpg" alt="拉卡拉客服微信二维码" class="w-48 h-48 object-contain" />
+    <button
+      id="ai-toggle-btn"
+      class="w-10 py-3 rounded-l-md bg-[#2B60DF] shadow-[-4px_0_12px_rgba(37,99,235,0.2)] flex flex-col items-center justify-center text-white cursor-pointer"
+      aria-label="打开客服"
+    >
+      <svg class="w-5 h-5 mb-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3a9 9 0 0 0-9 9v7c0 1.1.9 2 2 2h4v-8H5v-1a7 7 0 0 1 14 0v1h-4v8h4c1.1 0 2-.9 2-2v-7a9 9 0 0 0-9-9z"/>
+      </svg>
+      <div class="flex flex-col gap-1 text-[13px] font-bold tracking-widest text-white leading-none">
+        <span>联</span>
+        <span>系</span>
+        <span>咨</span>
+        <span>询</span>
+      </div>
+      <svg class="w-3.5 h-3.5 mt-2 transition-transform duration-300" id="ai-toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 8 12 13 7"></polyline><polyline points="20 17 15 12 20 7"></polyline></svg>
+    </button>
+
+    <div
+      id="ai-chat-window"
+      class="w-[200px] bg-white flex flex-col border-[2px] border-[#2B60DF] shadow-lg"
+    >
+      <div class="p-3 pb-2.5 flex flex-col items-center border-b border-slate-100">
+        <h3 class="text-[17px] font-bold text-slate-800 mb-2 tracking-wide">400-926-6655</h3>
+        <a href="/contact" class="w-[85%] py-2 bg-[#2B60DF] hover:bg-blue-700 text-white rounded text-sm font-medium text-center transition-colors">
+          办理咨询
+        </a>
+      </div>
+
+      <div class="p-3 flex flex-col items-center">
+        <div class="w-36 h-36 bg-white relative">
+          <img src="/wechat.jpg" alt="拉卡拉客服微信二维码" class="w-full h-full object-contain" />
+        </div>
       </div>
     </div>
+
   </div>
+  <div id="ai-overlay" class="fixed inset-0 bg-transparent z-[50] transition-opacity duration-300 opacity-0 pointer-events-none"></div>
 </div>
 
 <script>
   const toggleBtn = document.getElementById('ai-toggle-btn');
-  const chatWindow = document.getElementById('ai-chat-window');
-  const closeBtn = document.getElementById('ai-close-btn');
-  const dragStorageKey = 'lakala-ai-toggle-position';
+  const container = document.getElementById('ai-container');
+  const overlay = document.getElementById('ai-overlay');
+  const toggleIcon = document.getElementById('ai-toggle-icon');
 
   let isOpen = false;
-  let isDragging = false;
-  let dragMoved = false;
-  let pointerOffsetX = 0;
-  let pointerOffsetY = 0;
 
-  function clamp(value: number, min: number, max: number) {
-    return Math.min(Math.max(value, min), max);
-  }
-
-  function saveTogglePosition(left: number, top: number) {
-    localStorage.setItem(dragStorageKey, JSON.stringify({ left, top }));
-  }
-
-  function setTogglePosition(left: number, top: number) {
-    if (!toggleBtn) return;
-    const margin = 8;
-    const maxLeft = window.innerWidth - toggleBtn.offsetWidth - margin;
-    const maxTop = window.innerHeight - toggleBtn.offsetHeight - margin;
-    const safeLeft = clamp(left, margin, maxLeft);
-    const safeTop = clamp(top, margin, maxTop);
-
-    toggleBtn.style.left = `${safeLeft}px`;
-    toggleBtn.style.top = `${safeTop}px`;
-    toggleBtn.style.right = 'auto';
-    toggleBtn.style.bottom = 'auto';
-
-    saveTogglePosition(safeLeft, safeTop);
-  }
-
-  function restoreTogglePosition() {
-    if (!toggleBtn) return;
-    const stored = localStorage.getItem(dragStorageKey);
-    if (stored) {
-      try {
-        const { left, top } = JSON.parse(stored);
-        if (typeof left === 'number' && typeof top === 'number') {
-          setTogglePosition(left, top);
-          return;
-        }
-      } catch {}
-    }
-
-    const rect = toggleBtn.getBoundingClientRect();
-    setTogglePosition(rect.left, rect.top);
-  }
-
-  function handlePointerMove(e: PointerEvent) {
-    if (!toggleBtn || !isDragging) return;
-    dragMoved = true;
-    setTogglePosition(e.clientX - pointerOffsetX, e.clientY - pointerOffsetY);
-  }
-
-  function stopDragging() {
-    if (!toggleBtn) return;
-    isDragging = false;
-    toggleBtn.classList.remove('scale-105');
-    window.removeEventListener('pointermove', handlePointerMove);
-    window.removeEventListener('pointerup', stopDragging);
-    window.removeEventListener('pointercancel', stopDragging);
-  }
-
-  function startDragging(e: PointerEvent) {
-    if (!toggleBtn || isOpen) return;
-    const rect = toggleBtn.getBoundingClientRect();
-    isDragging = true;
-    dragMoved = false;
-    pointerOffsetX = e.clientX - rect.left;
-    pointerOffsetY = e.clientY - rect.top;
-    toggleBtn.classList.add('scale-105');
-    window.addEventListener('pointermove', handlePointerMove);
-    window.addEventListener('pointerup', stopDragging);
-    window.addEventListener('pointercancel', stopDragging);
-  }
-
-  function toggleChat() {
+  function toggleDrawer() {
     isOpen = !isOpen;
     if (isOpen) {
-      chatWindow?.classList.remove('hidden');
-      toggleBtn?.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+      container?.classList.remove('translate-x-[200px]');
+      overlay?.classList.remove('opacity-0', 'pointer-events-none');
+      overlay?.classList.add('opacity-100', 'pointer-events-auto');
+      toggleIcon?.classList.add('rotate-180');
     } else {
-      chatWindow?.classList.add('hidden');
-      toggleBtn?.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+      container?.classList.add('translate-x-[200px]');
+      overlay?.classList.remove('opacity-100', 'pointer-events-auto');
+      overlay?.classList.add('opacity-0', 'pointer-events-none');
+      toggleIcon?.classList.remove('rotate-180');
     }
   }
 
-  function handleToggleClick() {
-    if (dragMoved) {
-      dragMoved = false;
-      return;
-    }
-    toggleChat();
+  function closeDrawer() {
+    if (!isOpen) return;
+    isOpen = false;
+    container?.classList.add('translate-x-[200px]');
+    overlay?.classList.remove('opacity-100', 'pointer-events-auto');
+    overlay?.classList.add('opacity-0', 'pointer-events-none');
+    toggleIcon?.classList.remove('rotate-180');
   }
 
-  restoreTogglePosition();
-  toggleBtn?.addEventListener('pointerdown', startDragging);
-  toggleBtn?.addEventListener('click', handleToggleClick);
-  closeBtn?.addEventListener('click', toggleChat);
-  window.addEventListener('resize', () => {
-    if (!toggleBtn) return;
-    const rect = toggleBtn.getBoundingClientRect();
-    setTogglePosition(rect.left, rect.top);
-  });
+  toggleBtn?.addEventListener('click', toggleDrawer);
+  overlay?.addEventListener('click', closeDrawer);
 </script>
