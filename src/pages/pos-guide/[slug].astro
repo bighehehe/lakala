@@ -254,11 +254,11 @@ const breadcrumbSchema = {
               <span class="text-xs font-bold">电话咨询</span>
               <span class="text-[10px] text-slate-400 mt-0.5">400-926-6655</span>
             </a>
-            <a href="/wechat.jpg" class="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-xl py-4 px-2 text-slate-700 shadow-sm">
+            <button type="button" class="wechat-qr-trigger flex flex-col items-center justify-center bg-white border border-slate-200 rounded-xl py-4 px-2 text-slate-700 shadow-sm cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="mb-1.5 text-green-500"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.68 4.025c-3.737 0-6.996 2.39-6.996 5.492 0 3.11 3.259 5.492 6.996 5.492a8.27 8.27 0 0 0 2.344-.339.625.625 0 0 1 .52.075l1.46.854a.26.26 0 0 0 .133.044.233.233 0 0 0 .233-.233c0-.058-.023-.115-.038-.172l-.3-1.133a.464.464 0 0 1 .165-.515C21.798 18.801 22.758 17.127 22.758 15.508c0-3.102-3.259-5.492-6.996-5.492h.336zm-2.436 2.826c.525 0 .95.432.95.963a.957.957 0 0 1-.95.963.957.957 0 0 1-.95-.963c0-.531.425-.963.95-.963zm4.872 0c.525 0 .95.432.95.963a.957.957 0 0 1-.95.963.957.957 0 0 1-.95-.963c0-.531.425-.963.95-.963z"/></svg>
               <span class="text-xs font-bold">微信咨询</span>
               <span class="text-[10px] text-slate-400 mt-0.5">扫码添加</span>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -293,4 +293,56 @@ const breadcrumbSchema = {
   <Footer />
   <AIAssistant />
   <ApplyModal />
+
+  <div id="wechat-qr-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+    <div id="wechat-qr-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+    <div id="wechat-qr-content" class="relative w-[calc(100%-2rem)] max-w-xs mx-auto bg-white rounded-2xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 p-6 text-center">
+      <button id="wechat-qr-close" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-full hover:bg-slate-200 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <p class="text-base font-bold text-slate-800 mb-4">微信扫码咨询</p>
+      <img src="/wechat.jpg" alt="微信客服二维码" class="w-full aspect-square object-contain rounded-lg border border-slate-100" />
+      <p class="text-xs text-slate-400 mt-3">长按识别或保存图片，打开微信扫一扫</p>
+    </div>
+  </div>
+
+  <script>
+    function initWechatQrModal() {
+      const modal = document.getElementById('wechat-qr-modal');
+      const backdrop = document.getElementById('wechat-qr-backdrop');
+      const content = document.getElementById('wechat-qr-content');
+      const closeBtn = document.getElementById('wechat-qr-close');
+      const triggers = document.querySelectorAll('.wechat-qr-trigger');
+
+      function open() {
+        if (!modal || !backdrop || !content) return;
+        modal.classList.remove('hidden');
+        void modal.offsetWidth;
+        backdrop.classList.remove('opacity-0');
+        backdrop.classList.add('opacity-100');
+        content.classList.remove('opacity-0', 'scale-95');
+        content.classList.add('opacity-100', 'scale-100');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        if (!backdrop || !content) return;
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        content.classList.remove('opacity-100', 'scale-100');
+        content.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+          modal?.classList.add('hidden');
+          document.body.style.overflow = '';
+        }, 300);
+      }
+
+      triggers.forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+      closeBtn?.addEventListener('click', close);
+      backdrop?.addEventListener('click', close);
+    }
+
+    initWechatQrModal();
+    document.addEventListener('astro:page-load', initWechatQrModal);
+  </script>
 </Layout>
