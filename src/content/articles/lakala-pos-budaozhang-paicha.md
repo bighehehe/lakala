@@ -1,6 +1,6 @@
 ---
 title: "拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查"
-summary: "拉卡拉 POS 刷卡不到账，不一定代表资金丢失，也不一定是机器问题。常见原因包括交易未成功、付款卡未扣款、结算卡异常、非秒到时段、节假日延迟、风控审核等。遇到不到账，先查交易状态、小票凭证、扣款情况、结算卡和到账规则，不要急着重复刷卡。"
+summary: "拉卡拉 POS 刷卡不到账，不一定代表资金丢失，也不一定是机器问题。常见原因包括交易未成功、付款卡未扣款、结算卡异常、非秒到时段、节假日延迟、风控审核等。遇到不到账，先查交易状态、小票凭证、扣款情况、结算卡和到账规则，不要急着重复刷卡。如果交易失败伴随扣款异常，可以看看[拉卡拉 POS 交易失败常见原因有哪些？怎么处理？](/pos-guide/lakala-pos-jiaoyi-shibai)。"
 author: "拉卡拉官方"
 category: "正规性与安全"
 cover_image: "/articles_cover/拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查.webp"
@@ -60,7 +60,7 @@ POS 屏幕是否显示成功？APP 是否有交易记录？
 - APP 交易截图。
 - 机器编号。
 
-资料越完整，处理越快。
+资料越完整，处理越快。如果售后电话难以核实，建议阅读[拉卡拉 POS 售后电话怎么核实？不要轻信陌生号码](/pos-guide/lakala-pos-shouhou-dianhua-heshi)。
 
 ## 常见问题解答 FAQ
 
@@ -79,19 +79,3 @@ A：可能正常，要看秒到规则、银行处理和交易状态。
 ## 接下来该做什么？
 
 如果不到账同时伴随交易失败、扣款失败或提示受限，下一步要看交易失败原因。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-jiaoyi-shibai" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 交易失败常见原因有哪些？怎么处理？</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

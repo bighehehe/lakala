@@ -8,7 +8,7 @@ category: "风控、跳码、商户"
 created_at: "2026-05-15"
 ---
 >
-> “网上的提额攻略看了一大堆，到底该怎么落地执行？”
+> “网上的[提额](/pos-guide/lakala-pos-tie-heikeji)攻略看了一大堆，到底该怎么落地执行？”
 > “下个月想申请提额，这个月的账单我该怎么刷才最容易通过？”
 >
 > 信用卡提额就像是一场考试，而你的月度账单就是答卷。如果答卷上全是一家商户的巨额提现，老师（风控系统）肯定给你不及格。但如果你按照“25笔线上小额 + 3笔实体大额 + 1笔特定贡献”的模型去规划，你将拿到评分系统的高分。
@@ -56,15 +56,3 @@ A：个人精力有限，很难面面俱到。建议挑选 2-3 张“主战卡�
 ## 接下来该做什么？
 
 掌握了如何养护信用卡，您还需要一台稳定、安全且不暗涨费率的机具来承载您的大额交易部分。回顾我们为您准备的全方位选型指南，为您个人的资金健康保驾护航。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回主页：2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

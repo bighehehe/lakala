@@ -51,20 +51,8 @@ A：绝对不能用！央行明文规定，支付牌照严禁出借、出租或�
 
 **Q：除了查牌照，还有其他辅助验证“一清机”的方法吗？**
 
-A：最直接的辅助方法是查银联入账明细。完成首刷激活后，打开你的手机银行 APP 查看该笔入账流水，打款方（交易对手）必须明确显示为“拉卡拉支付股份有限公司”或带有“银联备付金”字样，绝不能是某某商贸公司或个人名字。
+A：最直接的辅助方法是查银联入账明细。完成首刷激活后，打开你的手机银行 APP 查看该笔入账流水，打款方（交易对手）必须明确显示为“拉卡拉支付股份有限公司”或带有“银联备付金”字样，绝不能是某某商贸公司或个人名字。如果刷卡后不到账怎么办？建议参考[拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查](/pos-guide/lakala-pos-budaozhang-paicha)。
 
 ## 接下来该做什么？
 
 确认了支付机构拥有国家合规牌照后，资金安全就有了兜底保障。下一步，当你实操注册账号时，需要提交大量的个人敏感信息，了解这些信息在合规机构内部是如何加密的，能彻底打消您的隐私顾虑。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-yinsi-baohu" class="text-slate-600 hover:text-brand-600 transition-colors">隐私保护：个人办理 POS 提交身份证、银行卡信息的安全等级解析</a>
-    </li>
-  </ul>
-</div>

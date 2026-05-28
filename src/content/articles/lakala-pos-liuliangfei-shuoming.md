@@ -41,7 +41,7 @@ created_at: "2026-05-23"
 ### 问题三：不用机器后还担心扣费
 长期不用时，如果账户或设备仍然有效，用户会担心是否继续扣流量费。
 **破解指南：**
-不用前先确认设备状态、结算卡绑定、是否需要注销或停用。
+不用前先确认设备状态、结算卡绑定、是否需要注销或停用。关于注销和解绑的详细说明，建议阅读[拉卡拉 POS 不用了需要注销吗？解绑、停用和扣费风险说明](/pos-guide/lakala-pos-zhuxie-jieting)。
 
 ## 流量费和手续费有什么区别？
 
@@ -66,20 +66,4 @@ A：有可能产生争议，长期不用建议确认停用或注销规则。
 
 ## 接下来该做什么？
 
-流量费看懂后，还要继续看秒到费。很多用户到账金额少几元，不是流量费，而是每笔秒到费用。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-miaodao-luoji" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 秒到费每笔都收吗？到账速度和费用关系解析</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>
+流量费看懂后，还要继续看秒到费。很多用户到账金额少几元，不是流量费，而是每笔秒到费用。秒到费的具体逻辑，可以看看[秒到账逻辑：详解 D+0、T+1 与秒到账的时间差及风控规则](/pos-guide/lakala-pos-miaodao-luoji)。

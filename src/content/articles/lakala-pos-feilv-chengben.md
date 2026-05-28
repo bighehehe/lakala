@@ -18,8 +18,8 @@ created_at: "2026-05-15"
 在支付行业中，真实的费率模型是一个综合的“盲盒”。正规支付公司的收益来自于清晰明了的费率抽成，而黑中介的利润则来自于隐蔽的附加费用：
 
 - **基础费率差异**：银联标准刷卡费率通常为 0.6%，而小额扫码（1000元内）为 0.38%。不区分场景一律盲刷，会白白浪费优惠政策。
-- **流量费暗扣**：绝大多数 4G 机器每年需要 48 元的通讯费。但部分机器会按季度扣 60 元，甚至半年扣 99 元。
-- **单笔提现费（秒到费）**：部分老款机型或套路机，不仅按比例扣费，每刷一笔还要额外加收 2 元至 3 元的“秒到费”（即 0.6% + 3），频繁小额刷卡亏损极大。
+- **[流量费](/pos-guide/lakala-pos-liuliangfei-shuoming)暗扣**：绝大多数 4G 机器每年需要 48 元的通讯费。但部分机器会按季度扣 60 元，甚至半年扣 99 元。
+- **单笔提现费（[秒到费](/pos-guide/lakala-pos-miaodao-luoji)）**：部分老款机型或套路机，不仅按比例扣费，每刷一笔还要额外加收 2 元至 3 元的“秒到费”（即 0.6% + 3），频繁小额刷卡亏损极大。
 
 ## 2. 深度成本拆解：1 万流水下的三种不同渠道
 
@@ -54,15 +54,3 @@ A：正规官方渠道办理的拉卡拉（0押金版）执行银联标准备案
 ## 接下来该做什么？
 
 理解了成本模型后，你还需要掌握具体的计算公式，以便在日常每一笔交易后能够快速复盘，验证自己的资金是否足额到账。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-feilv-jisuan" class="text-slate-600 hover:text-brand-600 transition-colors">费率计算公式：深度解析刷卡 10,000 元，你实际付出了多少？</a>
-    </li>
-  </ul>
-</div>

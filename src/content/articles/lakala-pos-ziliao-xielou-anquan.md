@@ -53,7 +53,7 @@ created_at: "2026-05-22"
 - 不明链接中的银行卡信息。
 - 人脸识别远程代操作。
 
-只要对方要求这些，就要先停下来。
+只要对方要求这些，就要先停下来。更多关于售后安全的建议，可以看看[拉卡拉 POS 售后电话怎么核实？不要轻信陌生号码](/pos-guide/lakala-pos-shouhou-dianhua-heshi)。
 
 ## 已经提交资料后怎么办？
 
@@ -61,7 +61,7 @@ created_at: "2026-05-22"
 2. 保存办理聊天记录。
 3. 留意陌生升级、换机、退押金电话。
 4. 不要继续提供验证码。
-5. 必要时联系银行或正规渠道处理。
+5. 必要时联系银行或正规渠道处理。如果售后电话核实不清，建议先阅读[拉卡拉 POS 售后电话怎么核实？不要轻信陌生号码](/pos-guide/lakala-pos-shouhou-dianhua-heshi)。
 
 ## 常见问题解答 FAQ
 
@@ -80,19 +80,3 @@ A：保存聊天记录，关注异常扣费和陌生电话，如有异常及时�
 ## 接下来该做什么？
 
 资料安全看清楚后，下一步要重点学会核实售后电话，避免被二次诈骗。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-shouhou-dianhua-heshi" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 售后电话怎么核实？不要轻信陌生号码</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

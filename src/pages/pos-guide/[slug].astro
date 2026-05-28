@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AIAssistant from '../../components/AIAssistant.astro';
+import ApplyModal from '../../components/ApplyModal.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -20,14 +21,22 @@ export async function getStaticPaths() {
 const { article, allClusterArticles } = Astro.props;
 const { Content } = await render(article);
 
-// Get current article's category to find related articles
 const currentCategory = article.data.category;
 
-// 获取随机 3 篇推荐阅读（不包含当前文章，且最好是同一分类的，如果是支柱文章的衍生文章则优先推荐其他衍生文章）
-const recommendedArticles = allClusterArticles
-  .filter(a => a.id !== article.id)
-  .sort(() => 0.5 - Math.random())
-  .slice(0, 3);
+const sortedArticles = [...allClusterArticles].sort((a, b) => {
+  const catOrder = ['办理条件', '申请流程', '费用与合同', '手续费计算', '渠道与避坑', '风控、跳码、商户', '正规性与安全', '骗局与避坑', '激活与使用'];
+  const catDelta = catOrder.indexOf(a.data.category || '') - catOrder.indexOf(b.data.category || '');
+  if (catDelta !== 0) return catDelta;
+  return new Date(a.data.created_at).getTime() - new Date(b.data.created_at).getTime();
+});
+
+const currentIndex = sortedArticles.findIndex(a => a.id === article.id);
+const prevArticle = currentIndex > 0 ? sortedArticles[currentIndex - 1] : null;
+const nextArticle = currentIndex < sortedArticles.length - 1 ? sortedArticles[currentIndex + 1] : null;
+
+const sameCategoryArticles = allClusterArticles.filter(a => a.id !== article.id && a.data.category === currentCategory);
+const otherArticles = allClusterArticles.filter(a => a.id !== article.id && a.data.category !== currentCategory);
+const recommendedArticles = [...sameCategoryArticles, ...otherArticles].slice(0, 3);
 
 // Group definitions: each group has its own pillar, categories, and sidebar
 const groups = {
@@ -140,7 +149,7 @@ const breadcrumbSchema = {
 <Layout title={`${article.data.title} - 拉卡拉`} description={article.data.summary} keywords={article.data.keywords} schema={[articleSchema, breadcrumbSchema]}>
   <Header />
   <main class="flex-grow pt-16 min-h-screen bg-slate-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <nav class="mb-6 text-sm text-slate-500">
         <ol class="flex items-center space-x-2">
           <li><a href="/" class="hover:text-brand-600 transition-colors">首页</a></li>
@@ -151,7 +160,33 @@ const breadcrumbSchema = {
         </ol>
       </nav>
 
-      <div class="min-w-0">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-8">
+
+          <div class="hidden lg:block w-[170px] flex-shrink-0 mr-0 relative">
+            <div class="sticky top-24 space-y-3 w-[170px]">
+              <div class="rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 p-4 shadow-lg text-center">
+                <p class="text-sm font-bold text-white mb-2">想要办理 POS 机？</p>
+                <p class="text-xs text-white/70 mb-3">免费咨询，专业顾问一对一</p>
+                <button class="apply-modal-trigger block w-full bg-white text-brand-600 font-bold text-sm py-2.5 rounded-lg hover:bg-brand-50 transition-colors cursor-pointer">
+                  立即办理
+                </button>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-white/95 backdrop-blur p-4 shadow-lg text-center">
+                <p class="text-sm font-bold text-slate-800 mb-2">全国服务热线</p>
+                <p class="text-base font-black text-brand-600 tracking-wide">400-926-6655</p>
+                <p class="text-xs text-slate-400 mt-2">周一至周日 9:00-18:00</p>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-white/95 backdrop-blur p-4 shadow-lg text-center">
+                <p class="text-sm font-bold text-slate-800 mb-3">微信扫码咨询</p>
+                <img src="/wechat.jpg" alt="微信客服二维码" class="w-full aspect-square object-contain rounded-lg" />
+                <p class="text-xs text-slate-400 mt-2">扫码添加客服微信</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="max-w-4xl flex-1">
+            <div class="min-w-0">
         <article class="rounded-none lg:rounded-lg border-0 lg:border border-slate-200 bg-transparent lg:bg-white shadow-none lg:shadow-sm overflow-hidden">
             {article.data.cover_image && (
               <img
@@ -181,37 +216,81 @@ const breadcrumbSchema = {
             </div>
         </article>
 
-        <!-- 推荐阅读 -->
+        {(prevArticle || nextArticle) && (
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {prevArticle ? (
+              <a href={`/pos-guide/${prevArticle.id}`} class="group flex items-center gap-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all p-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 group-hover:text-brand-600 transition-colors"><path d="m15 18-6-6 6-6"/></svg>
+                </div>
+                <div class="min-w-0">
+                  <span class="text-xs text-slate-400 block mb-1">上一篇</span>
+                  <span class="text-sm font-medium text-slate-700 group-hover:text-brand-600 transition-colors line-clamp-2 block">{prevArticle.data.title}</span>
+                </div>
+              </a>
+            ) : <div />}
+            {nextArticle ? (
+              <a href={`/pos-guide/${nextArticle.id}`} class="group flex items-center justify-end gap-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all p-4 text-right">
+                <div class="min-w-0">
+                  <span class="text-xs text-slate-400 block mb-1">下一篇</span>
+                  <span class="text-sm font-medium text-slate-700 group-hover:text-brand-600 transition-colors line-clamp-2 block">{nextArticle.data.title}</span>
+                </div>
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 group-hover:text-brand-600 transition-colors"><path d="m9 18 6-6-6-6"/></svg>
+                </div>
+              </a>
+            ) : <div />}
+          </div>
+        )}
+
+        <div class="lg:hidden mt-8 pb-2">
+          <div class="grid grid-cols-3 gap-3">
+            <button class="apply-modal-trigger flex flex-col items-center justify-center bg-gradient-to-br from-brand-600 to-brand-700 rounded-xl py-4 px-2 text-white shadow-md cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" x2="12" y1="18" y2="12"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
+              <span class="text-xs font-bold">立即办理</span>
+            </button>
+            <a href="tel:4009266655" class="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-xl py-4 px-2 text-slate-700 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1.5 text-brand-600"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span class="text-xs font-bold">电话咨询</span>
+              <span class="text-[10px] text-slate-400 mt-0.5">400-926-6655</span>
+            </a>
+            <a href="/wechat.jpg" class="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-xl py-4 px-2 text-slate-700 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="mb-1.5 text-green-500"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.68 4.025c-3.737 0-6.996 2.39-6.996 5.492 0 3.11 3.259 5.492 6.996 5.492a8.27 8.27 0 0 0 2.344-.339.625.625 0 0 1 .52.075l1.46.854a.26.26 0 0 0 .133.044.233.233 0 0 0 .233-.233c0-.058-.023-.115-.038-.172l-.3-1.133a.464.464 0 0 1 .165-.515C21.798 18.801 22.758 17.127 22.758 15.508c0-3.102-3.259-5.492-6.996-5.492h.336zm-2.436 2.826c.525 0 .95.432.95.963a.957.957 0 0 1-.95.963.957.957 0 0 1-.95-.963c0-.531.425-.963.95-.963zm4.872 0c.525 0 .95.432.95.963a.957.957 0 0 1-.95.963.957.957 0 0 1-.95-.963c0-.531.425-.963.95-.963z"/></svg>
+              <span class="text-xs font-bold">微信咨询</span>
+              <span class="text-[10px] text-slate-400 mt-0.5">扫码添加</span>
+            </a>
+          </div>
+        </div>
+
         {recommendedArticles.length > 0 && (
-          <div class="mt-12">
-            <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
-              <div class="w-1.5 h-5 bg-brand-600 rounded-full mr-3"></div>
+          <div class="mt-10">
+            <h2 class="text-lg font-bold text-slate-800 mb-5 flex items-center">
+              <div class="w-1 h-5 bg-brand-600 rounded-full mr-2.5"></div>
               推荐阅读
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {recommendedArticles.map((rec) => (
-                <a href={`/pos-guide/${rec.id}`} class="group flex flex-col bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                <a href={`/pos-guide/${rec.id}`} class="group bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
                   {rec.data.cover_image && (
-                    <div class="aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100">
+                    <div class="aspect-video w-full overflow-hidden bg-slate-50">
                       <img src={encodeURI(rec.data.cover_image)} alt={rec.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
                   )}
-                  <div class="p-5 flex-grow">
-                    <span class="inline-block px-2 py-1 bg-slate-50 text-slate-500 text-xs rounded mb-3">
-                      {rec.data.category}
-                    </span>
-                    <h3 class="text-base font-bold text-slate-800 group-hover:text-brand-600 transition-colors line-clamp-2 mb-2">
-                      {rec.data.title}
-                    </h3>
+                  <div class="p-4">
+                    <span class="inline-block px-2 py-0.5 bg-brand-50 text-brand-600 text-xs rounded mb-2">{rec.data.category}</span>
+                    <h3 class="text-sm font-bold text-slate-800 group-hover:text-brand-600 transition-colors line-clamp-2">{rec.data.title}</h3>
                   </div>
                 </a>
               ))}
             </div>
           </div>
         )}
+
+        </div>
       </div>
     </div>
   </main>
   <Footer />
   <AIAssistant />
+  <ApplyModal />
 </Layout>

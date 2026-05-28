@@ -46,7 +46,7 @@ created_at: "2026-05-22"
 ### 原因四：风控触发
 夜间大额、短时间多笔、金额异常集中，都可能触发风控。
 **处理方法：**
-停止连续交易，先确认近期交易是否异常。
+停止连续交易，先确认近期交易是否异常。关于风控触发的原因和应对方法，可以阅读[风控应对：被银行限额或风控后，如何通过正规拉卡拉 POS “养”回额度？](/pos-guide/lakala-pos-fengkong-yingdui)。
 
 ### 原因五：设备或商户状态异常
 提示终端无效、商户无效，可能是设备未激活、长期未用、状态异常。
@@ -62,7 +62,7 @@ created_at: "2026-05-22"
 5. 查询 APP 交易记录。
 6. 联系售后确认交易状态。
 
-第一笔状态没查清之前，不要急着刷第二笔。
+第一笔状态没查清之前，不要急着刷第二笔。如果扣款后仍未到账，建议参考[拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查](/pos-guide/lakala-pos-budaozhang-paicha)。
 
 ## 常见问题解答 FAQ
 
@@ -81,19 +81,3 @@ A：多半与限额、银行规则或风控有关。
 ## 接下来该做什么？
 
 如果交易失败后出现扣款未到账，就要继续排查不到账问题。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-budaozhang-paicha" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

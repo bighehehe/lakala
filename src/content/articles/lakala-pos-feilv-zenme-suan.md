@@ -24,7 +24,7 @@ created_at: "2026-05-22"
 有些机器可能还有秒到费、流量费、服务费，这些不一定每笔都扣，但会影响长期成本。
 
 **第三步：最后看费率是否稳定。**
-办理时的费率，不一定代表长期费率。要问清是否为活动价，后期是否可能调整。
+办理时的费率，不一定代表长期费率。要问清是否为活动价，后期是否可能调整。关于费率涨价内幕和调价规律，建议阅读[调价内幕：为什么 POS 机用久了费率会突然上涨？如何申请调回？](/pos-guide/lakala-pos-tiaojia-neimu)。
 
 ## 费率计算示例
 
@@ -75,20 +75,4 @@ A：不一定，可能是手续费、秒到费、流量费或其他约定费用�
 
 ## 接下来该做什么？
 
-看懂基础费率后，下一步要重点了解押金、流量费和秒到费，因为很多真实成本不是体现在刷卡费率里，而是藏在这些费用规则里。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-yajin-tuibi-guize" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 押金能退吗？达标返还、冻结金和退押规则说明</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>
+看懂基础费率后，下一步要重点了解押金、流量费和秒到费，因为很多真实成本不是体现在刷卡费率里，而是藏在这些费用规则里。押金退还的详细规则，建议阅读[拉卡拉 POS 押金能退吗？达标返还、冻结金和退押规则说明](/pos-guide/lakala-pos-yajin-tuibi-guize)。

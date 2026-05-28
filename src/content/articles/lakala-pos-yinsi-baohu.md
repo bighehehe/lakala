@@ -44,22 +44,10 @@ created_at: "2026-05-15"
 
 A：建议添加但必须注意位置。你可以使用图片编辑软件，在身份证非关键信息区域（不要遮挡姓名、身份证号、头像）添加透明的文字水印，例如：“仅供办理拉卡拉 POS 机使用，他用无效”。这能极大增加不法分子盗用照片的成本，同时不影响官方系统的 OCR 自动识别。
 
-**Q：如果我以后不用这台机器了，我的信息能彻底注销吗？**
+**Q：如果我以后不用这台机器了，我的信息能彻底[注销](/pos-guide/lakala-pos-zhuxie-jieting)吗？**
 
 A：可以。根据《个人信息保护法》，您有权要求支付机构删除您的个人信息。您可以拨打拉卡拉官方客服电话（95016）申请注销商户账户。账户注销后，根据金融监管要求，您的交易日志需至少保存 5 年备查，但您的个人身份资料将从前端业务系统中被物理隔离或删除，无法再被任何商业环节调用。
 
 ## 接下来该做什么？
 
 在您放心提交资料并激活机器后，随着使用时间的增加，您可能会成为电信诈骗团伙“精准关怀”的目标。提前了解这些诈骗手段，是保障后期用卡安宁的必修课。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-fangfan-dianzha" class="text-slate-600 hover:text-brand-600 transition-colors">防范电诈：警惕以“POS 机升级”为名的电话诈骗，保护个人资金</a>
-    </li>
-  </ul>
-</div>

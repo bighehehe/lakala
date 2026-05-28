@@ -10,7 +10,7 @@ created_at: "2026-05-21"
 
 > “现在免费给你寄一台新款 POS，包邮到家，收到后激活就能用。”
 
-很多人觉得反正不要钱，先收了再说。但真正的问题往往出现在激活时：客服让你首刷299元，说是激活流水；刷完后钱没到账，又改口说这是押金，要刷满10万才退。
+很多人觉得反正不要钱，先收了再说。但真正的问题往往出现在激活时：客服让你首刷299元，说是激活流水；刷完后钱没到账，又改口说这是押金，要刷满10万才退。刷卡不到账怎么排查？建议阅读[拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查](/pos-guide/lakala-pos-budaozhang-paicha)。
 
 免费送上门，最怕的不是机器寄到，而是规则没讲清。
 
@@ -40,7 +40,7 @@ created_at: "2026-05-21"
 ### 套路三：冒充官方换机升级
 对方说旧机器不能用了，必须免费换新机。不换就不到账、不换就涨价。用户换完后，又被要求重新首刷、交押金、绑定资料。
 **破解指南：**
-陌生电话通知换机，一律先核实。不要给验证码，不远程操作手机，不向私人账户转账。
+陌生电话通知换机，一律先核实。不要给验证码，不远程操作手机，不向私人账户转账。更多办理骗局的拆解，可以看看[拉卡拉 POS 办理骗局有哪些？新手必须警惕的 8 类话术](/pos-guide/lakala-pos-banli-pianju)。
 
 ## 办理前必须问清 8 个问题
 
@@ -72,19 +72,3 @@ A：不要直接相信，不给验证码，不远程操作，先核实来源。
 ## 接下来该做什么？
 
 如果已经收到免费机器，下一步要重点确认激活首刷和个人认证流程，避免第一笔就踩坑。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-jihuo-shicao" class="text-slate-600 hover:text-brand-600 transition-colors">激活实操：手把手教你如何完成拉卡拉个人认证与首刷激活</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

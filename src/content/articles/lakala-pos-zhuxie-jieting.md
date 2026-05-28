@@ -33,7 +33,7 @@ created_at: "2026-05-22"
 ### 风险一：不用了，流量费还在扣
 有些机器可能按年扣通讯流量费。即便长时间没用，只要账户仍有效，后续可能产生扣费争议。
 **破解指南：**
-长期不用前，先确认是否还有流量费，是否需要停用设备。
+长期不用前，先确认是否还有流量费，是否需要停用设备。关于流量费的详细说明，可以看看[拉卡拉 POS 流量费是什么？为什么每年可能会扣？](/pos-guide/lakala-pos-liuliangfei-shuoming)。
 
 ### 风险二：押金还没退，代理失联了
 有些机器激活时冻结押金，需要达标返还。用户不处理，等想退时，代理已经联系不上。
@@ -43,7 +43,7 @@ created_at: "2026-05-22"
 ### 风险三：陌生电话借旧机器诱导换机
 长期不用的用户，容易接到"旧机升级、停用前验证、退押金换新机"等电话。
 **破解指南：**
-不要听陌生电话指挥，不给验证码，不交押金，不远程操作。
+不要听陌生电话指挥，不给验证码，不交押金，不远程操作。如何辨别真假售后电话？可以参考[拉卡拉 POS 售后电话怎么核实？不要轻信陌生号码](/pos-guide/lakala-pos-shouhou-dianhua-heshi)。
 
 ## 注销、解绑、停用有什么区别？
 
@@ -70,19 +70,3 @@ A：不建议。先确认账户、绑定、押金和扣费问题。
 ## 接下来该做什么？
 
 如果机器长期不用，下一步要检查流量费、押金、结算卡绑定和售后联系方式，避免后续产生扣费或换机风险。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-shouhou-dianhua-heshi" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 售后电话怎么核实？不要轻信陌生号码</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

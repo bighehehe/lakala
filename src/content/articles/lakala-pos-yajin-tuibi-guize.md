@@ -54,7 +54,7 @@ POS 押金纠纷，是个人用户最常见的办理问题之一。很多人不�
 5. 多久可以退？
 6. 找谁处理退押？
 
-如果对方说不清楚，不建议急着激活。
+如果对方说不清楚，不建议急着激活。办理前还有哪些避坑要点？可以看看[拉卡拉 POS 办理骗局有哪些？新手必须警惕的 8 类话术](/pos-guide/lakala-pos-banli-pianju)。
 
 ## 常见问题解答 FAQ
 
@@ -72,20 +72,4 @@ A：要看是否保留办理记录、押金承诺、交易凭证等材料。
 
 ## 接下来该做什么？
 
-押金看清楚后，下一步要看流量费。很多用户押金没踩坑，却在几个月后被流量费扣了一笔。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-liuliangfei-shuoming" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 流量费是什么？为什么每年可能会扣？</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>
+押金看清楚后，下一步要看流量费。很多用户押金没踩坑，却在几个月后被流量费扣了一笔。详细了解流量费的扣费规则，建议阅读[拉卡拉 POS 流量费是什么？为什么每年可能会扣？](/pos-guide/lakala-pos-liuliangfei-shuoming)。

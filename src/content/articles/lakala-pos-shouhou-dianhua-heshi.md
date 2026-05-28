@@ -31,17 +31,17 @@ created_at: "2026-05-22"
 ### 套路一：不到账需要转账解冻
 用户刷卡不到账后，对方说资金被冻结，需要先交“验证金”或“解冻费”。
 **破解指南：**
-凡是要求向私人账户转账解冻的，都要高度警惕。
+凡是要求向私人账户转账解冻的，都要高度警惕。如果已经出现刷卡不到账的情况，建议先按步骤排查，可以参考[拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查](/pos-guide/lakala-pos-budaozhang-paicha)。
 
 ### 套路二：退押金需要验证码
-对方说可以帮忙退押金，但需要验证码验证身份。用户一着急，就把验证码发过去。
+对方说可以帮忙退押金，但需要验证码验证身份。押金退还的详细规则，建议阅读[拉卡拉 POS 押金能退吗？达标返还、冻结金和退押规则说明](/pos-guide/lakala-pos-yajin-tuibi-guize)。用户一着急，就把验证码发过去。
 **破解指南：**
 验证码不是普通资料，而是操作确认。任何人索要验证码，都应停止操作。
 
 ### 套路三：机器升级要远程操作
 对方让用户下载远程控制软件，指导打开银行 App、短信页面或支付页面。
 **破解指南：**
-涉及银行卡和验证码时，不接受远程控制。
+涉及银行卡和验证码时，不接受远程控制。关于交易失败的常见原因和处理方法，可以看看[拉卡拉 POS 交易失败常见原因有哪些？怎么处理？](/pos-guide/lakala-pos-jiaoyi-shibai)。
 
 ## 联系售后前准备什么？
 
@@ -68,19 +68,3 @@ A：先整理机器信息、交易记录和办理记录，再通过正规渠道�
 ## 接下来该做什么？
 
 如果售后电话已经核实不清，下一步要看具体问题类型，比如不到账、交易失败、注销解绑等。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-budaozhang-paicha" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 刷卡不到账怎么办？先按这 5 步排查</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

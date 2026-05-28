@@ -8,7 +8,7 @@ category: "风控、跳码、商户"
 created_at: "2026-05-15"
 ---
 >
-> “为什么我每个月用机器刷满几万块，不仅没提额，反而被降额了？”
+> “为什么我每个月用机器刷满几万块，不仅没[提额](/pos-guide/lakala-pos-tie-heikeji)，反而被降额了？”
 > “不是说多刷不同行业的商户就能提额吗？我的账单怎么全是一家店的名字？”
 >
 > 很多持卡人依然停留在三年前的“养卡”思维中，以为办了一台机器就能模拟出“吃喝玩乐”的全场景消费。但随着支付行业监管的收紧，旧有的认知已经变成了导致封卡的“催命符”。今天，我们重新梳理 2026 年的 MCC 规则与多元化提额逻辑。
@@ -56,15 +56,3 @@ A：算。线上电商平台的 MCC 也是丰富多样的。将信用卡绑定�
 ## 接下来该做什么？
 
 掌握了多元化的比例后，你还需要关注“刷卡的时间节点”。在凌晨两点刷大额百货，同样会引起银行的警觉。了解真实的消费时间轴，是合规用卡的下一步。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-shuaka-shijian" class="text-slate-600 hover:text-brand-600 transition-colors">刷卡黄金时间表：模拟真实消费习惯，个人用卡的“黄金法则”</a>
-    </li>
-  </ul>
-</div>

@@ -53,7 +53,7 @@ POS 机骗局往往不是一次性骗大钱，而是先用低门槛让你上车�
 
 ### 话术七：售后找我就行。
 个人代理失联很常见。
-**破解指南：** 保存办理记录和售后方式。
+**破解指南：** 保存办理记录和售后方式。售后电话如何核实真假？可以参考[拉卡拉 POS 售后电话怎么核实？不要轻信陌生号码](/pos-guide/lakala-pos-shouhou-dianhua-heshi)。
 
 ### 话术八：保证提额，无视风控。
 POS 机不是信用卡提额工具。
@@ -76,19 +76,3 @@ A：要看是否有明确规则，不能只听口头承诺。
 ## 接下来该做什么？
 
 如果已经了解常见骗局，下一步要重点看“免费送上门”和“换机升级”这类具体场景。
-
-<div class="bg-slate-50 rounded-xl p-6 mt-8 border border-slate-100">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide/lakala-pos-mianfeisong-taolu" class="text-slate-600 hover:text-brand-600 transition-colors">拉卡拉 POS 免费送上门是真的吗？换机、押金、升级套路解析</a>
-    </li>
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

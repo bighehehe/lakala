@@ -30,7 +30,7 @@ created_at: "2026-05-15"
 - **前兆二：频繁收到不明“换机短信”**
   如果你的手机近期密集收到“您的机器费率即将上调，回复1免费包邮新机”的短信，说明你的数据已被内网标记为“待收割目标”。
 - **前兆三：固定金额到账变少**
-  每个月都刷一笔 10000 元，以前稳定到账 9940，这个月突然变成了 9850 甚至 9800，且已排除年度流量费扣除因素。
+  每个月都刷一笔 10000 元，以前稳定到账 9940，这个月突然变成了 9850 甚至 9800，且已排除年度流量费扣除因素。流量费的详细说明，可以看看[拉卡拉 POS 流量费是什么？为什么每年可能会扣？](/pos-guide/lakala-pos-liuliangfei-shuoming)。
 
 ## 3. 实战：费率上涨后能申请调回吗？
 
@@ -56,16 +56,4 @@ A：认准正规官方 0 押金版的拉卡拉，执行的是 0.6% 的银联备�
 
 ## 接下来该做什么？
 
-费率稳定是基础，而资金的到账速度则是个人资金周转的生命线。了解 POS 机背后的清算逻辑，能让你对何时资金到账做到心中有数。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回主页：2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>
+费率稳定是基础，而资金的到账速度则是个人资金周转的生命线。了解 POS 机背后的清算逻辑，能让你对何时资金到账做到心中有数。秒到账的具体逻辑，建议阅读[秒到账逻辑：详解 D+0、T+1 与秒到账的时间差及风控规则](/pos-guide/lakala-pos-miaodao-luoji)。

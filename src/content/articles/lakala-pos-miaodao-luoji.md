@@ -11,7 +11,7 @@ created_at: "2026-05-15"
 > “明明说好是[秒到账](/pos-guide/lakala-pos-miaodao-luoji)，为什么我昨晚 11 点半刷的卡，今天早上还没收到？”
 > “我急等着这笔钱付货款，钱到底卡在哪个环节了？”
 >
-> 个人 POS 机的核心痛点之一就是“资金焦虑”。当刷卡后没有立刻听到那声清脆的短信提示音，恐慌感便会随之而来。其实，只要了解支付行业的清算时间表和风控规则，你就能对每一笔资金的去向了如指掌。
+> 个人 POS 机的核心痛点之一就是“资金焦虑”。当刷卡后没有立刻听到那声清脆的短信提示音，恐慌感便会随之而来。其实，只要了解支付行业的清算时间表和[风控](/pos-guide/lakala-pos-fengkong-yingdui)规则，你就能对每一笔资金的去向了如指掌。
 
 ## 1. 支付行业必备术语：D0 与 T1 到底是什么？
 
@@ -46,24 +46,12 @@ created_at: "2026-05-15"
 
 **Q：我的钱确实没秒到，它现在去哪了？安全吗？**
 
-A：绝对安全。只要您使用的是拥有央行牌照的正规拉卡拉一清机，资金是在中国人民银行监管的备付金账户中流转，绝不会进入任何私人的口袋。您可以登录拉卡拉 APP 的“账单明细”中查看，状态通常会显示“结算中”，只需耐心等待系统解冻打款即可。
+A：绝对安全。只要您使用的是拥有央行牌照的正规拉卡拉[一清机](/pos-guide/lakala-pos-yiqingji-chaxun)，资金是在中国人民银行监管的备付金账户中流转，绝不会进入任何私人的口袋。您可以登录拉卡拉 APP 的“账单明细”中查看，状态通常会显示“结算中”，只需耐心等待系统解冻打款即可。
 
-**Q：遇到没到账的情况，我需要重复刷卡吗？**
+**Q：遇到[没到账](/pos-guide/lakala-pos-budaozhang-paicha)的情况，我需要重复刷卡吗？**
 
 A：千万不要！如果上一笔钱没到账，且机器打印了小票或显示了“交易成功”，说明发卡行已经扣款。盲目重复刷卡会导致信用卡被重复扣款。应第一时间打开拉卡拉 APP 查看流水，或联系官方售后客服核查该笔交易的清算状态。
 
 ## 接下来该做什么？
 
 理清了[费率计算](/pos-guide/lakala-pos-feilv-jisuan)、规避了涨价套路，并掌握了资金到账的规律，您已经是一位精通 POS 机操作的高手了。随时查阅我们的全局指南，能够帮助您应对更多支付行业的突发变化。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回主页：2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>

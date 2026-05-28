@@ -11,7 +11,7 @@ created_at: "2026-05-15"
 > “我昨晚 11 点半急需用钱，拿机器刷了两万块，结果今天早上一看，信用卡被限制交易了。”
 > “我每次都是账单日出来的第二天，一笔把卡里的额度全刷空，这样有问题吗？”
 >
-> 风控系统其实并不神秘，它就是一个“常识判断机器”。当你用卡的习惯完全违背了一个正常人的生活规律时，系统就会自动亮起红灯。掌握刷卡的黄金时间与节奏，就是在向银行证明：“我是一个作息规律、消费正常的优质客户”。
+> [风控](/pos-guide/lakala-pos-fengkong-yingdui)系统其实并不神秘，它就是一个“常识判断机器”。当你用卡的习惯完全违背了一个正常人的生活规律时，系统就会自动亮起红灯。掌握刷卡的黄金时间与节奏，就是在向银行证明：“我是一个作息规律、消费正常的优质客户”。
 
 ## 1. 为什么“时间点”比“刷卡金额”更敏感？
 
@@ -55,15 +55,3 @@ A：同一张信用卡，在同一台机器上，一天内连续刷卡最好不�
 ## 接下来该做什么？
 
 如果你之前因为没有遵循这些规则，已经收到了银行的“风险提示短信”或者被限制了交易额度，不要惊慌。了解风控底层的运作逻辑并采取正确的“化解手段”，是挽救卡片额度的唯一途径。
-
-<div class="mt-8 mb-8">
-  <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center">
-    <span class="mr-2 text-base">📚</span> 推荐阅读
-  </h3>
-  <ul class="space-y-3">
-    <li class="flex items-start text-base">
-      <span class="text-brand-600 mr-3 font-bold mt-0.5">•</span>
-      <a href="/pos-guide" class="text-slate-600 hover:text-brand-600 transition-colors">返回主页：2026年拉卡拉个人 POS 机办理与选型终极指南</a>
-    </li>
-  </ul>
-</div>
