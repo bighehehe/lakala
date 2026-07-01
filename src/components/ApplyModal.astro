@@ -214,20 +214,28 @@
         const phoneInput = document.getElementById('apply-phone') as HTMLInputElement;
         const messageInput = document.getElementById('apply-message') as HTMLTextAreaElement;
 
+        const path = window.location.pathname;
+        let sourceName = '首页';
+        if (path === '/contact') sourceName = '联系我们';
+        else if (path.startsWith('/products/')) sourceName = '产品详情页';
+        else if (path.startsWith('/pos-guide/') || path === '/pos-guide') sourceName = 'POS办理指南';
+        else if (path.startsWith('/blog')) sourceName = '博客资讯';
+        else if (path.startsWith('/faq')) sourceName = '常见问题';
+        else if (path !== '/') sourceName = '其他页面';
+
         const payload = {
-          name: nameInput?.value || '',
-          phone: phoneInput?.value || '',
-          type: typeInput?.value || '',
-          message: messageInput?.value || '',
-          submittedAt: new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
+          "姓名": nameInput?.value || '',
+          "电话": phoneInput?.value || '',
+          "产品": typeInput?.value || '',
+          "留言": messageInput?.value || '',
+          "网站": "拉卡拉",
+          "来源": sourceName,
+          "时间": new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
         };
         
         try {
-          // 由于飞书 Webhook 依然存在跨域限制，即使能成功发出去数据，浏览器在读取响应时可能抛出 cors 报错
-          // 我们使用 no-cors 模式，让浏览器只发不读，这样就不会进入 catch 分支了
-          const response = await fetch('https://www.feishu.cn/flow/api/trigger-webhook/0e0293455b7a346759875691d7320432', {
+          const response = await fetch('https://text.pingbal.com/webhook', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
               'Content-Type': 'application/json'
             },

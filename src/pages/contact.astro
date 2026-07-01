@@ -148,18 +148,15 @@ const breadcrumbSchema = {
     const phone = formData.get('phone') as string;
     const company = formData.get('company') as string;
     const message = formData.get('message') as string;
-    
-    const now = new Date();
-    const pad = (n: number) => n.toString().padStart(2, '0');
-    const submit_time = `${now.getFullYear()}/${pad(now.getMonth() + 1)}/${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-    
+
     const payload = {
-      name: name || "",
-      phone: phone || "",
-      source: "拉卡拉",
-      message: message || "",
-      submit_time: submit_time,
-      company: company || ""
+      "姓名": name || "",
+      "电话": phone || "",
+      "产品": company || "",
+      "留言": message || "",
+      "网站": "拉卡拉",
+      "来源": "联系我们",
+      "时间": new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
     };
 
     const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
@@ -168,29 +165,20 @@ const breadcrumbSchema = {
     submitBtn.disabled = true;
 
     try {
-      // 本地开发环境使用 vite 代理避免跨域报错
-      const isDev = import.meta.env.DEV;
-      const webhookUrl = isDev 
-        ? '/feishu-webhook/flow/api/trigger-webhook/fcf533eb2a782b972061b0ec406f3dc7'
-        : 'https://www.feishu.cn/flow/api/trigger-webhook/fcf533eb2a782b972061b0ec406f3dc7';
+      const webhookUrl = 'https://text.pingbal.com/webhook';
 
-      // 生产环境如果是纯静态站点，飞书 webhook 不支持跨域，只能使用 no-cors 模式发送数据（单向发送，无法读取响应）
       const fetchOptions: RequestInit = {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        mode: isDev ? 'cors' : 'no-cors'
+        body: JSON.stringify(payload)
       };
 
-      const response = await fetch(webhookUrl, fetchOptions);
-      
-      // no-cors 模式下返回的是 opaque 响应，status 为 0，ok 为 false，但实际上请求已经发出去了
-      if (response.ok || response.type === 'opaque') {
-        alert("申请提交成功！我们的客户经理会在24小时内联系您。");
-        form.reset();
-      } else {
-        alert("提交失败，请稍后重试。");
-      }
+      await fetch(webhookUrl, fetchOptions);
+
+      // no-cors 模式下无法读取响应，只要没抛异常即视为成功
+      alert("申请提交成功！我们的客户经理会在24小时内联系您。");
+      form.reset();
     } catch (error) {
       console.error('Error submitting form:', error);
       alert("提交出错，请检查网络连接后重试。");
