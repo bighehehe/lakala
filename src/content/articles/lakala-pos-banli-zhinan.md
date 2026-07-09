@@ -99,7 +99,9 @@ created_at: "2026-05-07"
 - 本人的储蓄卡（用于结算）。 
 - 本人实名的信用卡（用于首笔激活验证）。
 
-激活教程和详细步骤，可以参考[激活教程：拉卡拉个人 POS 机从拆箱到首笔交易全流程](/pos-guide/lakala-pos-jihuo-jiaocheng)。 
+激活教程和详细步骤，可以参考[激活教程：拉卡拉个人 POS 机从拆箱到首笔交易全流程](/pos-guide/lakala-pos-jihuo-jiaocheng)。
+
+如果你身在异地或想在线上申请，可以参考[异地办理指南：拉卡拉个人 POS 机可以异地办理吗？](/pos-guide/lakala-pos-yidi-banli)。
  
 ### 5.2 常见的激活陷阱 
  
