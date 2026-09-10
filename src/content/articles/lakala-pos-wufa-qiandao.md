@@ -2,7 +2,7 @@
 title: "拉卡拉POS机无法签到怎么办？"
 summary: "拉卡拉POS机无法签到，不一定是机器坏了，可能与网络信号、流量服务、设备长期不用、系统维护、设备未激活或参数异常有关。个人用户遇到无法签到时，应先确认设备网络和状态，不要连续乱按或反复刷卡。如果多次无法恢复，应联系服务方处理。"
 author: "拉卡拉官方"
-category: "使用故障"
+category: "机器故障、流量卡、注销"
 cover_image: "/articles_cover/拉卡拉POS机无法签到怎么办.webp"
 keywords: "拉卡拉POS机, 无法签到, 签到失败, 网络异常, 流量服务, 个人POS机"
 status: "published"

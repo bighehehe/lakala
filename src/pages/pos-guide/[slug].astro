@@ -8,10 +8,9 @@ import ApplyModal from '../../components/ApplyModal.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
-  // 只保留属于 POS办理指南 (Group A) 的集群文章，扩展分类以包含新增文章
-  const groupACats = ['办理条件', '申请流程', '费用与合同', '手续费计算', '渠道与避坑', '风控、跳码、商户', '正规性与安全', '骗局与避坑', '激活与使用'];
-  const filtered = articles.filter(a => a.id !== 'lakala-pos-banli-zhinan' && groupACats.includes(a.data.category || ''));
-  
+  // 支柱页 lakala-pos-banli-zhinan 由 pos-guide.astro 处理，其余所有文章统一使用本详情页
+  const filtered = articles.filter(a => a.id !== 'lakala-pos-banli-zhinan');
+
   return filtered.map((article) => ({
     params: { slug: article.id },
     props: { article, allClusterArticles: filtered },
@@ -24,7 +23,7 @@ const { Content } = await render(article);
 const currentCategory = article.data.category;
 
 const sortedArticles = [...allClusterArticles].sort((a, b) => {
-  const catOrder = ['办理条件', '申请流程', '费用与合同', '手续费计算', '渠道与避坑', '风控、跳码、商户', '正规性与安全', '骗局与避坑', '激活与使用'];
+  const catOrder = ['办理条件', '申请流程', '费用与合同', '手续费计算', '渠道与避坑', '风控、跳码、商户', '正规性与安全', '骗局与避坑', '激活与使用', '扫码费率', '流量费', '押金规则', '秒到费与涨价', '机型介绍', '产品选择', '产品功能', '产品对比与决策', '不到账', '交易失败', '限额', '结算卡与账户', '机器故障、流量卡、注销', '政策与行业变化', '使用边界与风险提示'];
   const catDelta = catOrder.indexOf(a.data.category || '') - catOrder.indexOf(b.data.category || '');
   if (catDelta !== 0) return catDelta;
   return new Date(a.data.created_at).getTime() - new Date(b.data.created_at).getTime();
@@ -133,8 +132,8 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       "position": 2,
-      "name": groupConfig.name,
-      "item": `https://www.pospee.com${groupRouteMap[currentGroup] || '/articles'}`
+      "name": "POS办理指南",
+      "item": "https://www.pospee.com/pos-guide"
     },
     {
       "@type": "ListItem",
@@ -154,7 +153,7 @@ const breadcrumbSchema = {
         <ol class="flex items-center space-x-2">
           <li><a href="/" class="hover:text-brand-600 transition-colors">首页</a></li>
           <li><span class="text-slate-400">/</span></li>
-          <li><a href={groupRouteMap[currentGroup] || '/articles'} class="hover:text-brand-600 transition-colors">{groupConfig.name}</a></li>
+          <li><a href="/pos-guide" class="hover:text-brand-600 transition-colors">POS办理指南</a></li>
           <li><span class="text-slate-400">/</span></li>
           <li class="text-slate-900 font-medium">{article.data.title}</li>
         </ol>

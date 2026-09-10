@@ -25,18 +25,34 @@ const categoryMapping: Record<string, string> = {
   "正规性与安全": "行业资讯",
   "骗局与避坑": "行业资讯",
   "渠道与避坑": "行业资讯",
+  "政策与行业变化": "行业资讯",
+  "使用边界与风险提示": "行业资讯",
   "申请流程": "产品动态",
+  "机型介绍": "产品动态",
+  "产品选择": "产品动态",
+  "产品功能": "产品动态",
+  "产品对比与决策": "产品动态",
   "办理条件": "使用教程",
   "激活与使用": "使用教程",
+  "不到账": "使用教程",
+  "交易失败": "使用教程",
+  "限额": "使用教程",
+  "结算卡与账户": "使用教程",
+  "机器故障、流量卡、注销": "使用教程",
   "费用与合同": "费率解读",
   "手续费计算": "费率解读",
+  "扫码费率": "费率解读",
+  "流量费": "费率解读",
+  "押金规则": "费率解读",
+  "秒到费与涨价": "费率解读",
   "风控、跳码、商户": "商户经营",
 };
 
 // Add a mapped_category property to each article for easy filtering
 const articlesWithMappedCategory = sortedArticles.map(article => ({
   ...article,
-  mappedCategory: categoryMapping[article.data.category || ''] || '行业资讯' // Default to 行业资讯 if not found
+  mappedCategory: categoryMapping[article.data.category || ''] || '行业资讯', // Default to 行业资讯 if not found
+  href: article.id === 'lakala-pos-banli-zhinan' ? '/pos-guide' : `/pos-guide/${article.id}`,
 }));
 
 function formatDate(dateStr: string | Date) {
@@ -102,7 +118,7 @@ const breadcrumbSchema = {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
           {articlesWithMappedCategory.map((article) => (
             <a 
-                href={article.id === 'lakala-pos-banli-zhinan' ? '/pos-guide' : `/pos-guide/${article.id}`} 
+                href={article.href}
                 class="article-card group flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
                 data-category={article.mappedCategory}
               >

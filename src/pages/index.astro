@@ -8,9 +8,8 @@ import Carousel from '../components/Carousel.astro';
 import { getCollection } from 'astro:content';
 
 const allArticles = await getCollection('articles');
-const posGuideCategories = new Set(['办理条件', '申请流程', '费用与合同', '渠道与避坑', '激活与使用']);
 const getArticleHref = (article: (typeof allArticles)[number]) =>
-  posGuideCategories.has(article.data.category || '') ? `/pos-guide/${article.id}` : `/articles/${article.id}`;
+  article.id === 'lakala-pos-banli-zhinan' ? '/pos-guide' : `/pos-guide/${article.id}`;
 const productSlides = [
   {
     image: '/img/拉卡拉大pos.webp',
